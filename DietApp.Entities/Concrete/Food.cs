@@ -13,8 +13,25 @@ namespace DietApp.Entities.Concrete
         public string ProductName { get; set; }
 
         #region Navigational Properties
+
+        #region Category
         public int CategoryID { get; set; }
-        public Category Category { get; set; } 
+        public Category Category { get; set; }
         #endregion
+
+        #region FoodDetails
+        public FoodDetails FoodDetails { get; set; }
+        #endregion
+
+        #region UserDayMealsFoods
+        public ICollection<UserDayMealsFoods> UserDayMealsFoods { get; set; }
+        #endregion
+
+        #endregion
+
+        public Food()
+        {
+            UserDayMealsFoods = new List<UserDayMealsFoods>();
+        }
     }
 }

@@ -7,22 +7,23 @@ using System.Threading.Tasks;
 
 namespace DietApp.Entities.Concrete
 {
-    public class Category : IEntity
+    public class User : IEntity
     {
         public int ID { get; set; }
-        public string CategoryName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
 
         #region Navigational Properties
 
-        #region Food
-        public ICollection<Food> Foods { get; set; }  
+        #region UserDayMealsFoods
+        public ICollection<UserDayMealsFoods> UserDayMealsFoods { get; set; }
         #endregion
 
         #endregion
 
-        public Category()
+        public User()
         {
-             Foods = new List<Food>();
+            UserDayMealsFoods = new List<UserDayMealsFoods>();
         }
     }
 }
