@@ -46,11 +46,14 @@ namespace DietApp.DAL.Context
             mb.Entity<FoodDetails>()
                 .HasKey(fd => fd.ID);
             mb.Entity<FoodDetails>()
-                .Property(c => c.ID)
+                .Property(fd => fd.ID)
                 .HasColumnOrder(1);
             mb.Entity<FoodDetails>()
-                .Property(c => c.FoodID)
+                .Property(fd => fd.FoodID)
                 .HasColumnOrder(2);
+            mb.Entity<FoodDetails>()
+                .HasIndex(fd => fd.FoodID)
+                .IsUnique();
 
 
             mb.Entity<User>()
@@ -75,12 +78,6 @@ namespace DietApp.DAL.Context
             mb.Entity<UserDayMealsFoods>()
                 .Property(c => c.Portion)
                 .HasPrecision(2, 1);
-
-
-
-
-
-
         }
     }
 }
