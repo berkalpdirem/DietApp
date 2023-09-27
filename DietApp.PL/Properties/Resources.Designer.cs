@@ -59,5 +59,15 @@ namespace DietApp.PL.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YemekFoto {
+            get {
+                object obj = ResourceManager.GetObject("YemekFoto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
