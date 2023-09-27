@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DietApp.Entities.Concrete
 {
-    public class UserDayMealsFoods : IEntity
+    public class UserFoods : IEntity
     {
         public int ID { get; set; }
         public DateTime DateTime { get; set; }

@@ -17,17 +17,40 @@ namespace DietApp.DAL.Concrete
 
         public bool CreateUser(string email, string password)
         {
-            return true;
-            
-        }
+            User user = new User() { 
+                Email = email,
+                Password = password
+            };
 
-        public bool CheckPasswordInDb(string password)
-        {
-            return true;
+            try
+            {
+                Add(user);
+
+                if (Get(user.ID) != null)
+                {
+                    return true;
+                }
+                else 
+                { 
+                    return false; 
+                }
+            }
+            catch
+            {
+                return false;
+            }  
         }
 
         public bool CheckEmailInDb(string email)
         {
+            foreach (var user in DbSet)
+            {
+                if (user.Email == email)
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
     }

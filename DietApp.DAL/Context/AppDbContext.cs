@@ -14,7 +14,7 @@ namespace DietApp.DAL.Context
         DbSet<Food> Foods { get; set; }
         DbSet<FoodDetails> FoodDetails { get; set; }
         DbSet<User> User { get; set; }
-        DbSet<UserDayMealsFoods> UserDayMealsFoods { get; set; }
+        DbSet<UserFoods> UserDayMealsFoods { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -63,19 +63,19 @@ namespace DietApp.DAL.Context
                 .WithOne(um => um.User)
                 .HasForeignKey(um => um.UserID);
 
-            mb.Entity<UserDayMealsFoods>()
+            mb.Entity<UserFoods>()
                 .Property(c => c.ID)
                 .HasColumnOrder(1);
-            mb.Entity<UserDayMealsFoods>()
+            mb.Entity<UserFoods>()
                 .Property(c => c.UserID)
                 .HasColumnOrder(2);
-            mb.Entity<UserDayMealsFoods>()
+            mb.Entity<UserFoods>()
                 .Property(c => c.FoodID)
                 .HasColumnOrder(3);
-            mb.Entity<UserDayMealsFoods>()
+            mb.Entity<UserFoods>()
                 .Property(c => c.Meal)
                 .HasColumnOrder(4);
-            mb.Entity<UserDayMealsFoods>()
+            mb.Entity<UserFoods>()
                 .Property(c => c.Portion)
                 .HasPrecision(2, 1);
         }

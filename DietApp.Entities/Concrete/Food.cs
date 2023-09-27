@@ -10,7 +10,7 @@ namespace DietApp.Entities.Concrete
     public class Food : IEntity
     {
         public int ID { get; set; }
-        public string ProductName { get; set; }
+        public string FoodName { get; set; }
 
         #region Navigational Properties
 
@@ -24,14 +24,14 @@ namespace DietApp.Entities.Concrete
         #endregion
 
         #region UserDayMealsFoods
-        public ICollection<UserDayMealsFoods> UserDayMealsFoods { get; set; }
+        public ICollection<UserFoods> UserDayMealsFoods { get; set; }
         #endregion
 
         #endregion
 
         public Food()
         {
-            UserDayMealsFoods = new List<UserDayMealsFoods>();
+            UserDayMealsFoods = new List<UserFoods>();
         }
     }
 }
