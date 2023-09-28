@@ -21,44 +21,50 @@ namespace DietApp.DAL.Concrete
             DbSetFoodPhoto = context.Set<FoodPhoto> ();
         }
 
-        public bool AddDayMealFood(int id ,string foodName, decimal portion, string categoryName, decimal calories, Meal meal, DateTime dateTime ,string photoPath)
+        public bool AddDayMealFood(int id, string foodName, decimal portion, string categoryName, decimal calories, Meal meal, DateTime dateTime, string photoPath)
         {
 
-            if(DbSetUserFood.Where(f => f.FoodName != foodName).Any())
+            if (DbSetUserFood.Where(f => f.FoodName != foodName).Any())
             {
                 FoodPhoto newPhoto = new();
 
                 try
                 {
-                    var categoryID = DbSetUserFood.Include(c => c.Category).Where(c => c.Category.CategoryName == categoryName).Select(c=> c.CategoryID).FirstOrDefault();
+                    var categoryID = DbSetUserFood.Include(c => c.Category).Where(c => c.Category.CategoryName == categoryName).Select(c => c.CategoryID).FirstOrDefault();
 
-                    var newUserFood = new Food()
+                    var newFood = new Food()
                     {
                         FoodName = foodName,
                         CategoryID = categoryID,
                         Calories = (int)calories
-                       
+
                     };
 
-                    DbSetUserFood.Add(newUserFood);
+                    DbSetUserFood.Add(newFood);
 
                     var newUserDayMealFood = new UserDayMealFood();
 
                     if (photoPath != null)
                     {
-                        newPhoto.PhotoPath = photoPath;
+                        if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
+                        {
+                            newUserDayMealFood.FoodPhotoID = DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Select(fd => fd.ID).FirstOrDefault();
+                        }
+                        else
+                        {
+                            newPhoto.PhotoPath = photoPath;
 
-                        DbSetFoodPhoto.Add(newPhoto);
+                            DbSetFoodPhoto.Add(newPhoto);
 
-                        newUserDayMealFood.FoodPhotoID = newPhoto.ID;
-   
+                            newUserDayMealFood.FoodPhotoID = newPhoto.ID;
+                        }
                     }
 
                     newUserDayMealFood.Status = Status.Active;
                     newUserDayMealFood.Meal = meal;
                     newUserDayMealFood.UserID = id;
                     newUserDayMealFood.DateTime = dateTime;
-                    newUserDayMealFood.UserFoodID = newUserFood.ID;
+                    newUserDayMealFood.UserFoodID = newFood.ID;
                     newUserDayMealFood.Portion = portion;
 
                     Add(newUserDayMealFood);
@@ -82,15 +88,21 @@ namespace DietApp.DAL.Concrete
 
                     if (photoPath != null)
                     {
-                        newPhoto.PhotoPath = photoPath;
+                        if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
+                        {
+                            newUserDayMealFood.FoodPhotoID = DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Select(fd => fd.ID).FirstOrDefault();
+                        }
+                        else
+                        {
+                            newPhoto.PhotoPath = photoPath;
 
-                        DbSetFoodPhoto.Add(newPhoto);
+                            DbSetFoodPhoto.Add(newPhoto);
 
-                        newUserDayMealFood.FoodPhotoID = newPhoto.ID;
-
+                            newUserDayMealFood.FoodPhotoID = newPhoto.ID;
+                        }
                     }
 
-                    var userFoodID = DbSetUserFood.Where(uf => uf.CategoryID ==  categoryID).Select(uf => uf.ID).FirstOrDefault();
+                    var userFoodID = DbSetUserFood.Where(uf => uf.CategoryID == categoryID).Select(uf => uf.ID).FirstOrDefault();
 
                     newUserDayMealFood.Status = Status.Active;
                     newUserDayMealFood.Meal = meal;
