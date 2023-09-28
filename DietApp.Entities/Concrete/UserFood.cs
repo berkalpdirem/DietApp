@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace DietApp.Entities.Concrete
 {
-    public class UserFoods : IEntity
+    public class UserFood : IEntity
     {
         public int ID { get; set; }
         public DateTime DateTime { get; set; }
         public Meal Meal { get; set; }
         public decimal Portion { get; set; }
+        public Status Status { get; set; }
+
+        //Status
 
         #region Navigational Properties
 
@@ -26,6 +29,12 @@ namespace DietApp.Entities.Concrete
         public int FoodID { get; set; }
         public Food Food { get; set; }
         #endregion 
+
+        #region FoodPhoto
+        public int PhotoID { get; set; }
+        public FoodPhoto FoodPhoto { get; set; }
+        #endregion 
+
 
         #endregion
 

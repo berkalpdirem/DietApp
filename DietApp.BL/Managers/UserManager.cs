@@ -12,10 +12,16 @@ namespace DietApp.BL.Managers
     public class UserManager : BaseManager<User>, IUserService
     {
         protected UserRepository _userRepository;
+        private int _id;
 
         public UserManager(GenericRepository<User> genericRepository, UserRepository userRepository) : base(genericRepository)
         {
             _userRepository = userRepository;
+        }
+
+        public void Login(string username, string password)
+        {
+            _id = _userRepository.Login(username, password);
         }
 
         public string AddUser(string email, string password1, string password2)

@@ -10,6 +10,6 @@ namespace DietApp.BL.Services
 {
     public interface IUserFoodsService
     {
-        string AddFood(string foodName, decimal portion, Meal meal, DateTime dateTime, string photoPath);
+        string AddUserFood(string foodName, decimal portion, Meal meal, DateTime dateTime, string photoPath);
     }
 }

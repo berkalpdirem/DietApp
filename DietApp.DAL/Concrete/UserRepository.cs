@@ -41,17 +41,42 @@ namespace DietApp.DAL.Concrete
             }  
         }
 
+        public int Login(string email, string password) 
+        {
+            if(CheckLoginInfo(email, password))
+            {
+                return DbSet.Where(u => u.Email == email).Select(u => u.ID).FirstOrDefault();
+            }
+            else
+            { 
+                return 0; 
+            }
+        }
+
         public bool CheckEmailInDb(string email)
         {
-            foreach (var user in DbSet)
+            if(DbSet.Where(u => u.Email == email).Any()) 
             {
-                if (user.Email == email)
-                {
-                    return false;
-                }
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
-            return true;
+            
+        }
+
+        public bool CheckLoginInfo(string email, string password)
+        {
+            if(DbSet.Where(u => (u.Password == password) && (u.Email == email)).Any()) 
+            {
+                return true;
+            }
+            else
+            { 
+                return false; 
+            } 
         }
     }
 }

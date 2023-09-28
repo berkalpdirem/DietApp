@@ -23,15 +23,15 @@ namespace DietApp.Entities.Concrete
         public FoodDetails FoodDetails { get; set; }
         #endregion
 
-        #region UserDayMealsFoods
-        public ICollection<UserFoods> UserDayMealsFoods { get; set; }
+        #region UserFoods
+        public ICollection<UserFood> UserFoods { get; set; }
         #endregion
 
         #endregion
 
         public Food()
         {
-            UserDayMealsFoods = new List<UserFoods>();
-        }
+            UserFoods = new List<UserFood>();
+        } 
     }
 }

@@ -14,7 +14,9 @@ namespace DietApp.DAL.Context
         DbSet<Food> Foods { get; set; }
         DbSet<FoodDetails> FoodDetails { get; set; }
         DbSet<User> User { get; set; }
-        DbSet<UserFoods> UserDayMealsFoods { get; set; }
+        DbSet<UserFood> UserFoods { get; set; }
+
+        DbSet<FoodPhoto> FoodPhotos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +33,7 @@ namespace DietApp.DAL.Context
                 .HasForeignKey(f => f.CategoryID)
                 .IsRequired();
 
+
             mb.Entity<Food>()
                 .HasKey(f => f.ID);
             mb.Entity<Food>()
@@ -38,7 +41,7 @@ namespace DietApp.DAL.Context
                 .WithOne(fd => fd.Food)
                 .HasForeignKey<FoodDetails>(fd => fd.FoodID);
             mb.Entity<Food>()
-                .HasMany(f => f.UserDayMealsFoods)
+                .HasMany(f => f.UserFoods)
                 .WithOne(um => um.Food)
                 .HasForeignKey(um => um.FoodID);
 
@@ -59,25 +62,37 @@ namespace DietApp.DAL.Context
             mb.Entity<User>()
                 .HasKey(u => u.ID);
             mb.Entity<User>()
-                .HasMany(u => u.UserDayMealsFoods)
+                .HasMany(u => u.UserFoods)
                 .WithOne(um => um.User)
                 .HasForeignKey(um => um.UserID);
 
-            mb.Entity<UserFoods>()
-                .Property(c => c.ID)
+
+            mb.Entity<UserFood>()
+                .HasKey(uf => uf.ID);
+            mb.Entity<UserFood>()
+                .Property(uf => uf.ID)
                 .HasColumnOrder(1);
-            mb.Entity<UserFoods>()
-                .Property(c => c.UserID)
+            mb.Entity<UserFood>()
+                .Property(uf => uf.UserID)
                 .HasColumnOrder(2);
-            mb.Entity<UserFoods>()
-                .Property(c => c.FoodID)
+            mb.Entity<UserFood>()
+                .Property(uf => uf.FoodID)
                 .HasColumnOrder(3);
-            mb.Entity<UserFoods>()
-                .Property(c => c.Meal)
+            mb.Entity<UserFood>()
+                .Property(uf => uf.Meal)
                 .HasColumnOrder(4);
-            mb.Entity<UserFoods>()
-                .Property(c => c.Portion)
+            mb.Entity<UserFood>()
+                .Property(uf => uf.Portion)
                 .HasPrecision(2, 1);
+
+
+            mb.Entity<FoodPhoto>()
+                .HasKey(fd => fd.ID);
+            mb.Entity<FoodPhoto>()
+                .HasMany(fd => fd.UserFoods)
+                .WithOne(uf => uf.FoodPhoto)
+                .HasForeignKey(fd => fd.PhotoID)
+                .IsRequired(false);
         }
     }
 }
