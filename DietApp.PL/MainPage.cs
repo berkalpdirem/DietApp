@@ -15,14 +15,18 @@ namespace DietApp.PL
         public MainPage()
         {
             InitializeComponent();
+            pnl_LoginPanel.BringToFront();
         }
 
-        //Login Page Actions
 
+        #region Login Panel
         private void lp_btn_Entry_Click(object sender, EventArgs e)
         {
             if (LoginPanel_tb_Email.Text == "alp" && LoginPanel_tb_Password.Text == "alp123")
             {
+                ProfilePanel_lbl_Eposta.Text = LoginPanel_tb_Email.Text;
+                ProfilePanel_lbl_Password.Text = LoginPanel_tb_Password.Text;
+
                 LoginPanel_tb_Email.Clear();
                 LoginPanel_tb_Password.Clear();
                 pnl_LoginPanel.Enabled = false;
@@ -44,8 +48,9 @@ namespace DietApp.PL
             pnl_LoginPanel.Enabled = false;
             pnl_RegisterPage.Enabled = true;
         }
+        #endregion
 
-        //Register Page Actions
+        #region Register Panel
         private void rg_btn_Register_Click(object sender, EventArgs e)
         {
             RegisterPanel_tb_Email.Clear();
@@ -65,10 +70,9 @@ namespace DietApp.PL
             pnl_LoginPanel.BringToFront();
 
         }
+        #endregion
 
-        //Flow Panel Actions
-
-
+        #region Flow Panel
         private void FlowPanel_btn_Profil_Click(object sender, EventArgs e)
         {
             pnl_FlowPanel.Visible = true;
@@ -96,10 +100,50 @@ namespace DietApp.PL
             pnl_LoginPanel.BringToFront();
         }
 
-        private void pnl_LoginPanel_Paint(object sender, PaintEventArgs e)
+
+        #endregion
+
+        #region Profile Panel
+        #endregion
+
+        #region Meal Panel
+
+        private void MealPanel_btn_FoodEdit_Click(object sender, EventArgs e)
         {
+            if (MealPanel_gb_FoodEditGroupBox.Visible) // yemek güncelleme aktif ise 
+            {
+                foreach (Control item in pnl_MealPanel.Controls)
+                {
+                    item.Enabled = true;
+                }
+                MealPanel_btn_FoodEdit.Enabled = true;
+                MealPanel_gb_FoodEditGroupBox.Visible = false;
+            }
+            else                                       // yemek güncelleme pasif ise 
+            {
+                foreach (Control item in pnl_MealPanel.Controls)
+                {
+                    item.Enabled = false;
+                }
+                MealPanel_btn_FoodEdit.Enabled = true;
+                MealPanel_gb_FoodEditGroupBox.Enabled = true;
+                MealPanel_gb_FoodEditGroupBox.Visible = true;
+            }
 
         }
+
+
+        #endregion
+
+        #region Reports Panel
+        #endregion
+
+
+
+
+
+
+
 
         //Main Page Panel Actions
 

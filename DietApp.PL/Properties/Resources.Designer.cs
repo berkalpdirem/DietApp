@@ -63,6 +63,16 @@ namespace DietApp.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap emptyProfileImg {
+            get {
+                object obj = ResourceManager.GetObject("emptyProfileImg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap YemekFoto {
             get {
                 object obj = ResourceManager.GetObject("YemekFoto", resourceCulture);
