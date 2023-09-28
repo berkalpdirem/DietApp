@@ -1,5 +1,4 @@
 ﻿using DietApp.Entities.Abstract;
-using DietApp.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,32 +10,35 @@ namespace DietApp.Entities.Concrete
     public class UserFood : IEntity
     {
         public int ID { get; set; }
-        public DateTime DateTime { get; set; }
-        public Meal Meal { get; set; }
-        public decimal Portion { get; set; }
-        public Status Status { get; set; }
-
-        //Status
+        public string FoodName { get; set; }
+        public int Calories { get; set; }
 
         #region Navigational Properties
+
+        #region Category
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
+        #endregion
+
+        #region UserDaysMealsFoods
+        public ICollection<UserDayMealFood> UserDayMealFoods { get; set; }
+        #endregion
 
         #region User
         public int UserID { get; set; }
         public User User { get; set; }
         #endregion
 
-        #region Food
-        public int FoodID { get; set; }
-        public Food Food { get; set; }
-        #endregion 
-
-        #region FoodPhoto
-        public int PhotoID { get; set; }
-        public FoodPhoto FoodPhoto { get; set; }
-        #endregion 
-
+        #region FoodDetails
+        public int FoodDetailsID { get; set; }
+        public FoodDetails FoodDetails { get; set; }
+        #endregion
 
         #endregion
 
+        public UserFood()
+        {
+            UserDayMealFoods = new List<UserDayMealFood>();
+        } 
     }
 }

@@ -11,12 +11,11 @@ namespace DietApp.DAL.Context
     public class AppDbContext : DbContext
     {
         DbSet<Category> Categories { get; set; }
-        DbSet<Food> Foods { get; set; }
-        DbSet<FoodDetails> FoodDetails { get; set; }
         DbSet<User> User { get; set; }
         DbSet<UserFood> UserFoods { get; set; }
-
+        DbSet<UserDayMealFood> UserDayMealFoods { get; set; }
         DbSet<FoodPhoto> FoodPhotos { get; set; }
+        DbSet<FoodDetails> FoodDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,60 +27,56 @@ namespace DietApp.DAL.Context
             mb.Entity<Category>()
                 .HasKey(c => c.ID);
             mb.Entity<Category>()
-                .HasMany(c => c.Foods)
+                .HasMany(c => c.UserFoods)
                 .WithOne(f => f.Category)
                 .HasForeignKey(f => f.CategoryID)
                 .IsRequired();
 
 
-            mb.Entity<Food>()
+            mb.Entity<UserFood>()
                 .HasKey(f => f.ID);
-            mb.Entity<Food>()
-                .HasOne(f => f.FoodDetails)
-                .WithOne(fd => fd.Food)
-                .HasForeignKey<FoodDetails>(fd => fd.FoodID);
-            mb.Entity<Food>()
-                .HasMany(f => f.UserFoods)
-                .WithOne(um => um.Food)
-                .HasForeignKey(um => um.FoodID);
+            
+            mb.Entity<UserFood>()
+                .HasMany(uf => uf.UserDayMealFoods)
+                .WithOne(udmf => udmf.UserFood)
+                .HasForeignKey(udmf => udmf.UserFoodID);
 
 
             mb.Entity<FoodDetails>()
                 .HasKey(fd => fd.ID);
             mb.Entity<FoodDetails>()
-                .Property(fd => fd.ID)
-                .HasColumnOrder(1);
-            mb.Entity<FoodDetails>()
-                .Property(fd => fd.FoodID)
-                .HasColumnOrder(2);
-            mb.Entity<FoodDetails>()
-                .HasIndex(fd => fd.FoodID)
-                .IsUnique();
+                .HasOne(fd => fd.UserFood)
+                .WithOne(uf => uf.FoodDetails)
+                .HasForeignKey<UserFood>(uf => uf.FoodDetailsID);
 
 
             mb.Entity<User>()
                 .HasKey(u => u.ID);
             mb.Entity<User>()
                 .HasMany(u => u.UserFoods)
-                .WithOne(um => um.User)
-                .HasForeignKey(um => um.UserID);
+                .WithOne(um => um.User);
+            //.HasForeignKey(um => um.UserID);
+            mb.Entity<User>()
+                .HasMany(u => u.UserDayMealFoods)
+                .WithOne(um => um.User);
+                //.HasForeignKey(um => um.UserID);
 
 
-            mb.Entity<UserFood>()
+            mb.Entity<UserDayMealFood>()
                 .HasKey(uf => uf.ID);
-            mb.Entity<UserFood>()
+            mb.Entity<UserDayMealFood>()
                 .Property(uf => uf.ID)
                 .HasColumnOrder(1);
-            mb.Entity<UserFood>()
+            mb.Entity<UserDayMealFood>()
                 .Property(uf => uf.UserID)
                 .HasColumnOrder(2);
-            mb.Entity<UserFood>()
-                .Property(uf => uf.FoodID)
+            mb.Entity<UserDayMealFood>()
+                .Property(uf => uf.UserFoodID)
                 .HasColumnOrder(3);
-            mb.Entity<UserFood>()
+            mb.Entity<UserDayMealFood>()
                 .Property(uf => uf.Meal)
                 .HasColumnOrder(4);
-            mb.Entity<UserFood>()
+            mb.Entity<UserDayMealFood>()
                 .Property(uf => uf.Portion)
                 .HasPrecision(2, 1);
 
@@ -89,9 +84,9 @@ namespace DietApp.DAL.Context
             mb.Entity<FoodPhoto>()
                 .HasKey(fd => fd.ID);
             mb.Entity<FoodPhoto>()
-                .HasMany(fd => fd.UserFoods)
+                .HasMany(fd => fd.UserDayMealFoods)
                 .WithOne(uf => uf.FoodPhoto)
-                .HasForeignKey(fd => fd.PhotoID)
+                .HasForeignKey(uf => uf.FoodPhotoID)
                 .IsRequired(false);
         }
     }

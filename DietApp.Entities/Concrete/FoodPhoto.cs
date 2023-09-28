@@ -13,7 +13,7 @@ namespace DietApp.Entities.Concrete
         public int ID { get; set; }
         public string PhotoPath { get; set; }
 
-        public ICollection<UserFood> UserFoods { get; set; }
+        public ICollection<UserDayMealFood> UserDayMealFoods { get; set; }
 
     }
 }

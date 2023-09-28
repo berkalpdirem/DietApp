@@ -15,15 +15,15 @@ namespace DietApp.Entities.Concrete
 
         #region Navigational Properties
 
-        #region UserDayMealsFoods
+        #region UserDaysMealsFoods
+        public ICollection<UserDayMealFood> UserDayMealFoods { get; set; }
+        #endregion
+
+        #region UserFoods
         public ICollection<UserFood> UserFoods { get; set; }
         #endregion
 
         #endregion
 
-        public User()
-        {
-            UserFoods = new List<UserFood>();
-        }
     }
 }
