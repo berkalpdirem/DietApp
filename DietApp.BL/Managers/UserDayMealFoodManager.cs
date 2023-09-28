@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace DietApp.BL.Managers
 {
-    public class UserDayMealFoodManager : BaseManager<UserFood>, IUserDayMealFoodService
+    public class UserDayMealFoodManager : BaseManager<Food>, IUserDayMealFoodService
     {
         protected UserDayMealFoodRepository _userDayMealFoodRepository;
 
-        public UserDayMealFoodManager(UserDayMealFoodRepository userDayMealFoodRepository , GenericRepository<UserFood> genericRepository) : base(genericRepository)
+        public UserDayMealFoodManager(UserDayMealFoodRepository userDayMealFoodRepository , GenericRepository<Food> genericRepository) : base(genericRepository)
         {
             _userDayMealFoodRepository = userDayMealFoodRepository;
         }

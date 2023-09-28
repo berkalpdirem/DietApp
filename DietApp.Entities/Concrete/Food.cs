@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DietApp.Entities.Concrete
 {
-    public class UserFood : IEntity
+    public class Food : IEntity
     {
         public int ID { get; set; }
         public string FoodName { get; set; }
@@ -24,11 +24,6 @@ namespace DietApp.Entities.Concrete
         public ICollection<UserDayMealFood> UserDayMealFoods { get; set; }
         #endregion
 
-        #region User
-        public int UserID { get; set; }
-        public User User { get; set; }
-        #endregion
-
         #region FoodDetails
         public int FoodDetailsID { get; set; }
         public FoodDetails FoodDetails { get; set; }
@@ -36,7 +31,7 @@ namespace DietApp.Entities.Concrete
 
         #endregion
 
-        public UserFood()
+        public Food()
         {
             UserDayMealFoods = new List<UserDayMealFood>();
         } 

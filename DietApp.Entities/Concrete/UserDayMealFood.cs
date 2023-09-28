@@ -27,7 +27,7 @@ namespace DietApp.Entities.Concrete
 
         #region Food
         public int UserFoodID { get; set; }
-        public UserFood UserFood { get; set; }
+        public Food UserFood { get; set; }
         #endregion 
 
         #region FoodPhoto
