@@ -15,26 +15,31 @@ namespace DietApp.DAL.Concrete
         private DbSet<UserFood> DbSetUserFood;
         private DbSet<FoodPhoto> DbSetFoodPhoto;
         private DbSet<MealType> DbSetMealTypes;
+        private DbSet<Category> DbSetCategory;
 
         public UserDayMealFoodRepository(DbContext context) : base (context)
         {
             DbSetUserFood = context.Set<UserFood> ();
             DbSetFoodPhoto = context.Set<FoodPhoto> ();
+            DbSetMealTypes = context.Set<MealType> ();
+            DbSetCategory = context.Set<Category>();
+
         }
 
         public bool AddDayMealFood(int id, string foodName, decimal portion, string categoryName, decimal calories, string MealName, DateTime dateTime, string photoPath)
         {
 
-            if (DbSetUserFood.Where(f => f.FoodName != foodName).Any())
+            if (!DbSetUserFood.Where(f => f.FoodName == foodName).Any())
             {
                 FoodPhoto newPhoto = new();
 
                 try
                 {
-                    var categoryID = DbSetUserFood.Include(c => c.Category).Where(c => c.Category.CategoryName == categoryName).Select(c => c.CategoryID).FirstOrDefault();
+                    var categoryID = DbSetCategory.Where(c => c.CategoryName == categoryName).Select(c => c.ID).FirstOrDefault();
 
                     var newFood = new UserFood()
                     {
+                        UserID = id,
                         FoodName = foodName,
                         CategoryID = categoryID,
                         Calories = (int)calories
@@ -45,22 +50,34 @@ namespace DietApp.DAL.Concrete
 
                     var newUserDayMealFood = new UserDayMealFood();
 
-                    if (photoPath != null)
+                    //if (photoPath != string.Empty)
+                    //{
+                    //    if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
+                    //    {
+                    //        newUserDayMealFood.FoodPhotoID = DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Select(fd => fd.ID).FirstOrDefault();
+                    //    }
+                    //    else
+                    //    {
+                    //        newPhoto.PhotoPath = photoPath;
+
+                    //        DbSetFoodPhoto.Add(newPhoto);
+
+                    //        newUserDayMealFood.FoodPhotoID = newPhoto.ID;
+                    //    }
+                    //}
+
+                    if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
                     {
-                        if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
-                        {
-                            newUserDayMealFood.FoodPhotoID = DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Select(fd => fd.ID).FirstOrDefault();
-                        }
-                        else
-                        {
-                            newPhoto.PhotoPath = photoPath;
-
-                            DbSetFoodPhoto.Add(newPhoto);
-
-                            newUserDayMealFood.FoodPhotoID = newPhoto.ID;
-                        }
+                        newUserDayMealFood.FoodPhotoID = DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Select(fd => fd.ID).FirstOrDefault();
                     }
+                    else
+                    {
+                        newPhoto.PhotoPath = photoPath;
 
+                        DbSetFoodPhoto.Add(newPhoto);
+
+                        newUserDayMealFood.FoodPhotoID = newPhoto.ID;
+                    }
                     int mealID = DbSetMealTypes.Where(x=> x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
 
                     newUserDayMealFood.Status = Status.Active;
@@ -69,6 +86,7 @@ namespace DietApp.DAL.Concrete
                     newUserDayMealFood.UserFoodID = newFood.ID;
                     newUserDayMealFood.Portion = portion;
 
+                    SaveChanges();
                     Add(newUserDayMealFood);
 
                     return true;
@@ -84,7 +102,7 @@ namespace DietApp.DAL.Concrete
 
                 try
                 {
-                    var categoryID = DbSetUserFood.Include(c => c.Category).Where(c => c.Category.CategoryName == categoryName).Select(c => c.CategoryID).FirstOrDefault();
+                    var categoryID = DbSetCategory.Where(c => c.CategoryName == categoryName).Select(c => c.ID).FirstOrDefault();
 
                     var newUserDayMealFood = new UserDayMealFood();
 
@@ -104,7 +122,7 @@ namespace DietApp.DAL.Concrete
                         }
                     }
 
-                    var userFoodID = DbSetUserFood.Where(uf => uf.CategoryID == categoryID).Select(uf => uf.ID).FirstOrDefault();
+                    var userFoodID = DbSetUserFood.Where(uf => uf.FoodName == foodName).Select(uf => uf.ID).FirstOrDefault();
 
                     int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
 

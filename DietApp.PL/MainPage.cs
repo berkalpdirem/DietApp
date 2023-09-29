@@ -46,6 +46,10 @@ namespace DietApp.PL
             {
                 MealPanel_cb_CatagorySelection.Items.Add(category.CategoryName);
             }
+            foreach(var userFood in userFoodManager.GetAll())
+            {
+                MealPanel_cb_FoodSelection.Items.Add(userFood.FoodName);
+            }
         }
 
         #region Login Panel
@@ -186,22 +190,28 @@ namespace DietApp.PL
             string MealNameInput = string.Empty;
             DateTime dateTimeInput = DateTime.Now;
             string PhotoPathInput = string.Empty;
-            
-            
-            
+
+
+
 
             UserDayMealFood relatedDayMealFood = new UserDayMealFood();
 
             if (MealPanel_btn_FoodEdit.Text == "-")
             {
                 
-                if (MealPanel_tb_FoodName.Text != string.Empty && int.TryParse(MealPanel_tb_FoodCalorie.Text, out CalorieInput))
+                if (checkUIValues( MealPanel_cb_MealSelection,
+                                   MealPanel_cb_CatagorySelection,
+                                   MealPanel_cb_FoodSelection,
+                                   MealPanel_nup_PortionSelection,
+                                   MealPanel_tb_FoodName,
+                                   MealPanel_tb_FoodCalorie,
+                                   MealPanel_btn_FoodEdit.Text) && int.TryParse(MealPanel_tb_FoodCalorie.Text, out CalorieInput))
                 {
                     FoodNameInput = MealPanel_tb_FoodName.Text;
                     PortionInput = MealPanel_nup_PortionSelection.Value;
-                    CategoryNameInput = MealPanel_cb_CatagorySelection.SelectedText;
+                    CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
                     //CalorieInput İf'in içinde out ile atanıyor
-                    MealNameInput = MealPanel_cb_MealSelection.SelectedText;
+                    MealNameInput = MealPanel_cb_MealSelection.Text;
                     dateTimeInput = DateTime.Now;                                      //Düzenlenecek
                     PhotoPathInput = string.Empty;                                     //Düzenlenecek
 
@@ -219,8 +229,8 @@ namespace DietApp.PL
                                                                   // Helper metodu içinde göm ıkısınefde metodla yap
 
                     };
-
-                    userDayMealFoodManager.AddDayMealFood(structUserDayMealFood);
+                    MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
+                    
                 }
                 else
                 {
@@ -229,37 +239,86 @@ namespace DietApp.PL
             }
             else // + iken
             {
-                if (true)
+                if (checkUIValues(MealPanel_cb_MealSelection,
+                                   MealPanel_cb_CatagorySelection,
+                                   MealPanel_cb_FoodSelection,
+                                   MealPanel_nup_PortionSelection,
+                                   MealPanel_tb_FoodName,
+                                   MealPanel_tb_FoodCalorie,
+                                   MealPanel_btn_FoodEdit.Text))
                 {
                     var UserFood = userFoodManager.GetAll();
                     foreach (var item in UserFood)
                     {
-                        if (item.FoodName == MealPanel_cb_FoodSelection.SelectedText)
+                        if (item.FoodName == MealPanel_cb_FoodSelection.Text)
                         {
                             CalorieInput = item.Calories;
                             break;
                         }
                     }
 
+
+                    FoodNameInput = MealPanel_cb_FoodSelection.Text;
+                    PortionInput = MealPanel_nup_PortionSelection.Value;
+                    CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
+                    //CalorieInput İf'in içinde out ile atanıyor
+                    MealNameInput = MealPanel_cb_MealSelection.Text;
+                    dateTimeInput = DateTime.Now;                                      //Düzenlenecek
+                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
+
                     StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
                     {
 
                         UserID = userIDInput,
-                        FoodName = MealPanel_cb_FoodSelection.SelectedText,
-                        Portion = MealPanel_nup_PortionSelection.Value,
+                        FoodName = FoodNameInput,
+                        Portion = PortionInput,
                         CategoryName = CategoryNameInput,
                         Calories = CalorieInput,
-                        MealName = MealPanel_cb_MealSelection.SelectedText,
-                        DateTime = DateTime.Now,                  //Calendardan alınacak
+                        MealName = MealNameInput,
+                        DateTime = dateTimeInput,                        //Calendardan alınacak
                         PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
 
                     };
                     userDayMealFoodManager.AddDayMealFood(structUserDayMealFood);
                 }
+                else
+                {
+                    MessageBox.Show(" Veri Girişiniz Hatalı");
+                }
                 
                 
             }
             
+        }
+
+        public bool checkUIValues(ComboBox MealPanel_cb_MealSelection,
+                                  ComboBox MealPanel_cb_CatagorySelection,
+                                  ComboBox MealPanel_cb_FoodSelection,
+                                  NumericUpDown MealPanel_nup_PortionSelection,
+                                  TextBox MealPanel_tb_FoodName,
+                                  TextBox MealPanel_tb_FoodCalorie,
+                                  string controlButtonText)
+        {
+            if (controlButtonText == "+")
+            {
+                if (MealPanel_cb_MealSelection.SelectedIndex != -1 &&
+                    MealPanel_cb_CatagorySelection.SelectedIndex != -1 &&
+                    MealPanel_cb_FoodSelection.SelectedIndex != -1 &&
+                    MealPanel_nup_PortionSelection.Value != 0)
+
+                { return true; }
+                else { return false; }
+            }
+            else // - ise
+            {
+                if (MealPanel_tb_FoodName.Text != string.Empty &&
+                    MealPanel_tb_FoodCalorie.Text != string.Empty &&
+                    MealPanel_cb_MealSelection.SelectedIndex != -1 &&
+                    MealPanel_cb_CatagorySelection.SelectedIndex != -1 &&
+                    MealPanel_nup_PortionSelection.Value != 0)
+                {return true;}
+                else { return false; }
+            }
         }
 
 
