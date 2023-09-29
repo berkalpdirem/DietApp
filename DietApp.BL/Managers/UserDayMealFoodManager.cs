@@ -58,7 +58,7 @@ namespace DietApp.BL.Managers
             }
         }
 
-        public ICollection<StructUserDayMealFood> ShowUserFoods(int id)
+        public List<StructDataGridMeal> ShowDayMealFoods(int id)
         {
             return _userDayMealFoodRepository.ShowDayMealFoods(id);
         }

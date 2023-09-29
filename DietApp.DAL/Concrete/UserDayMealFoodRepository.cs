@@ -17,11 +17,11 @@ namespace DietApp.DAL.Concrete
         private DbSet<MealType> DbSetMealTypes;
         private DbSet<Category> DbSetCategory;
 
-        public UserDayMealFoodRepository(DbContext context) : base (context)
+        public UserDayMealFoodRepository(DbContext context) : base(context)
         {
-            DbSetUserFood = context.Set<UserFood> ();
-            DbSetFoodPhoto = context.Set<FoodPhoto> ();
-            DbSetMealTypes = context.Set<MealType> ();
+            DbSetUserFood = context.Set<UserFood>();
+            DbSetFoodPhoto = context.Set<FoodPhoto>();
+            DbSetMealTypes = context.Set<MealType>();
             DbSetCategory = context.Set<Category>();
 
         }
@@ -78,7 +78,7 @@ namespace DietApp.DAL.Concrete
 
                         newUserDayMealFood.FoodPhotoID = newPhoto.ID;
                     }
-                    int mealID = DbSetMealTypes.Where(x=> x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
+                    int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
 
                     newUserDayMealFood.Status = Status.Active;
                     newUserDayMealFood.MealTypeID = mealID;
@@ -154,14 +154,14 @@ namespace DietApp.DAL.Concrete
             catch
             {
                 return false;
-            } 
+            }
         }
 
         public bool UpdateUserFood(int id, string foodName, decimal portion, string mealTypeName, DateTime dateTime, string photoPath)
         {
             FoodPhoto currentPhoto;
 
-            if(DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).Any())
+            if (DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).Any())
             {
                 currentPhoto = DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).First();
             }
@@ -197,22 +197,27 @@ namespace DietApp.DAL.Concrete
             catch
             {
                 return false;
-            }  
+            }
         }
 
-        public IList<StructUserDayMealFood> ShowDayMealFoods(int id)
+        public List<StructDataGridMeal> ShowDayMealFoods(int id)
         {
-            var currentList = DbSet.Include(uf => uf.UserFood).Where( uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id).OrderBy(uf => uf.DateTime).Select(uf => new StructUserDayMealFood
-            {
+            var currentList = DbSet.Include(uf => uf.UserFood)
+                                   .ThenInclude(uf => uf.UserDayMealFoods)
+                                   .Where(uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id)
+                                   .OrderBy(uf => uf.DateTime)
+                                   .Select(uf => new StructDataGridMeal
 
-                ID = uf.ID,
-                CategoryName = uf.UserFood.Category.CategoryName,
-                FoodName = uf.UserFood.FoodName,
-                Portion = uf.Portion,
-                Calories = (uf.UserFood.Calories) * uf.Portion,
-                DateTime = uf.DateTime
+                                   {
 
-            }).ToList(); 
+                                       UserID = uf.ID,
+                                       CategoryName = uf.UserFood.Category.CategoryName,
+                                       FoodName = uf.UserFood.FoodName,
+                                       Portion = uf.Portion,
+                                       Calories = (uf.UserFood.Calories) * uf.Portion,
+                                       DateTime = uf.DateTime
+
+                                   }).ToList();
             return currentList;
         }
 

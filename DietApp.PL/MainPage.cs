@@ -50,6 +50,12 @@ namespace DietApp.PL
             {
                 MealPanel_cb_FoodSelection.Items.Add(userFood.FoodName);
             }
+
+            MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
+            foreach (var item in userDayMealFoodManager.ShowDayMealFoods(userManager._id))
+            {
+                MessageBox.Show(item.UserID.ToString());
+            }
         }
 
         #region Login Panel

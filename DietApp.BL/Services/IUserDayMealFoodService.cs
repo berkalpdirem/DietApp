@@ -17,6 +17,6 @@ namespace DietApp.BL.Services
 
         string UpdateUserFood(StructUserDayMealFood sUserDayMealFood);
 
-        ICollection<StructUserDayMealFood> ShowUserFoods(int id);
+        List<StructDataGridMeal> ShowDayMealFoods(int id);
     }
 }
