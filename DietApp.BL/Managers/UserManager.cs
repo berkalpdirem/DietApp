@@ -12,7 +12,7 @@ namespace DietApp.BL.Managers
     public class UserManager : BaseManager<User>, IUserService
     {
         protected UserRepository _userRepository;
-        private int _id;
+        public int _id;
 
         public UserManager(GenericRepository<User> genericRepository, UserRepository userRepository) : base(genericRepository)
         {

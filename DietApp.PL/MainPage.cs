@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DietApp.BL.Managers;
+using DietApp.DAL.Concrete;
+using DietApp.DAL.Context;
+using DietApp.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +16,36 @@ namespace DietApp.PL
 {
     public partial class MainPage : Form
     {
+        UserManager userManager;
+        MealTypeManager mealTypeManager;
+        CategoryManager categoryManager;
+
         public MainPage()
         {
             InitializeComponent();
             pnl_LoginPanel.BringToFront();
+            userManager = new UserManager(new GenericRepository<User>(new AppDbContext()), new UserRepository(new AppDbContext()));
+            mealTypeManager = new MealTypeManager(new GenericRepository<MealType>(new AppDbContext()));
+            categoryManager = new CategoryManager(new GenericRepository<Category>(new AppDbContext()));
         }
+        private void MainPage_Load(object sender, EventArgs e)
+        {
 
+            foreach (var meal in mealTypeManager.GetAll())
+            {
+                MealPanel_cb_MealSelection.Items.Add(meal.MealName);
+            }
+            foreach (var category in categoryManager.GetAll()) 
+            {
+                MealPanel_cb_CatagorySelection.Items.Add(category.CategoryName);
+            }
+        }
 
         #region Login Panel
         private void lp_btn_Entry_Click(object sender, EventArgs e)
         {
-            if (LoginPanel_tb_Email.Text == "alp" && LoginPanel_tb_Password.Text == "alp123")
+            userManager.Login(LoginPanel_tb_Email.Text, LoginPanel_tb_Password.Text);
+            if (userManager._id != 0)
             {
                 ProfilePanel_lbl_Eposta.Text = LoginPanel_tb_Email.Text;
                 ProfilePanel_lbl_Password.Text = LoginPanel_tb_Password.Text;
@@ -39,20 +62,31 @@ namespace DietApp.PL
             {
                 MessageBox.Show("Giriş Bilgileriniz Hatalı Lütfen Tekrardan Deneyiniz!!!");
             }
+
+
+
         }
         private void lg_btn_Register_Click(object sender, EventArgs e)
         {
+
             LoginPanel_tb_Email.Clear();
             LoginPanel_tb_Password.Clear();
             pnl_RegisterPage.BringToFront();
             pnl_LoginPanel.Enabled = false;
             pnl_RegisterPage.Enabled = true;
         }
+
+
+
+
         #endregion
 
         #region Register Panel
         private void rg_btn_Register_Click(object sender, EventArgs e)
         {
+            string returnNotification = userManager.AddUser(RegisterPanel_tb_Email.Text, RegisterPanel_tb_Password.Text, RegisterPanel_tb_Password2.Text);
+            MessageBox.Show(returnNotification);
+
             RegisterPanel_tb_Email.Clear();
             RegisterPanel_tb_Password.Clear();
             RegisterPanel_tb_Password2.Clear();
@@ -131,6 +165,10 @@ namespace DietApp.PL
             }
 
         }
+
+
+
+
 
 
         #endregion

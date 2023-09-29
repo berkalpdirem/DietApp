@@ -68,25 +68,25 @@
             ProfilPanel_gp_Info = new GroupBox();
             pictureBox1 = new PictureBox();
             ProfilePanel_lbl_Surname = new Label();
+            ProfilePanel_lbl_Index = new Label();
             ProfilePanel_lbl_Name = new Label();
+            ProfilePanel_lbl_Weight = new Label();
             ProfilePanel_lbl_Password = new Label();
+            ProfilePanel_lbl_Heights = new Label();
             ProfilePanel_lbl_Eposta = new Label();
             ProfilPanel_lbl_Concrate1 = new Label();
             ProfilPanel_lbl_Concrate2 = new Label();
             ProfilPanel_lbl_Concrate3 = new Label();
             ProfilPanel_lbl_Concrate4 = new Label();
+            ProfilPanel_lbl_Concrate5 = new Label();
+            ProfilPanel_lbl_Concrate6 = new Label();
+            ProfilPanel_lbl_Concrate7 = new Label();
             pnl_ReportsPanel = new Panel();
             ReportsPanel_Calendar = new MonthCalendar();
             ReportsPanel_Datagrid = new DataGridView();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
             ReportsPanel_cb_QuerySelection = new ComboBox();
-            ProfilPanel_lbl_Concrate5 = new Label();
-            ProfilPanel_lbl_Concrate6 = new Label();
-            ProfilPanel_lbl_Concrate7 = new Label();
-            ProfilePanel_lbl_Heights = new Label();
-            ProfilePanel_lbl_Weight = new Label();
-            ProfilePanel_lbl_Index = new Label();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
             MealPanel_gb_FoodEditGroupBox.SuspendLayout();
@@ -517,6 +517,15 @@
             ProfilePanel_lbl_Surname.TabIndex = 1;
             ProfilePanel_lbl_Surname.Text = "-";
             // 
+            // ProfilePanel_lbl_Index
+            // 
+            ProfilePanel_lbl_Index.AutoSize = true;
+            ProfilePanel_lbl_Index.Location = new Point(131, 260);
+            ProfilePanel_lbl_Index.Name = "ProfilePanel_lbl_Index";
+            ProfilePanel_lbl_Index.Size = new Size(12, 15);
+            ProfilePanel_lbl_Index.TabIndex = 1;
+            ProfilePanel_lbl_Index.Text = "-";
+            // 
             // ProfilePanel_lbl_Name
             // 
             ProfilePanel_lbl_Name.AutoSize = true;
@@ -526,6 +535,15 @@
             ProfilePanel_lbl_Name.TabIndex = 1;
             ProfilePanel_lbl_Name.Text = "-";
             // 
+            // ProfilePanel_lbl_Weight
+            // 
+            ProfilePanel_lbl_Weight.AutoSize = true;
+            ProfilePanel_lbl_Weight.Location = new Point(131, 239);
+            ProfilePanel_lbl_Weight.Name = "ProfilePanel_lbl_Weight";
+            ProfilePanel_lbl_Weight.Size = new Size(12, 15);
+            ProfilePanel_lbl_Weight.TabIndex = 1;
+            ProfilePanel_lbl_Weight.Text = "-";
+            // 
             // ProfilePanel_lbl_Password
             // 
             ProfilePanel_lbl_Password.AutoSize = true;
@@ -534,6 +552,15 @@
             ProfilePanel_lbl_Password.Size = new Size(12, 15);
             ProfilePanel_lbl_Password.TabIndex = 1;
             ProfilePanel_lbl_Password.Text = "-";
+            // 
+            // ProfilePanel_lbl_Heights
+            // 
+            ProfilePanel_lbl_Heights.AutoSize = true;
+            ProfilePanel_lbl_Heights.Location = new Point(131, 214);
+            ProfilePanel_lbl_Heights.Name = "ProfilePanel_lbl_Heights";
+            ProfilePanel_lbl_Heights.Size = new Size(12, 15);
+            ProfilePanel_lbl_Heights.TabIndex = 1;
+            ProfilePanel_lbl_Heights.Text = "-";
             // 
             // ProfilePanel_lbl_Eposta
             // 
@@ -579,6 +606,33 @@
             ProfilPanel_lbl_Concrate4.Size = new Size(54, 15);
             ProfilPanel_lbl_Concrate4.TabIndex = 1;
             ProfilPanel_lbl_Concrate4.Text = "Soy İsim:";
+            // 
+            // ProfilPanel_lbl_Concrate5
+            // 
+            ProfilPanel_lbl_Concrate5.AutoSize = true;
+            ProfilPanel_lbl_Concrate5.Location = new Point(15, 214);
+            ProfilPanel_lbl_Concrate5.Name = "ProfilPanel_lbl_Concrate5";
+            ProfilPanel_lbl_Concrate5.Size = new Size(30, 15);
+            ProfilPanel_lbl_Concrate5.TabIndex = 1;
+            ProfilPanel_lbl_Concrate5.Text = "Boy:";
+            // 
+            // ProfilPanel_lbl_Concrate6
+            // 
+            ProfilPanel_lbl_Concrate6.AutoSize = true;
+            ProfilPanel_lbl_Concrate6.Location = new Point(17, 236);
+            ProfilPanel_lbl_Concrate6.Name = "ProfilPanel_lbl_Concrate6";
+            ProfilPanel_lbl_Concrate6.Size = new Size(33, 15);
+            ProfilPanel_lbl_Concrate6.TabIndex = 1;
+            ProfilPanel_lbl_Concrate6.Text = "Kilo :";
+            // 
+            // ProfilPanel_lbl_Concrate7
+            // 
+            ProfilPanel_lbl_Concrate7.AutoSize = true;
+            ProfilPanel_lbl_Concrate7.Location = new Point(18, 260);
+            ProfilPanel_lbl_Concrate7.Name = "ProfilPanel_lbl_Concrate7";
+            ProfilPanel_lbl_Concrate7.Size = new Size(102, 15);
+            ProfilPanel_lbl_Concrate7.TabIndex = 1;
+            ProfilPanel_lbl_Concrate7.Text = "Vücut Kitle İndexi:";
             // 
             // pnl_ReportsPanel
             // 
@@ -638,60 +692,6 @@
             ReportsPanel_cb_QuerySelection.TabIndex = 0;
             ReportsPanel_cb_QuerySelection.Text = "Genel Raporlar";
             // 
-            // ProfilPanel_lbl_Concrate5
-            // 
-            ProfilPanel_lbl_Concrate5.AutoSize = true;
-            ProfilPanel_lbl_Concrate5.Location = new Point(15, 214);
-            ProfilPanel_lbl_Concrate5.Name = "ProfilPanel_lbl_Concrate5";
-            ProfilPanel_lbl_Concrate5.Size = new Size(30, 15);
-            ProfilPanel_lbl_Concrate5.TabIndex = 1;
-            ProfilPanel_lbl_Concrate5.Text = "Boy:";
-            // 
-            // ProfilPanel_lbl_Concrate6
-            // 
-            ProfilPanel_lbl_Concrate6.AutoSize = true;
-            ProfilPanel_lbl_Concrate6.Location = new Point(17, 236);
-            ProfilPanel_lbl_Concrate6.Name = "ProfilPanel_lbl_Concrate6";
-            ProfilPanel_lbl_Concrate6.Size = new Size(33, 15);
-            ProfilPanel_lbl_Concrate6.TabIndex = 1;
-            ProfilPanel_lbl_Concrate6.Text = "Kilo :";
-            // 
-            // ProfilPanel_lbl_Concrate7
-            // 
-            ProfilPanel_lbl_Concrate7.AutoSize = true;
-            ProfilPanel_lbl_Concrate7.Location = new Point(18, 260);
-            ProfilPanel_lbl_Concrate7.Name = "ProfilPanel_lbl_Concrate7";
-            ProfilPanel_lbl_Concrate7.Size = new Size(102, 15);
-            ProfilPanel_lbl_Concrate7.TabIndex = 1;
-            ProfilPanel_lbl_Concrate7.Text = "Vücut Kitle İndexi:";
-            // 
-            // ProfilePanel_lbl_Heights
-            // 
-            ProfilePanel_lbl_Heights.AutoSize = true;
-            ProfilePanel_lbl_Heights.Location = new Point(131, 214);
-            ProfilePanel_lbl_Heights.Name = "ProfilePanel_lbl_Heights";
-            ProfilePanel_lbl_Heights.Size = new Size(12, 15);
-            ProfilePanel_lbl_Heights.TabIndex = 1;
-            ProfilePanel_lbl_Heights.Text = "-";
-            // 
-            // ProfilePanel_lbl_Weight
-            // 
-            ProfilePanel_lbl_Weight.AutoSize = true;
-            ProfilePanel_lbl_Weight.Location = new Point(131, 239);
-            ProfilePanel_lbl_Weight.Name = "ProfilePanel_lbl_Weight";
-            ProfilePanel_lbl_Weight.Size = new Size(12, 15);
-            ProfilePanel_lbl_Weight.TabIndex = 1;
-            ProfilePanel_lbl_Weight.Text = "-";
-            // 
-            // ProfilePanel_lbl_Index
-            // 
-            ProfilePanel_lbl_Index.AutoSize = true;
-            ProfilePanel_lbl_Index.Location = new Point(131, 260);
-            ProfilePanel_lbl_Index.Name = "ProfilePanel_lbl_Index";
-            ProfilePanel_lbl_Index.Size = new Size(12, 15);
-            ProfilePanel_lbl_Index.TabIndex = 1;
-            ProfilePanel_lbl_Index.Text = "-";
-            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -706,6 +706,7 @@
             Name = "MainPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Diyet Uygulaması";
+            Load += MainPage_Load;
             pnl_FlowPanel.ResumeLayout(false);
             pnl_MealPanel.ResumeLayout(false);
             MealPanel_gb_FoodEditGroupBox.ResumeLayout(false);
