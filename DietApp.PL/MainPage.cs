@@ -178,9 +178,17 @@ namespace DietApp.PL
         // Yemek Ekleme Operasyonları
         private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
         {
+            int userIDInput = userManager._id;
             string FoodNameInput = string.Empty;
+            decimal PortionInput = 0;
             string CategoryNameInput = string.Empty;
             int CalorieInput = 0;
+            string MealNameInput = string.Empty;
+            DateTime dateTimeInput = DateTime.Now;
+            string PhotoPathInput = string.Empty;
+            
+            
+            
 
             UserDayMealFood relatedDayMealFood = new UserDayMealFood();
 
@@ -190,7 +198,29 @@ namespace DietApp.PL
                 if (MealPanel_tb_FoodName.Text != string.Empty && int.TryParse(MealPanel_tb_FoodCalorie.Text, out CalorieInput))
                 {
                     FoodNameInput = MealPanel_tb_FoodName.Text;
+                    PortionInput = MealPanel_nup_PortionSelection.Value;
                     CategoryNameInput = MealPanel_cb_CatagorySelection.SelectedText;
+                    //CalorieInput İf'in içinde out ile atanıyor
+                    MealNameInput = MealPanel_cb_MealSelection.SelectedText;
+                    dateTimeInput = DateTime.Now;                                      //Düzenlenecek
+                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
+
+                    StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
+                    {
+
+                        UserID = userIDInput,
+                        FoodName = FoodNameInput,
+                        Portion = PortionInput,
+                        CategoryName = CategoryNameInput,
+                        Calories = CalorieInput,
+                        MealName = MealNameInput,
+                        DateTime = dateTimeInput,                  //Calendardan alınacak
+                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
+                                                                  // Helper metodu içinde göm ıkısınefde metodla yap
+
+                    };
+
+                    userDayMealFoodManager.AddDayMealFood(structUserDayMealFood);
                 }
                 else
                 {
@@ -199,26 +229,34 @@ namespace DietApp.PL
             }
             else // + iken
             {
-                var UserFood = userFoodManager.GetAll();
-                foreach (var item in UserFood)
+                if (true)
                 {
-                    if (item.FoodName == MealPanel_cb_FoodSelection.SelectedText)
+                    var UserFood = userFoodManager.GetAll();
+                    foreach (var item in UserFood)
                     {
-                        CalorieInput = item.Calories;
-                        break;
+                        if (item.FoodName == MealPanel_cb_FoodSelection.SelectedText)
+                        {
+                            CalorieInput = item.Calories;
+                            break;
+                        }
                     }
+
+                    StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
+                    {
+
+                        UserID = userIDInput,
+                        FoodName = MealPanel_cb_FoodSelection.SelectedText,
+                        Portion = MealPanel_nup_PortionSelection.Value,
+                        CategoryName = CategoryNameInput,
+                        Calories = CalorieInput,
+                        MealName = MealPanel_cb_MealSelection.SelectedText,
+                        DateTime = DateTime.Now,                  //Calendardan alınacak
+                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
+
+                    };
+                    userDayMealFoodManager.AddDayMealFood(structUserDayMealFood);
                 }
                 
-                StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
-                {
-                    
-                    FoodName = MealPanel_cb_FoodSelection.SelectedText,
-                    CategoryName = CategoryNameInput,
-                    Calories = CalorieInput,
-                    DateTime = DateTime.Now,                  //Calendardan alınacak
-
-                };
-               
                 
             }
             
