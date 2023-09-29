@@ -12,7 +12,7 @@ namespace DietApp.Entities.Concrete
     {
         public int ID { get; set; }
         public DateTime DateTime { get; set; }
-        public Meal Meal { get; set; }
+        public MealType Meal { get; set; }
         public decimal Portion { get; set; }
         public Status Status { get; set; }
 

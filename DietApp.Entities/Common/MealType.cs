@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DietApp.Entities.Common
 {
-    public enum Meal
+    public enum MealType
     {
         Breakfast = 1,
         Brunch,

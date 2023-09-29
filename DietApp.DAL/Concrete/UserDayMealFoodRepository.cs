@@ -21,7 +21,7 @@ namespace DietApp.DAL.Concrete
             DbSetFoodPhoto = context.Set<FoodPhoto> ();
         }
 
-        public bool AddDayMealFood(int id, string foodName, decimal portion, string categoryName, decimal calories, Meal meal, DateTime dateTime, string photoPath)
+        public bool AddDayMealFood(int id, string foodName, decimal portion, string categoryName, decimal calories, MealType meal, DateTime dateTime, string photoPath)
         {
 
             if (DbSetUserFood.Where(f => f.FoodName != foodName).Any())
@@ -136,7 +136,7 @@ namespace DietApp.DAL.Concrete
             } 
         }
 
-        public bool UpdateUserFood(int id, string foodName, decimal portion, Meal meal, DateTime dateTime, string photoPath)
+        public bool UpdateUserFood(int id, string foodName, decimal portion, MealType meal, DateTime dateTime, string photoPath)
         {
             FoodPhoto currentPhoto;
 
