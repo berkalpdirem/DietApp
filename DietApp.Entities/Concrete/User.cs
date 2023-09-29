@@ -20,7 +20,7 @@ namespace DietApp.Entities.Concrete
         #endregion
 
         #region UserFoods
-        public ICollection<Food> UserFoods { get; set; }
+        public ICollection<UserFood> UserFoods { get; set; }
         #endregion
 
         #endregion

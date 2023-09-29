@@ -13,6 +13,6 @@ namespace DietApp.Entities.Concrete
 
         public int Calories { get; set; }
 
-        public Food UserFood { get; set; }
+        public UserFood UserFood { get; set; }
     }
 }

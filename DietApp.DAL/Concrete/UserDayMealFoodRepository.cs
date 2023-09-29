@@ -12,12 +12,12 @@ namespace DietApp.DAL.Concrete
 {
     public class UserDayMealFoodRepository : GenericRepository<UserDayMealFood>
     {
-        private DbSet<Food> DbSetUserFood;
+        private DbSet<UserFood> DbSetUserFood;
         private DbSet<FoodPhoto> DbSetFoodPhoto;
 
         public UserDayMealFoodRepository(DbContext context) : base (context)
         {
-            DbSetUserFood = context.Set<Food> ();
+            DbSetUserFood = context.Set<UserFood> ();
             DbSetFoodPhoto = context.Set<FoodPhoto> ();
         }
 
@@ -32,7 +32,7 @@ namespace DietApp.DAL.Concrete
                 {
                     var categoryID = DbSetUserFood.Include(c => c.Category).Where(c => c.Category.CategoryName == categoryName).Select(c => c.CategoryID).FirstOrDefault();
 
-                    var newFood = new Food()
+                    var newFood = new UserFood()
                     {
                         FoodName = foodName,
                         CategoryID = categoryID,
@@ -187,7 +187,7 @@ namespace DietApp.DAL.Concrete
                 CategoryName = uf.UserFood.Category.CategoryName,
                 FoodName = uf.UserFood.FoodName,
                 Portion = uf.Portion,
-                Calories = (uf.UserFood.FoodDetails.Calories) * uf.Portion,
+                Calories = (uf.UserFood.Calories) * uf.Portion,
                 DateTime = uf.DateTime
 
             }).ToList(); 
