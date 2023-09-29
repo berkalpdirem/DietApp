@@ -22,7 +22,7 @@ namespace DietApp.PL
         CategoryManager categoryManager;
         UserFoodManager userFoodManager;
         UserDayMealFoodManager userDayMealFoodManager;
-        
+
 
         public MainPage()
         {
@@ -33,7 +33,7 @@ namespace DietApp.PL
             categoryManager = new CategoryManager(new GenericRepository<Category>(new AppDbContext()));
             userFoodManager = new UserFoodManager(new GenericRepository<UserFood>(new AppDbContext()));
             userDayMealFoodManager = new UserDayMealFoodManager(new GenericRepository<UserDayMealFood>(new AppDbContext()), new UserDayMealFoodRepository(new AppDbContext()));
-            
+
         }
         private void MainPage_Load(object sender, EventArgs e)
         {
@@ -46,16 +46,11 @@ namespace DietApp.PL
             {
                 MealPanel_cb_CatagorySelection.Items.Add(category.CategoryName);
             }
-            foreach(var userFood in userFoodManager.GetAll())
+            foreach (var userFood in userFoodManager.GetAll())
             {
                 MealPanel_cb_FoodSelection.Items.Add(userFood.FoodName);
             }
 
-            MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
-            foreach (var item in userDayMealFoodManager.ShowDayMealFoods(userManager._id))
-            {
-                MessageBox.Show(item.UserID.ToString());
-            }
         }
 
         #region Login Panel
@@ -182,8 +177,8 @@ namespace DietApp.PL
                 MealPanel_btn_FoodEdit.Text = "+";
             }
 
-            
-            
+
+
         }
         // Yemek Ekleme Operasyonları
         private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
@@ -192,7 +187,7 @@ namespace DietApp.PL
             string FoodNameInput = string.Empty;
             decimal PortionInput = 0;
             string CategoryNameInput = string.Empty;
-            int CalorieInput = 0;
+            decimal CalorieInput = 0;
             string MealNameInput = string.Empty;
             DateTime dateTimeInput = DateTime.Now;
             string PhotoPathInput = string.Empty;
@@ -204,14 +199,14 @@ namespace DietApp.PL
 
             if (MealPanel_btn_FoodEdit.Text == "-")
             {
-                
-                if (checkUIValues( MealPanel_cb_MealSelection,
+
+                if (checkUIValues(MealPanel_cb_MealSelection,
                                    MealPanel_cb_CatagorySelection,
                                    MealPanel_cb_FoodSelection,
                                    MealPanel_nup_PortionSelection,
                                    MealPanel_tb_FoodName,
                                    MealPanel_tb_FoodCalorie,
-                                   MealPanel_btn_FoodEdit.Text) && int.TryParse(MealPanel_tb_FoodCalorie.Text, out CalorieInput))
+                                   MealPanel_btn_FoodEdit.Text) && decimal.TryParse(MealPanel_tb_FoodCalorie.Text, out CalorieInput))
                 {
                     FoodNameInput = MealPanel_tb_FoodName.Text;
                     PortionInput = MealPanel_nup_PortionSelection.Value;
@@ -232,11 +227,11 @@ namespace DietApp.PL
                         MealName = MealNameInput,
                         DateTime = dateTimeInput,                  //Calendardan alınacak
                         PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
-                                                                  // Helper metodu içinde göm ıkısınefde metodla yap
+                                                                       // Helper metodu içinde göm ıkısınefde metodla yap
 
                     };
                     MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
-                    
+
                 }
                 else
                 {
@@ -291,10 +286,10 @@ namespace DietApp.PL
                 {
                     MessageBox.Show(" Veri Girişiniz Hatalı");
                 }
-                
-                
+
+
             }
-            
+
         }
 
         public bool checkUIValues(ComboBox MealPanel_cb_MealSelection,
@@ -322,8 +317,17 @@ namespace DietApp.PL
                     MealPanel_cb_MealSelection.SelectedIndex != -1 &&
                     MealPanel_cb_CatagorySelection.SelectedIndex != -1 &&
                     MealPanel_nup_PortionSelection.Value != 0)
-                {return true;}
+                { return true; }
                 else { return false; }
+            }
+        }
+
+        private void MealPanel_btn_ListDataGrid_Click(object sender, EventArgs e)
+        {
+            MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
+            foreach (var item in userDayMealFoodManager.ShowDayMealFoods(userManager._id))
+            {
+                MessageBox.Show(item.UserID.ToString());
             }
         }
 

@@ -11,7 +11,7 @@ namespace DietApp.Entities.Concrete
     {
         public int ID { get; set; }
         public string FoodName { get; set; }
-        public int Calories { get; set; }
+        public decimal Calories { get; set; }
 
         #region Navigational Properties
 

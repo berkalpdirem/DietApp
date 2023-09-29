@@ -34,6 +34,7 @@
             FlowPanel_btn_Profil = new Button();
             FlowPanel_btn_Exit = new Button();
             pnl_MealPanel = new Panel();
+            MealPanel_btn_ListDataGrid = new Button();
             MealPanel_gb_MealEditGroupBox = new GroupBox();
             MealPanel_btn_MealDelete = new Button();
             MealPanel_btn_MealUpdate = new Button();
@@ -124,7 +125,7 @@
             FlowPanel_btn_Reports.Location = new Point(28, 268);
             FlowPanel_btn_Reports.Name = "FlowPanel_btn_Reports";
             FlowPanel_btn_Reports.Size = new Size(137, 39);
-            FlowPanel_btn_Reports.TabIndex = 2;
+            FlowPanel_btn_Reports.TabIndex = 3;
             FlowPanel_btn_Reports.Text = "Genel Raporlar";
             FlowPanel_btn_Reports.UseVisualStyleBackColor = true;
             FlowPanel_btn_Reports.Click += FlowPanel_btn_Reports_Click;
@@ -144,7 +145,7 @@
             FlowPanel_btn_Profil.Location = new Point(28, 39);
             FlowPanel_btn_Profil.Name = "FlowPanel_btn_Profil";
             FlowPanel_btn_Profil.Size = new Size(137, 39);
-            FlowPanel_btn_Profil.TabIndex = 2;
+            FlowPanel_btn_Profil.TabIndex = 1;
             FlowPanel_btn_Profil.Text = "Profil";
             FlowPanel_btn_Profil.UseVisualStyleBackColor = true;
             FlowPanel_btn_Profil.Click += FlowPanel_btn_Profil_Click;
@@ -154,7 +155,7 @@
             FlowPanel_btn_Exit.Location = new Point(28, 384);
             FlowPanel_btn_Exit.Name = "FlowPanel_btn_Exit";
             FlowPanel_btn_Exit.Size = new Size(137, 38);
-            FlowPanel_btn_Exit.TabIndex = 0;
+            FlowPanel_btn_Exit.TabIndex = 4;
             FlowPanel_btn_Exit.Text = "Çıkış";
             FlowPanel_btn_Exit.UseVisualStyleBackColor = true;
             FlowPanel_btn_Exit.Click += mp_btn_Exit_Click;
@@ -162,6 +163,7 @@
             // pnl_MealPanel
             // 
             pnl_MealPanel.BackColor = SystemColors.ButtonShadow;
+            pnl_MealPanel.Controls.Add(MealPanel_btn_ListDataGrid);
             pnl_MealPanel.Controls.Add(MealPanel_gb_MealEditGroupBox);
             pnl_MealPanel.Controls.Add(MealPanel_btn_MealAdd);
             pnl_MealPanel.Controls.Add(MealPanel_gb_FoodEditGroupBox);
@@ -182,6 +184,16 @@
             pnl_MealPanel.Name = "pnl_MealPanel";
             pnl_MealPanel.Size = new Size(1172, 450);
             pnl_MealPanel.TabIndex = 2;
+            // 
+            // MealPanel_btn_ListDataGrid
+            // 
+            MealPanel_btn_ListDataGrid.Location = new Point(7, 200);
+            MealPanel_btn_ListDataGrid.Name = "MealPanel_btn_ListDataGrid";
+            MealPanel_btn_ListDataGrid.Size = new Size(50, 23);
+            MealPanel_btn_ListDataGrid.TabIndex = 12;
+            MealPanel_btn_ListDataGrid.Text = "Listele";
+            MealPanel_btn_ListDataGrid.UseVisualStyleBackColor = true;
+            MealPanel_btn_ListDataGrid.Click += MealPanel_btn_ListDataGrid_Click;
             // 
             // MealPanel_gb_MealEditGroupBox
             // 
@@ -428,9 +440,9 @@
             pnl_RegisterPage.Controls.Add(RegisterPanel_tb_Email);
             pnl_RegisterPage.Dock = DockStyle.Fill;
             pnl_RegisterPage.Enabled = false;
-            pnl_RegisterPage.Location = new Point(210, 0);
+            pnl_RegisterPage.Location = new Point(0, 0);
             pnl_RegisterPage.Name = "pnl_RegisterPage";
-            pnl_RegisterPage.Size = new Size(1172, 450);
+            pnl_RegisterPage.Size = new Size(1382, 450);
             pnl_RegisterPage.TabIndex = 2;
             // 
             // RegisterPanel_btn_Back
@@ -482,9 +494,9 @@
             pnl_ProfilPanel.BackColor = SystemColors.ButtonShadow;
             pnl_ProfilPanel.Controls.Add(ProfilPanel_gp_Info);
             pnl_ProfilPanel.Dock = DockStyle.Fill;
-            pnl_ProfilPanel.Location = new Point(210, 0);
+            pnl_ProfilPanel.Location = new Point(0, 0);
             pnl_ProfilPanel.Name = "pnl_ProfilPanel";
-            pnl_ProfilPanel.Size = new Size(1172, 450);
+            pnl_ProfilPanel.Size = new Size(1382, 450);
             pnl_ProfilPanel.TabIndex = 2;
             // 
             // ProfilPanel_gp_Info
@@ -710,12 +722,12 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1382, 450);
-            Controls.Add(pnl_MealPanel);
-            Controls.Add(pnl_ProfilPanel);
             Controls.Add(pnl_ReportsPanel);
+            Controls.Add(pnl_MealPanel);
             Controls.Add(pnl_LoginPanel);
-            Controls.Add(pnl_RegisterPage);
             Controls.Add(pnl_FlowPanel);
+            Controls.Add(pnl_ProfilPanel);
+            Controls.Add(pnl_RegisterPage);
             Name = "MainPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Diyet Uygulaması";
@@ -804,5 +816,6 @@
         private Label ProfilPanel_lbl_Concrate6;
         private Label ProfilPanel_lbl_Concrate5;
         private GroupBox MealPanel_gb_MealEditGroupBox;
+        private Button MealPanel_btn_ListDataGrid;
     }
 }
