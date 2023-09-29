@@ -1,6 +1,7 @@
 ﻿using DietApp.BL.Managers;
 using DietApp.DAL.Concrete;
 using DietApp.DAL.Context;
+using DietApp.Entities.Common;
 using DietApp.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,9 @@ namespace DietApp.PL
         UserManager userManager;
         MealTypeManager mealTypeManager;
         CategoryManager categoryManager;
+        UserFoodManager userFoodManager;
+        UserDayMealFoodManager userDayMealFoodManager;
+        
 
         public MainPage()
         {
@@ -27,6 +31,9 @@ namespace DietApp.PL
             userManager = new UserManager(new GenericRepository<User>(new AppDbContext()), new UserRepository(new AppDbContext()));
             mealTypeManager = new MealTypeManager(new GenericRepository<MealType>(new AppDbContext()));
             categoryManager = new CategoryManager(new GenericRepository<Category>(new AppDbContext()));
+            userFoodManager = new UserFoodManager(new GenericRepository<UserFood>(new AppDbContext()));
+            userDayMealFoodManager = new UserDayMealFoodManager(new GenericRepository<UserDayMealFood>(new AppDbContext()), new UserDayMealFoodRepository(new AppDbContext()));
+            
         }
         private void MainPage_Load(object sender, EventArgs e)
         {
@@ -35,7 +42,7 @@ namespace DietApp.PL
             {
                 MealPanel_cb_MealSelection.Items.Add(meal.MealName);
             }
-            foreach (var category in categoryManager.GetAll()) 
+            foreach (var category in categoryManager.GetAll())
             {
                 MealPanel_cb_CatagorySelection.Items.Add(category.CategoryName);
             }
@@ -144,27 +151,80 @@ namespace DietApp.PL
 
         private void MealPanel_btn_FoodEdit_Click(object sender, EventArgs e)
         {
-            if (MealPanel_gb_FoodEditGroupBox.Visible) // yemek güncelleme aktif ise 
+            // Panel Anismasyonları
+            if (!MealPanel_gb_FoodEditGroupBox.Visible) // yemek güncelleme pasif ise (Başlangıçta) 
             {
-                foreach (Control item in pnl_MealPanel.Controls)
-                {
-                    item.Enabled = true;
-                }
-                MealPanel_btn_FoodEdit.Enabled = true;
-                MealPanel_gb_FoodEditGroupBox.Visible = false;
-            }
-            else                                       // yemek güncelleme pasif ise 
-            {
-                foreach (Control item in pnl_MealPanel.Controls)
-                {
-                    item.Enabled = false;
-                }
+                MealPanel_cb_FoodSelection.Enabled = false;
+
                 MealPanel_btn_FoodEdit.Enabled = true;
                 MealPanel_gb_FoodEditGroupBox.Enabled = true;
                 MealPanel_gb_FoodEditGroupBox.Visible = true;
+
+                MealPanel_btn_FoodEdit.Text = "-";
+
+            }
+            else                                       // yemek güncelleme aktif ise (+'ya basıldığında) 
+            {
+                MealPanel_cb_FoodSelection.Enabled = true;
+
+                MealPanel_btn_FoodEdit.Enabled = true;
+                MealPanel_gb_FoodEditGroupBox.Visible = false;
+                MealPanel_btn_FoodEdit.Text = "+";
             }
 
+            
+            
         }
+        // Yemek Ekleme Operasyonları
+        private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
+        {
+            string FoodNameInput = string.Empty;
+            string CategoryNameInput = string.Empty;
+            int CalorieInput = 0;
+
+            UserDayMealFood relatedDayMealFood = new UserDayMealFood();
+
+            if (MealPanel_btn_FoodEdit.Text == "-")
+            {
+                
+                if (MealPanel_tb_FoodName.Text != string.Empty && int.TryParse(MealPanel_tb_FoodCalorie.Text, out CalorieInput))
+                {
+                    FoodNameInput = MealPanel_tb_FoodName.Text;
+                    CategoryNameInput = MealPanel_cb_CatagorySelection.SelectedText;
+                }
+                else
+                {
+                    MessageBox.Show(" Veri Girişiniz Hatalı");
+                }
+            }
+            else // + iken
+            {
+                var UserFood = userFoodManager.GetAll();
+                foreach (var item in UserFood)
+                {
+                    if (item.FoodName == MealPanel_cb_FoodSelection.SelectedText)
+                    {
+                        CalorieInput = item.Calories;
+                        break;
+                    }
+                }
+                
+                StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
+                {
+                    
+                    FoodName = MealPanel_cb_FoodSelection.SelectedText,
+                    CategoryName = CategoryNameInput,
+                    Calories = CalorieInput,
+                    DateTime = DateTime.Now,                  //Calendardan alınacak
+
+                };
+               
+                
+            }
+            
+        }
+
+
 
 
 

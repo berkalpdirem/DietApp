@@ -11,17 +11,18 @@ using System.Threading.Tasks;
 
 namespace DietApp.BL.Managers
 {
-    public class UserDayMealFoodManager : BaseManager<UserFood>, IUserDayMealFoodService
+    public class UserDayMealFoodManager : BaseManager<UserDayMealFood>, IUserDayMealFoodService
     {
         protected UserDayMealFoodRepository _userDayMealFoodRepository;
 
-        public UserDayMealFoodManager(UserDayMealFoodRepository userDayMealFoodRepository , GenericRepository<UserFood> genericRepository) : base(genericRepository)
+        public UserDayMealFoodManager(GenericRepository<UserDayMealFood> genericRepository, UserDayMealFoodRepository userDayMealFoodRepository) : base(genericRepository)
         {
             _userDayMealFoodRepository = userDayMealFoodRepository;
         }
 
         public string AddDayMealFood(StructUserDayMealFood sUserDayMealFood)
         {
+
             if (_userDayMealFoodRepository.AddDayMealFood(sUserDayMealFood.UserID, sUserDayMealFood.FoodName,
              sUserDayMealFood.Portion, sUserDayMealFood.CategoryName, sUserDayMealFood.Calories, sUserDayMealFood.MealName, sUserDayMealFood.DateTime, sUserDayMealFood.PhotoPath))
             {

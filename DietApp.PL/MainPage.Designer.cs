@@ -34,12 +34,13 @@
             FlowPanel_btn_Profil = new Button();
             FlowPanel_btn_Exit = new Button();
             pnl_MealPanel = new Panel();
+            MealPanel_gb_MealEditGroupBox = new GroupBox();
+            MealPanel_btn_MealDelete = new Button();
+            MealPanel_btn_MealUpdate = new Button();
+            MealPanel_btn_MealAdd = new Button();
             MealPanel_gb_FoodEditGroupBox = new GroupBox();
             MealPanel_tb_FoodCalorie = new TextBox();
             MealPanel_tb_FoodName = new TextBox();
-            MealPanel_btn_FoodDelete = new Button();
-            MealPanel_btn_FoodUpdate = new Button();
-            MealPanel_btn_FoodAdd = new Button();
             MealPanel_lbl_MealSelection = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -89,6 +90,7 @@
             ReportsPanel_cb_QuerySelection = new ComboBox();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
+            MealPanel_gb_MealEditGroupBox.SuspendLayout();
             MealPanel_gb_FoodEditGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_nup_PortionSelection).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MealPanel_FoodImage).BeginInit();
@@ -160,6 +162,8 @@
             // pnl_MealPanel
             // 
             pnl_MealPanel.BackColor = SystemColors.ButtonShadow;
+            pnl_MealPanel.Controls.Add(MealPanel_gb_MealEditGroupBox);
+            pnl_MealPanel.Controls.Add(MealPanel_btn_MealAdd);
             pnl_MealPanel.Controls.Add(MealPanel_gb_FoodEditGroupBox);
             pnl_MealPanel.Controls.Add(MealPanel_lbl_MealSelection);
             pnl_MealPanel.Controls.Add(label3);
@@ -176,66 +180,75 @@
             pnl_MealPanel.Dock = DockStyle.Fill;
             pnl_MealPanel.Location = new Point(210, 0);
             pnl_MealPanel.Name = "pnl_MealPanel";
-            pnl_MealPanel.Size = new Size(698, 450);
+            pnl_MealPanel.Size = new Size(1172, 450);
             pnl_MealPanel.TabIndex = 2;
+            // 
+            // MealPanel_gb_MealEditGroupBox
+            // 
+            MealPanel_gb_MealEditGroupBox.Controls.Add(MealPanel_btn_MealDelete);
+            MealPanel_gb_MealEditGroupBox.Controls.Add(MealPanel_btn_MealUpdate);
+            MealPanel_gb_MealEditGroupBox.Location = new Point(134, 124);
+            MealPanel_gb_MealEditGroupBox.Name = "MealPanel_gb_MealEditGroupBox";
+            MealPanel_gb_MealEditGroupBox.Size = new Size(297, 73);
+            MealPanel_gb_MealEditGroupBox.TabIndex = 11;
+            MealPanel_gb_MealEditGroupBox.TabStop = false;
+            MealPanel_gb_MealEditGroupBox.Text = "MealPanel_gb_MealEditGroupBox";
+            // 
+            // MealPanel_btn_MealDelete
+            // 
+            MealPanel_btn_MealDelete.Location = new Point(159, 30);
+            MealPanel_btn_MealDelete.Name = "MealPanel_btn_MealDelete";
+            MealPanel_btn_MealDelete.Size = new Size(125, 23);
+            MealPanel_btn_MealDelete.TabIndex = 8;
+            MealPanel_btn_MealDelete.Text = "Öğün İçeriği Sil";
+            MealPanel_btn_MealDelete.UseVisualStyleBackColor = true;
+            // 
+            // MealPanel_btn_MealUpdate
+            // 
+            MealPanel_btn_MealUpdate.Location = new Point(6, 30);
+            MealPanel_btn_MealUpdate.Name = "MealPanel_btn_MealUpdate";
+            MealPanel_btn_MealUpdate.Size = new Size(140, 23);
+            MealPanel_btn_MealUpdate.TabIndex = 9;
+            MealPanel_btn_MealUpdate.Text = "Öğün İçeriği Düzenle";
+            MealPanel_btn_MealUpdate.UseVisualStyleBackColor = true;
+            // 
+            // MealPanel_btn_MealAdd
+            // 
+            MealPanel_btn_MealAdd.Location = new Point(6, 154);
+            MealPanel_btn_MealAdd.Name = "MealPanel_btn_MealAdd";
+            MealPanel_btn_MealAdd.Size = new Size(121, 23);
+            MealPanel_btn_MealAdd.TabIndex = 10;
+            MealPanel_btn_MealAdd.Text = "Öğün İçeriği Ekle";
+            MealPanel_btn_MealAdd.UseVisualStyleBackColor = true;
+            MealPanel_btn_MealAdd.Click += MealPanel_btn_MealAdd_Click;
             // 
             // MealPanel_gb_FoodEditGroupBox
             // 
             MealPanel_gb_FoodEditGroupBox.Controls.Add(MealPanel_tb_FoodCalorie);
             MealPanel_gb_FoodEditGroupBox.Controls.Add(MealPanel_tb_FoodName);
-            MealPanel_gb_FoodEditGroupBox.Controls.Add(MealPanel_btn_FoodDelete);
-            MealPanel_gb_FoodEditGroupBox.Controls.Add(MealPanel_btn_FoodUpdate);
-            MealPanel_gb_FoodEditGroupBox.Controls.Add(MealPanel_btn_FoodAdd);
-            MealPanel_gb_FoodEditGroupBox.Location = new Point(7, 146);
+            MealPanel_gb_FoodEditGroupBox.Location = new Point(348, 43);
             MealPanel_gb_FoodEditGroupBox.Name = "MealPanel_gb_FoodEditGroupBox";
-            MealPanel_gb_FoodEditGroupBox.Size = new Size(433, 77);
+            MealPanel_gb_FoodEditGroupBox.Size = new Size(356, 77);
             MealPanel_gb_FoodEditGroupBox.TabIndex = 8;
             MealPanel_gb_FoodEditGroupBox.TabStop = false;
-            MealPanel_gb_FoodEditGroupBox.Text = "Yemek Düzenle";
+            MealPanel_gb_FoodEditGroupBox.Text = "MealPanel_gb_FoodEditGroupBox";
             MealPanel_gb_FoodEditGroupBox.Visible = false;
             // 
             // MealPanel_tb_FoodCalorie
             // 
-            MealPanel_tb_FoodCalorie.Location = new Point(207, 26);
+            MealPanel_tb_FoodCalorie.Location = new Point(130, 26);
             MealPanel_tb_FoodCalorie.Name = "MealPanel_tb_FoodCalorie";
             MealPanel_tb_FoodCalorie.PlaceholderText = "Yemeğin 1 Porsiyondaki Kalorisini Giriniz";
-            MealPanel_tb_FoodCalorie.Size = new Size(226, 23);
+            MealPanel_tb_FoodCalorie.Size = new Size(220, 23);
             MealPanel_tb_FoodCalorie.TabIndex = 11;
             // 
             // MealPanel_tb_FoodName
             // 
-            MealPanel_tb_FoodName.Location = new Point(0, 26);
+            MealPanel_tb_FoodName.Location = new Point(6, 24);
             MealPanel_tb_FoodName.Name = "MealPanel_tb_FoodName";
             MealPanel_tb_FoodName.PlaceholderText = "Yemek İsmini Giriniz";
-            MealPanel_tb_FoodName.Size = new Size(201, 23);
+            MealPanel_tb_FoodName.Size = new Size(116, 23);
             MealPanel_tb_FoodName.TabIndex = 12;
-            // 
-            // MealPanel_btn_FoodDelete
-            // 
-            MealPanel_btn_FoodDelete.Location = new Point(308, 51);
-            MealPanel_btn_FoodDelete.Name = "MealPanel_btn_FoodDelete";
-            MealPanel_btn_FoodDelete.Size = new Size(125, 23);
-            MealPanel_btn_FoodDelete.TabIndex = 8;
-            MealPanel_btn_FoodDelete.Text = "Yemek Sil";
-            MealPanel_btn_FoodDelete.UseVisualStyleBackColor = true;
-            // 
-            // MealPanel_btn_FoodUpdate
-            // 
-            MealPanel_btn_FoodUpdate.Location = new Point(150, 51);
-            MealPanel_btn_FoodUpdate.Name = "MealPanel_btn_FoodUpdate";
-            MealPanel_btn_FoodUpdate.Size = new Size(140, 23);
-            MealPanel_btn_FoodUpdate.TabIndex = 9;
-            MealPanel_btn_FoodUpdate.Text = "Yemek Düzenle";
-            MealPanel_btn_FoodUpdate.UseVisualStyleBackColor = true;
-            // 
-            // MealPanel_btn_FoodAdd
-            // 
-            MealPanel_btn_FoodAdd.Location = new Point(-1, 51);
-            MealPanel_btn_FoodAdd.Name = "MealPanel_btn_FoodAdd";
-            MealPanel_btn_FoodAdd.Size = new Size(121, 23);
-            MealPanel_btn_FoodAdd.TabIndex = 10;
-            MealPanel_btn_FoodAdd.Text = "Yemek Ekle";
-            MealPanel_btn_FoodAdd.UseVisualStyleBackColor = true;
             // 
             // MealPanel_lbl_MealSelection
             // 
@@ -286,7 +299,7 @@
             // MealPanel_FoodImage
             // 
             MealPanel_FoodImage.Image = Properties.Resources.YemekFoto;
-            MealPanel_FoodImage.Location = new Point(312, 12);
+            MealPanel_FoodImage.Location = new Point(723, 25);
             MealPanel_FoodImage.Name = "MealPanel_FoodImage";
             MealPanel_FoodImage.Size = new Size(128, 121);
             MealPanel_FoodImage.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -323,7 +336,7 @@
             // 
             // MealPanel_Calendar
             // 
-            MealPanel_Calendar.Location = new Point(453, 30);
+            MealPanel_Calendar.Location = new Point(857, 25);
             MealPanel_Calendar.MaxDate = new DateTime(2023, 9, 27, 0, 0, 0, 0);
             MealPanel_Calendar.Name = "MealPanel_Calendar";
             MealPanel_Calendar.TabIndex = 2;
@@ -339,11 +352,11 @@
             // 
             // MealPanel_btn_FoodEdit
             // 
-            MealPanel_btn_FoodEdit.Location = new Point(7, 123);
+            MealPanel_btn_FoodEdit.Location = new Point(312, 67);
             MealPanel_btn_FoodEdit.Name = "MealPanel_btn_FoodEdit";
-            MealPanel_btn_FoodEdit.Size = new Size(104, 23);
+            MealPanel_btn_FoodEdit.Size = new Size(30, 23);
             MealPanel_btn_FoodEdit.TabIndex = 0;
-            MealPanel_btn_FoodEdit.Text = "Yemek Güncelle";
+            MealPanel_btn_FoodEdit.Text = "+";
             MealPanel_btn_FoodEdit.UseVisualStyleBackColor = true;
             MealPanel_btn_FoodEdit.Click += MealPanel_btn_FoodEdit_Click;
             // 
@@ -354,7 +367,7 @@
             pnl_LoginPanel.Dock = DockStyle.Fill;
             pnl_LoginPanel.Location = new Point(210, 0);
             pnl_LoginPanel.Name = "pnl_LoginPanel";
-            pnl_LoginPanel.Size = new Size(698, 450);
+            pnl_LoginPanel.Size = new Size(1172, 450);
             pnl_LoginPanel.TabIndex = 1;
             // 
             // LoginPage_gp_Actions
@@ -417,7 +430,7 @@
             pnl_RegisterPage.Enabled = false;
             pnl_RegisterPage.Location = new Point(210, 0);
             pnl_RegisterPage.Name = "pnl_RegisterPage";
-            pnl_RegisterPage.Size = new Size(698, 450);
+            pnl_RegisterPage.Size = new Size(1172, 450);
             pnl_RegisterPage.TabIndex = 2;
             // 
             // RegisterPanel_btn_Back
@@ -471,7 +484,7 @@
             pnl_ProfilPanel.Dock = DockStyle.Fill;
             pnl_ProfilPanel.Location = new Point(210, 0);
             pnl_ProfilPanel.Name = "pnl_ProfilPanel";
-            pnl_ProfilPanel.Size = new Size(698, 450);
+            pnl_ProfilPanel.Size = new Size(1172, 450);
             pnl_ProfilPanel.TabIndex = 2;
             // 
             // ProfilPanel_gp_Info
@@ -645,7 +658,7 @@
             pnl_ReportsPanel.Dock = DockStyle.Fill;
             pnl_ReportsPanel.Location = new Point(210, 0);
             pnl_ReportsPanel.Name = "pnl_ReportsPanel";
-            pnl_ReportsPanel.Size = new Size(698, 450);
+            pnl_ReportsPanel.Size = new Size(1172, 450);
             pnl_ReportsPanel.TabIndex = 5;
             // 
             // ReportsPanel_Calendar
@@ -696,7 +709,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(908, 450);
+            ClientSize = new Size(1382, 450);
             Controls.Add(pnl_MealPanel);
             Controls.Add(pnl_ProfilPanel);
             Controls.Add(pnl_ReportsPanel);
@@ -709,6 +722,7 @@
             Load += MainPage_Load;
             pnl_FlowPanel.ResumeLayout(false);
             pnl_MealPanel.ResumeLayout(false);
+            MealPanel_gb_MealEditGroupBox.ResumeLayout(false);
             MealPanel_gb_FoodEditGroupBox.ResumeLayout(false);
             MealPanel_gb_FoodEditGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_nup_PortionSelection).EndInit();
@@ -780,14 +794,15 @@
         private GroupBox MealPanel_gb_FoodEditGroupBox;
         private TextBox MealPanel_tb_FoodCalorie;
         private TextBox MealPanel_tb_FoodName;
-        private Button MealPanel_btn_FoodDelete;
-        private Button MealPanel_btn_FoodUpdate;
-        private Button MealPanel_btn_FoodAdd;
+        private Button MealPanel_btn_MealDelete;
+        private Button MealPanel_btn_MealUpdate;
+        private Button MealPanel_btn_MealAdd;
         private Label ProfilePanel_lbl_Index;
         private Label ProfilePanel_lbl_Weight;
         private Label ProfilePanel_lbl_Heights;
         private Label ProfilPanel_lbl_Concrate7;
         private Label ProfilPanel_lbl_Concrate6;
         private Label ProfilPanel_lbl_Concrate5;
+        private GroupBox MealPanel_gb_MealEditGroupBox;
     }
 }
