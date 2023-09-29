@@ -23,7 +23,7 @@ namespace DietApp.BL.Managers
         public string AddDayMealFood(StructUserDayMealFood sUserDayMealFood)
         {
             if (_userDayMealFoodRepository.AddDayMealFood(sUserDayMealFood.UserID, sUserDayMealFood.FoodName,
-             sUserDayMealFood.Portion, sUserDayMealFood.CategoryName, sUserDayMealFood.Calories, sUserDayMealFood.Meal, sUserDayMealFood.DateTime, sUserDayMealFood.PhotoPath))
+             sUserDayMealFood.Portion, sUserDayMealFood.CategoryName, sUserDayMealFood.Calories, sUserDayMealFood.MealName, sUserDayMealFood.DateTime, sUserDayMealFood.PhotoPath))
             {
                 return "Öğün içeriği eklendi.";
             }
@@ -47,7 +47,7 @@ namespace DietApp.BL.Managers
 
         public string UpdateUserFood(StructUserDayMealFood sUserDayMealFood)
         {
-            if(_userDayMealFoodRepository.UpdateUserFood(sUserDayMealFood.ID, sUserDayMealFood.FoodName, sUserDayMealFood.Portion, sUserDayMealFood.Meal, sUserDayMealFood.DateTime, sUserDayMealFood.PhotoPath))
+            if(_userDayMealFoodRepository.UpdateUserFood(sUserDayMealFood.ID, sUserDayMealFood.FoodName, sUserDayMealFood.Portion, sUserDayMealFood.MealName, sUserDayMealFood.DateTime, sUserDayMealFood.PhotoPath))
             {
                 return "Öğün içeriği güncellendi.";
             }
