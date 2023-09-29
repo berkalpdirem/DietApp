@@ -38,6 +38,19 @@ namespace DietApp.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MealTypes",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MealName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MealTypes", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -85,13 +98,13 @@ namespace DietApp.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: false),
                     UserFoodID = table.Column<int>(type: "int", nullable: false),
-                    Meal = table.Column<int>(type: "int", nullable: false),
+                    MealTypeID = table.Column<int>(type: "int", nullable: false),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Portion = table.Column<decimal>(type: "decimal(2,1)", precision: 2, scale: 1, nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    FoodPhotoID = table.Column<int>(type: "int", nullable: false)
+                    FoodPhotoID = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,6 +115,12 @@ namespace DietApp.DAL.Migrations
                         principalTable: "FoodPhotos",
                         principalColumn: "ID");
                     table.ForeignKey(
+                        name: "FK_UserDayMealFoods_MealTypes_MealTypeID",
+                        column: x => x.MealTypeID,
+                        principalTable: "MealTypes",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_UserDayMealFoods_UserFoods_UserFoodID",
                         column: x => x.UserFoodID,
                         principalTable: "UserFoods",
@@ -111,14 +130,18 @@ namespace DietApp.DAL.Migrations
                         name: "FK_UserDayMealFoods_Users_UserID",
                         column: x => x.UserID,
                         principalTable: "Users",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserDayMealFoods_FoodPhotoID",
                 table: "UserDayMealFoods",
                 column: "FoodPhotoID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserDayMealFoods_MealTypeID",
+                table: "UserDayMealFoods",
+                column: "MealTypeID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserDayMealFoods_UserFoodID",
@@ -149,6 +172,9 @@ namespace DietApp.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "FoodPhotos");
+
+            migrationBuilder.DropTable(
+                name: "MealTypes");
 
             migrationBuilder.DropTable(
                 name: "UserFoods");

@@ -12,7 +12,6 @@ namespace DietApp.Entities.Concrete
     {
         public int ID { get; set; }
         public DateTime DateTime { get; set; }
-        public MealType Meal { get; set; }
         public decimal Portion { get; set; }
         public Status Status { get; set; }
 
@@ -20,15 +19,13 @@ namespace DietApp.Entities.Concrete
 
         #region Navigational Properties
 
-        #region User
-        public int UserID { get; set; }
-        public User User { get; set; }
-        #endregion
-
         #region Food
         public int UserFoodID { get; set; }
         public UserFood UserFood { get; set; }
         #endregion 
+
+        public int MealTypeID { get; set; }
+        public MealType MealType { get; set; }
 
         #region FoodPhoto
         public int FoodPhotoID { get; set; }

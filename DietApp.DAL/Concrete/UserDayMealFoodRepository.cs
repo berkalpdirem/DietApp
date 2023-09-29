@@ -14,6 +14,7 @@ namespace DietApp.DAL.Concrete
     {
         private DbSet<UserFood> DbSetUserFood;
         private DbSet<FoodPhoto> DbSetFoodPhoto;
+        private DbSet<MealType> DbSetMealTypes;
 
         public UserDayMealFoodRepository(DbContext context) : base (context)
         {
@@ -21,7 +22,7 @@ namespace DietApp.DAL.Concrete
             DbSetFoodPhoto = context.Set<FoodPhoto> ();
         }
 
-        public bool AddDayMealFood(int id, string foodName, decimal portion, string categoryName, decimal calories, MealType meal, DateTime dateTime, string photoPath)
+        public bool AddDayMealFood(int id, string foodName, decimal portion, string categoryName, decimal calories, string MealName, DateTime dateTime, string photoPath)
         {
 
             if (DbSetUserFood.Where(f => f.FoodName != foodName).Any())
@@ -60,9 +61,10 @@ namespace DietApp.DAL.Concrete
                         }
                     }
 
+                    int mealID = DbSetMealTypes.Where(x=> x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
+
                     newUserDayMealFood.Status = Status.Active;
-                    newUserDayMealFood.Meal = meal;
-                    newUserDayMealFood.UserID = id;
+                    newUserDayMealFood.MealTypeID = mealID;
                     newUserDayMealFood.DateTime = dateTime;
                     newUserDayMealFood.UserFoodID = newFood.ID;
                     newUserDayMealFood.Portion = portion;
@@ -104,9 +106,10 @@ namespace DietApp.DAL.Concrete
 
                     var userFoodID = DbSetUserFood.Where(uf => uf.CategoryID == categoryID).Select(uf => uf.ID).FirstOrDefault();
 
+                    int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
+
                     newUserDayMealFood.Status = Status.Active;
-                    newUserDayMealFood.Meal = meal;
-                    newUserDayMealFood.UserID = id;
+                    newUserDayMealFood.MealTypeID = mealID;
                     newUserDayMealFood.DateTime = dateTime;
                     newUserDayMealFood.UserFoodID = userFoodID;
                     newUserDayMealFood.Portion = portion;
@@ -136,7 +139,7 @@ namespace DietApp.DAL.Concrete
             } 
         }
 
-        public bool UpdateUserFood(int id, string foodName, decimal portion, MealType meal, DateTime dateTime, string photoPath)
+        public bool UpdateUserFood(int id, string foodName, decimal portion, string mealTypeName, DateTime dateTime, string photoPath)
         {
             FoodPhoto currentPhoto;
 
@@ -159,10 +162,12 @@ namespace DietApp.DAL.Concrete
                 var oldData = DbSet.Where(uf => uf.ID == id).First();
                 oldData.Status = Status.Passive;
 
+                int mealID = DbSetMealTypes.Where(x => x.MealName == mealTypeName).Select(x => x.ID).FirstOrDefault();
+
                 var newUserFood = new UserDayMealFood()
                 {
                     UserFoodID = currentFood.ID,
-                    Meal = meal,
+                    //Meal = meal,
                     Portion = portion,
                     DateTime = dateTime,
                     FoodPhotoID = currentPhoto.ID,
@@ -179,11 +184,10 @@ namespace DietApp.DAL.Concrete
 
         public IList<StructUserDayMealFood> ShowDayMealFoods(int id)
         {
-            var currentList = DbSet.Include(uf => uf.UserFood).Where( uf => (uf.Status == Status.Active) && uf.UserID == id).OrderBy(uf => uf.DateTime).Select(uf => new StructUserDayMealFood
+            var currentList = DbSet.Include(uf => uf.UserFood).Where( uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id).OrderBy(uf => uf.DateTime).Select(uf => new StructUserDayMealFood
             {
 
                 ID = uf.ID,
-                UserID = uf.UserID,
                 CategoryName = uf.UserFood.Category.CategoryName,
                 FoodName = uf.UserFood.FoodName,
                 Portion = uf.Portion,

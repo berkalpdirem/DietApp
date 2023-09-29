@@ -15,6 +15,7 @@ namespace DietApp.DAL.Context
         DbSet<UserFood> UserFoods { get; set; }
         DbSet<UserDayMealFood> UserDayMealFoods { get; set; }
         DbSet<FoodPhoto> FoodPhotos { get; set; }
+        DbSet<MealType> MealTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,15 +43,19 @@ namespace DietApp.DAL.Context
 
             mb.Entity<User>()
                 .HasKey(u => u.ID);
-            mb.Entity<User>()
-                .HasMany(u => u.UserDayMealFoods)
-                .WithOne(um => um.User)
-                .HasForeignKey(um => um.UserID);
+
             mb.Entity<User>()
                 .HasMany(u => u.UserFoods)
                 .WithOne(um => um.User)
                 .HasForeignKey(um => um.UserID);
 
+
+            mb.Entity<MealType>()
+                .HasKey(mt => mt.ID);
+            mb.Entity<MealType>()
+                .HasMany(mt => mt.UserDayMealFoods)
+                .WithOne(mt => mt.MealType)
+                .HasForeignKey(mt => mt.MealTypeID);
 
             mb.Entity<UserDayMealFood>()
                 .HasKey(uf => uf.ID);
@@ -58,13 +63,10 @@ namespace DietApp.DAL.Context
                 .Property(uf => uf.ID)
                 .HasColumnOrder(1);
             mb.Entity<UserDayMealFood>()
-                .Property(uf => uf.UserID)
-                .HasColumnOrder(2);
-            mb.Entity<UserDayMealFood>()
                 .Property(uf => uf.UserFoodID)
                 .HasColumnOrder(3);
             mb.Entity<UserDayMealFood>()
-                .Property(uf => uf.Meal)
+                .Property(uf => uf.MealTypeID)
                 .HasColumnOrder(4);
             mb.Entity<UserDayMealFood>()
                 .Property(uf => uf.Portion)
@@ -78,6 +80,8 @@ namespace DietApp.DAL.Context
                 .WithOne(uf => uf.FoodPhoto)
                 .HasForeignKey(uf => uf.FoodPhotoID)
                 .IsRequired(false);
+
+
         }
     }
 }

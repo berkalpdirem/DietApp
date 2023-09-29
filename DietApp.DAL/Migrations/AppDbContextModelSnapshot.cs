@@ -56,6 +56,23 @@ namespace DietApp.DAL.Migrations
                     b.ToTable("FoodPhotos");
                 });
 
+            modelBuilder.Entity("DietApp.Entities.Concrete.MealType", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("MealName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("MealTypes");
+                });
+
             modelBuilder.Entity("DietApp.Entities.Concrete.User", b =>
                 {
                     b.Property<int>("ID")
@@ -92,7 +109,7 @@ namespace DietApp.DAL.Migrations
                     b.Property<int>("FoodPhotoID")
                         .HasColumnType("int");
 
-                    b.Property<int>("Meal")
+                    b.Property<int>("MealTypeID")
                         .HasColumnType("int")
                         .HasColumnOrder(4);
 
@@ -107,13 +124,14 @@ namespace DietApp.DAL.Migrations
                         .HasColumnType("int")
                         .HasColumnOrder(3);
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
+                    b.Property<int?>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("FoodPhotoID");
+
+                    b.HasIndex("MealTypeID");
 
                     b.HasIndex("UserFoodID");
 
@@ -158,21 +176,25 @@ namespace DietApp.DAL.Migrations
                         .WithMany("UserDayMealFoods")
                         .HasForeignKey("FoodPhotoID");
 
+                    b.HasOne("DietApp.Entities.Concrete.MealType", "MealType")
+                        .WithMany("UserDayMealFoods")
+                        .HasForeignKey("MealTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DietApp.Entities.Concrete.UserFood", "UserFood")
                         .WithMany("UserDayMealFoods")
                         .HasForeignKey("UserFoodID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DietApp.Entities.Concrete.User", "User")
+                    b.HasOne("DietApp.Entities.Concrete.User", null)
                         .WithMany("UserDayMealFoods")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserID");
 
                     b.Navigation("FoodPhoto");
 
-                    b.Navigation("User");
+                    b.Navigation("MealType");
 
                     b.Navigation("UserFood");
                 });
@@ -202,6 +224,11 @@ namespace DietApp.DAL.Migrations
                 });
 
             modelBuilder.Entity("DietApp.Entities.Concrete.FoodPhoto", b =>
+                {
+                    b.Navigation("UserDayMealFoods");
+                });
+
+            modelBuilder.Entity("DietApp.Entities.Concrete.MealType", b =>
                 {
                     b.Navigation("UserDayMealFoods");
                 });
