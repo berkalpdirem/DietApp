@@ -167,7 +167,7 @@ namespace DietApp.DAL.Concrete
                 var newUserFood = new UserDayMealFood()
                 {
                     UserFoodID = currentFood.ID,
-                    //Meal = meal,
+                    MealTypeID = mealID,
                     Portion = portion,
                     DateTime = dateTime,
                     FoodPhotoID = currentPhoto.ID,
