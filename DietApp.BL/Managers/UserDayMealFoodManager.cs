@@ -65,5 +65,10 @@ namespace DietApp.BL.Managers
         {
             return _userDayMealFoodRepository.ShowDayMealFoods(id);
         }
+
+        public List<StructDailyMealCalories> ShowDailyMealCalories(int id, DateTime dateTime)
+        {
+            return _userDayMealFoodRepository.ShowDailyMealCalories(id, dateTime);
+        }
     }
 }

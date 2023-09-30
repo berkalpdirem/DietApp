@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DietApp.DAL.Concrete
@@ -47,7 +48,7 @@ namespace DietApp.DAL.Concrete
                     };
 
                     DbSetUserFood.Add(newFood);
-                    
+
 
                     var newUserDayMealFood = new UserDayMealFood();
 
@@ -72,7 +73,7 @@ namespace DietApp.DAL.Concrete
                     newUserDayMealFood.UserFoodID = newFood.ID;
                     newUserDayMealFood.Portion = portion;
 
-                    
+
                     Add(newUserDayMealFood);
 
                     return true;
@@ -144,56 +145,9 @@ namespace DietApp.DAL.Concrete
             }
         }
 
-        public bool UpdateDayMealFood(int dayMealFoodId,int id, string foodName, decimal portion, string categoryName, decimal calories, string MealName, DateTime dateTime, string photoPath)
+        public bool UpdateDayMealFood(int dayMealFoodId, int id, string foodName, decimal portion, string categoryName, decimal calories, string MealName, DateTime dateTime, string photoPath)
         {
-            //FoodPhoto currentPhoto;
 
-            //if (DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).Any())
-            //{
-            //    currentPhoto = DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).First();
-            //}
-            //else
-            //{
-            //    currentPhoto = new FoodPhoto()
-            //    {
-            //        PhotoPath = photoPath,
-            //    };
-            //}
-
-            //UserFood currentFood;
-            //if (DbSetUserFood.Where(f=>f.FoodName == foodName).Any())
-            //{
-            //    currentFood = DbSetUserFood.Where(f => f.FoodName == foodName).FirstOrDefault();
-            //}
-            //else
-            //{
-
-            //}
-
-
-            //try
-            //{
-            //    var oldData = DbSet.Where(uf => uf.ID == id).First();
-            //    oldData.Status = Status.Passive;
-
-            //    int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
-
-            //    var newUserFood = new UserDayMealFood()
-            //    {
-            //        UserFoodID = currentFood.ID,
-            //        MealTypeID = mealID,
-            //        Portion = portion,
-            //        DateTime = dateTime,
-            //        FoodPhotoID = currentPhoto.ID,
-            //        Status = Status.Active
-            //    };
-            //    Add(newUserFood);
-            //    return true;
-            //}
-            //catch
-            //{
-            //    return false;
-            //}
             if (!DbSetUserFood.Where(f => f.FoodName == foodName).Any())
             {
                 FoodPhoto newPhoto = new();
@@ -313,6 +267,24 @@ namespace DietApp.DAL.Concrete
                                        DateTime = uf.DateTime
 
                                    }).ToList();
+            return currentList;
+        }
+
+        public List<StructDailyMealCalories> ShowDailyMealCalories(int id, DateTime dateTime)
+        {
+
+
+            var currentList = DbSet.Include(uf => uf.UserFood)
+                                   .ThenInclude(uf => uf.UserDayMealFoods)
+                                   .ThenInclude(uf => uf.MealType)
+                                   .Where(uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id && uf.DateTime == dateTime)
+                                   .GroupBy(uf => uf.MealType.MealName)
+                                   .Select(uf => new StructDailyMealCalories
+                                   {
+                                       Calories = uf.Sum(uf => uf.UserFood.Calories),
+                                       MealName = uf.Key
+                                   }).ToList();
+
             return currentList;
         }
 

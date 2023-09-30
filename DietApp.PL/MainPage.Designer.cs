@@ -85,7 +85,8 @@
             ProfilPanel_lbl_Concrate6 = new Label();
             ProfilPanel_lbl_Concrate7 = new Label();
             pnl_ReportsPanel = new Panel();
-            dateTimePicker1 = new DateTimePicker();
+            ReportsPanel_btn_DailyMealCalories = new Button();
+            ReportsPanel_DateTimePicker = new DateTimePicker();
             ReportsPanel_Datagrid = new DataGridView();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
@@ -678,7 +679,8 @@
             // pnl_ReportsPanel
             // 
             pnl_ReportsPanel.BackColor = SystemColors.ButtonShadow;
-            pnl_ReportsPanel.Controls.Add(dateTimePicker1);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_btn_DailyMealCalories);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_DateTimePicker);
             pnl_ReportsPanel.Controls.Add(ReportsPanel_Datagrid);
             pnl_ReportsPanel.Controls.Add(comboBox2);
             pnl_ReportsPanel.Controls.Add(comboBox1);
@@ -689,12 +691,22 @@
             pnl_ReportsPanel.Size = new Size(1172, 450);
             pnl_ReportsPanel.TabIndex = 5;
             // 
-            // dateTimePicker1
+            // ReportsPanel_btn_DailyMealCalories
             // 
-            dateTimePicker1.Location = new Point(428, 38);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 2;
+            ReportsPanel_btn_DailyMealCalories.Location = new Point(39, 170);
+            ReportsPanel_btn_DailyMealCalories.Name = "ReportsPanel_btn_DailyMealCalories";
+            ReportsPanel_btn_DailyMealCalories.Size = new Size(75, 23);
+            ReportsPanel_btn_DailyMealCalories.TabIndex = 3;
+            ReportsPanel_btn_DailyMealCalories.Text = "button1";
+            ReportsPanel_btn_DailyMealCalories.UseVisualStyleBackColor = true;
+            ReportsPanel_btn_DailyMealCalories.Click += ReportsPanel_btn_DailyMealCalories_Click;
+            // 
+            // ReportsPanel_DateTimePicker
+            // 
+            ReportsPanel_DateTimePicker.Location = new Point(120, 168);
+            ReportsPanel_DateTimePicker.Name = "ReportsPanel_DateTimePicker";
+            ReportsPanel_DateTimePicker.Size = new Size(200, 23);
+            ReportsPanel_DateTimePicker.TabIndex = 2;
             // 
             // ReportsPanel_Datagrid
             // 
@@ -835,8 +847,9 @@
         private Button MealPanel_btn_ListDataGrid;
         private Button MealPanel_btn_PhotoAdd;
         private DateTimePicker MealPanel_DateTimePicker;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker ReportsPanel_DateTimePicker;
         private OpenFileDialog MealPanel_FileDialog;
         private Button MealPanel_btn_UpdateClose;
+        private Button ReportsPanel_btn_DailyMealCalories;
     }
 }

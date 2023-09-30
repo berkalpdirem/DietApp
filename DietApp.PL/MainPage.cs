@@ -485,6 +485,11 @@ namespace DietApp.PL
             userDayMealFoodManager.DeleteDayMealFood(userDayMealFoodManager.CurrentID);
         }
 
+        private void ReportsPanel_btn_DailyMealCalories_Click(object sender, EventArgs e)
+        {
+            ReportsPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
+        }
+
 
 
 
