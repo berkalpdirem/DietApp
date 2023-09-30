@@ -18,9 +18,10 @@ namespace DietApp.DAL.Concrete
 
         public List<string> GetUserFoods(int id)
         {
-            return DbSet.Where(x=>x.UserID == id)
-                        .Select(x=>x.FoodName)
-                        .ToList();
+
+            return DbSet.Where(x => x.UserID == id)
+                        .Select(x => x.FoodName)
+                        .ToList(); 
         }
 
     }

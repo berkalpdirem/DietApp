@@ -19,6 +19,7 @@ namespace DietApp.BL.Managers
 
         public List<string> GetUserFoods(int id)
         {
+
             return _userFoodRepository.GetUserFoods(id);
         }
     }

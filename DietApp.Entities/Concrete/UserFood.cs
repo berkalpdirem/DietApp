@@ -1,4 +1,5 @@
 ﻿using DietApp.Entities.Abstract;
+using DietApp.Entities.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace DietApp.Entities.Concrete
         public int ID { get; set; }
         public string FoodName { get; set; }
         public decimal Calories { get; set; }
+
 
         #region Navigational Properties
 
