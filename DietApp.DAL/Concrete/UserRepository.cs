@@ -63,10 +63,19 @@ namespace DietApp.DAL.Concrete
             {
                 return false;
             }
-
-            
+   
         }
-
+        public bool  CheckEmailLogic(string email)
+        {
+            if (email.Contains("@") && email.Contains(".com"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool CheckLoginInfo(string email, string password)
         {
             if(DbSet.Where(u => (u.Password == password) && (u.Email == email)).Any()) 

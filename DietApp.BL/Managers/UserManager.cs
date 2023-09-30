@@ -27,36 +27,44 @@ namespace DietApp.BL.Managers
         public string AddUser(string email, string password1, string password2)
         {
             //E-mail veritabanında mevcut mu?
-            if (!_userRepository.CheckEmailInDb(email))
+            if (_userRepository.CheckEmailLogic(email))
             {
-                if (CheckPasswordParity(password1, password2))
+                if (!_userRepository.CheckEmailInDb(email))
                 {
-                    if (CheckPasswordComplexity(password1))
+                    if (CheckPasswordParity(password1, password2))
                     {
-                        if (_userRepository.CreateUser(email, password1))
+                        if (CheckPasswordComplexity(password1))
                         {
-                            return "Kullanıcı ekleme başarılı.";
+                            if (_userRepository.CreateUser(email, password1))
+                            {
+                                return "Kullanıcı ekleme başarılı.";
+                            }
+                            else
+                            {
+                                return "Kullanıcı ekleme başarısız. Servis sağlayıcınıza müracaat ediniz.";
+                            }
                         }
                         else
                         {
-                            return "Kullanıcı ekleme başarısız. Servis sağlayıcınıza müracaat ediniz.";
+                            return "Paralo minumum 6 karaktere sahip olmalıdır.\nParola bir büyük harf, bir küçük harf ve bir özel karakter ( . - ! _ + ) içermelidir";
                         }
+
                     }
                     else
                     {
-                        return "Paralo minumum 6 karaktere sahip olmalıdır.\nParola bir büyük harf, bir küçük harf ve bir özel karakter ( . - ! _ + ) içermelidir";
+                        return "Parolalar eşleşmiyor.";
                     }
-
                 }
                 else
                 {
-                    return "Parolalar eşleşmiyor.";
+                    return "Bu e-mail kullanımda.";
                 }
             }
             else
             {
-                return "Bu e-mail kullanımda.";
+                return "Geçerli Bir Email Giriniz.";
             }
+            
         }
 
         public bool CheckPasswordParity(string password1, string password2)

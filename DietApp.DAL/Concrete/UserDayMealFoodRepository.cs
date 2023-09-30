@@ -274,18 +274,18 @@ namespace DietApp.DAL.Concrete
         {
 
 
-            var currentList = DbSet.Include(uf => uf.UserFood)
-                                   .ThenInclude(uf => uf.UserDayMealFoods)
-                                   .ThenInclude(uf => uf.MealType)
-                                   .Where(uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id && uf.DateTime == dateTime)
-                                   .GroupBy(uf => uf.MealType.MealName)
-                                   .Select(uf => new StructDailyMealCalories
-                                   {
-                                       Calories = uf.Sum(uf => uf.UserFood.Calories),
-                                       MealName = uf.Key
-                                   }).ToList();
+            var list = ShowDayMealFoods(id);
 
-            return currentList;
+            var solList = from mc in list
+                          where mc.DateTime.Year == dateTime.Year && mc.DateTime.Month == dateTime.Month && mc.DateTime.Day == dateTime.Day
+                          group mc by mc.MealName into g
+                          select new StructDailyMealCalories
+                          {
+                              MealName = g.Key,
+                              Calories = g.Sum(x => x.Calories)
+                          };
+
+            return solList.ToList();
         }
 
         //gün sonu raporu

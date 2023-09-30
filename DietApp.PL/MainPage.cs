@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DietApp.PL
 {
@@ -31,22 +33,24 @@ namespace DietApp.PL
             userManager = new UserManager(new GenericRepository<User>(new AppDbContext()), new UserRepository(new AppDbContext()));
             mealTypeManager = new MealTypeManager(new GenericRepository<MealType>(new AppDbContext()));
             categoryManager = new CategoryManager(new GenericRepository<Category>(new AppDbContext()));
-            userFoodManager = new UserFoodManager(new GenericRepository<UserFood>(new AppDbContext()));
+            userFoodManager = new UserFoodManager(new GenericRepository<UserFood>(new AppDbContext()), new UserFoodRepository(new AppDbContext()));
             userDayMealFoodManager = new UserDayMealFoodManager(new GenericRepository<UserDayMealFood>(new AppDbContext()), new UserDayMealFoodRepository(new AppDbContext()));
 
         }
+
         private void MainPage_Load(object sender, EventArgs e)
         {
-            RefleshBoxes();
-
             MealPanel_gb_MealEditGroupBox.Enabled = false;
             MealPanel_btn_UpdateClose.Visible = false;
-
         }
 
         #region HelperMethods
         private void RefleshBoxes()
         {
+            MealPanel_cb_MealSelection.Items.Clear();
+            MealPanel_cb_CatagorySelection.Items.Clear();
+            MealPanel_cb_FoodSelection.Items.Clear();
+
             foreach (var meal in mealTypeManager.GetAll())
             {
                 MealPanel_cb_MealSelection.Items.Add(meal.MealName);
@@ -55,10 +59,17 @@ namespace DietApp.PL
             {
                 MealPanel_cb_CatagorySelection.Items.Add(category.CategoryName);
             }
-            foreach (var userFood in userFoodManager.GetAll())
+            foreach (var userFood in userFoodManager.GetUserFoods(userManager._id))
             {
-                MealPanel_cb_FoodSelection.Items.Add(userFood.FoodName);
+                MealPanel_cb_FoodSelection.Items.Add(userFood);
             }
+        }
+        private void MealGroupBoxClose()
+        {
+            MealPanel_gb_MealEditGroupBox.Enabled = false;
+            MealPanel_gb_MealEditGroupBox.Visible = false;
+            MealPanel_btn_MealAdd.Enabled = true;
+            MealPanel_btn_UpdateClose.Visible = false;
         }
         #endregion
 
@@ -103,6 +114,7 @@ namespace DietApp.PL
         #endregion
 
         #region Register Panel
+
         private void rg_btn_Register_Click(object sender, EventArgs e)
         {
             string returnNotification = userManager.AddUser(RegisterPanel_tb_Email.Text, RegisterPanel_tb_Password.Text, RegisterPanel_tb_Password2.Text);
@@ -138,6 +150,8 @@ namespace DietApp.PL
         {
             pnl_FlowPanel.BringToFront();
             pnl_MealPanel.BringToFront();
+            RefleshBoxes();
+            MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
 
 
         }
@@ -351,6 +365,7 @@ namespace DietApp.PL
                 MessageBox.Show("Satır Seçimi Başarılı");
 
                 MealPanel_gb_MealEditGroupBox.Enabled = true;
+                MealPanel_gb_MealEditGroupBox.Visible = true;
                 MealPanel_btn_MealAdd.Enabled = false;
                 MealPanel_btn_UpdateClose.Visible = true;
             }
@@ -362,9 +377,7 @@ namespace DietApp.PL
 
         private void MealPanel_btn_UpdateClose_Click(object sender, EventArgs e)
         {
-            MealPanel_gb_MealEditGroupBox.Enabled = false;
-            MealPanel_btn_MealAdd.Enabled = true;
-            MealPanel_btn_UpdateClose.Visible = false;
+            MealGroupBoxClose();
         }
 
         private void MealPanel_btn_MealUpdate_Click(object sender, EventArgs e)
@@ -419,12 +432,16 @@ namespace DietApp.PL
                     };
 
                     MessageBox.Show(userDayMealFoodManager.UpdateDayMealFood(structUserDayMealFood));
+                    MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
                     RefleshBoxes();
+                    MealGroupBoxClose();
+                    MessageBox.Show(" Veri Güncellemeniz Başarılı");
+
 
                 }
                 else
                 {
-                    MessageBox.Show(" Veri Girişiniz Hatalı");
+                    MessageBox.Show(" Veri Güncellemeniz Hatalı");
                 }
             }
             else // + iken
@@ -469,11 +486,15 @@ namespace DietApp.PL
 
                     };
                     MessageBox.Show(userDayMealFoodManager.UpdateDayMealFood(structUserDayMealFood));
+                    MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
                     RefleshBoxes();
+                    MealGroupBoxClose();
+                    MessageBox.Show(" Veri Güncellemeniz Başarılı");
+
                 }
                 else
                 {
-                    MessageBox.Show(" Veri Girişiniz Hatalı");
+                    MessageBox.Show(" Veri Güncellemeniz Hatalı");
                 }
 
 
@@ -482,7 +503,9 @@ namespace DietApp.PL
 
         private void MealPanel_btn_MealDelete_Click(object sender, EventArgs e)
         {
-            userDayMealFoodManager.DeleteDayMealFood(userDayMealFoodManager.CurrentID);
+            MessageBox.Show(userDayMealFoodManager.DeleteDayMealFood(userDayMealFoodManager.CurrentID));
+            MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
+            MealGroupBoxClose();
         }
 
         private void ReportsPanel_btn_DailyMealCalories_Click(object sender, EventArgs e)
@@ -490,29 +513,10 @@ namespace DietApp.PL
             ReportsPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
         #endregion
 
         #region Reports Panel
         #endregion
-
-
-
-
-
-
-
 
         //Main Page Panel Actions
 

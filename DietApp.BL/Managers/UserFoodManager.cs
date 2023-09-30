@@ -11,9 +11,15 @@ namespace DietApp.BL.Managers
 {
     public class UserFoodManager : BaseManager<UserFood>, IUserFoodService
     {
-        public UserFoodManager(GenericRepository<UserFood> genericRepository) : base(genericRepository)
+        protected UserFoodRepository _userFoodRepository { get; set; }
+        public UserFoodManager(GenericRepository<UserFood> genericRepository,UserFoodRepository userFoodRepository) : base(genericRepository)
         {
+            _userFoodRepository=userFoodRepository;
+        }
 
+        public List<string> GetUserFoods(int id)
+        {
+            return _userFoodRepository.GetUserFoods(id);
         }
     }
  

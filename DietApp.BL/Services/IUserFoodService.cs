@@ -8,5 +8,6 @@ namespace DietApp.BL.Services
 {
     public interface IUserFoodService
     {
+        List<string> GetUserFoods(int id);
     }
 }
