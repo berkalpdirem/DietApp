@@ -50,6 +50,11 @@ namespace DietApp.PL
             MealPanel_cb_CatagorySelection.Items.Clear();
             MealPanel_cb_FoodSelection.Items.Clear();
 
+            MealPanel_cb_MealSelection.Text = "Öğün Seçiniz";
+            MealPanel_cb_CatagorySelection.Text = "Kategori Seçiniz";
+            MealPanel_cb_FoodSelection.Text = "Yemek Seçiniz";
+            MealPanel_nup_PortionSelection.Value = 0;
+
             foreach (var meal in mealTypeManager.GetAll())
             {
                 MealPanel_cb_MealSelection.Items.Add(meal.MealName);
@@ -58,9 +63,10 @@ namespace DietApp.PL
             {
                 MealPanel_cb_CatagorySelection.Items.Add(category.CategoryName);
             }
-            foreach (var userFood in userFoodManager.GetUserFoods(userManager._id))
+            foreach (var userFoodName in userFoodManager.GetUserFoods(userManager._id))
             {
-                MealPanel_cb_FoodSelection.Items.Add(userFood);
+                
+                MealPanel_cb_FoodSelection.Items.Add(userFoodName);
             }
         }
         private void MealGroupBoxClose()
@@ -198,9 +204,6 @@ namespace DietApp.PL
                 MealPanel_gb_FoodEditGroupBox.Visible = false;
                 MealPanel_btn_FoodEdit.Text = "+";
             }
-
-
-
         }
         // Yemek Ekleme Operasyonları
         private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
@@ -253,6 +256,7 @@ namespace DietApp.PL
                     };
 
                     MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
+                    MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
                     RefleshBoxes();
 
                 }
@@ -303,6 +307,7 @@ namespace DietApp.PL
 
                     };
                     MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
+                    MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
                     RefleshBoxes();
                 }
                 else
@@ -390,9 +395,6 @@ namespace DietApp.PL
             DateTime dateTimeInput = MealPanel_DateTimePicker.Value;
             string PhotoPathInput = string.Empty;
 
-
-
-
             UserDayMealFood relatedDayMealFood = new UserDayMealFood();
 
             if (MealPanel_btn_FoodEdit.Text == "-")
@@ -411,7 +413,7 @@ namespace DietApp.PL
                     CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
                     //CalorieInput İf'in içinde out ile atanıyor
                     MealNameInput = MealPanel_cb_MealSelection.Text;                                    //Düzenlenecek
-                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
+                    PhotoPathInput = string.Empty;                                                      //Düzenlenecek
 
                     StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
                     {
@@ -422,7 +424,7 @@ namespace DietApp.PL
                         CategoryName = CategoryNameInput,
                         Calories = CalorieInput,
                         MealName = MealNameInput,
-                        DateTime = dateTimeInput,                  //Calendardan alınacak
+                        DateTime = dateTimeInput,
                         PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
                                                                        // Helper metodu içinde göm ıkısınefde metodla yap
 
@@ -467,7 +469,7 @@ namespace DietApp.PL
                     CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
                     //CalorieInput İf'in içinde out ile atanıyor
                     MealNameInput = MealPanel_cb_MealSelection.Text;                             //Düzenlenecek
-                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
+                    PhotoPathInput = string.Empty;                                               //Düzenlenecek
 
                     StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
                     {

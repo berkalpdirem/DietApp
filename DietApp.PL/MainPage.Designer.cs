@@ -87,12 +87,12 @@
             ProfilPanel_lbl_Concrate6 = new Label();
             ProfilPanel_lbl_Concrate7 = new Label();
             pnl_ReportsPanel = new Panel();
-            ReportsPanel_btn_DailyMealCalories = new Button();
-            ReportsPanel_DateTimePicker = new DateTimePicker();
-            ReportsPanel_Datagrid = new DataGridView();
-            dataGridView1 = new DataGridView();
             button1 = new Button();
+            ReportsPanel_btn_DailyMealCalories = new Button();
             dateTimePicker1 = new DateTimePicker();
+            ReportsPanel_DateTimePicker = new DateTimePicker();
+            dataGridView1 = new DataGridView();
+            ReportsPanel_Datagrid = new DataGridView();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_pb_FoodImage).BeginInit();
@@ -107,8 +107,8 @@
             ProfilPanel_gp_Info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnl_ReportsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ReportsPanel_Datagrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_Datagrid).BeginInit();
             SuspendLayout();
             // 
             // pnl_FlowPanel
@@ -730,41 +730,6 @@
             pnl_ReportsPanel.Size = new Size(834, 450);
             pnl_ReportsPanel.TabIndex = 5;
             // 
-            // ReportsPanel_btn_DailyMealCalories
-            // 
-            ReportsPanel_btn_DailyMealCalories.Location = new Point(8, 17);
-            ReportsPanel_btn_DailyMealCalories.Name = "ReportsPanel_btn_DailyMealCalories";
-            ReportsPanel_btn_DailyMealCalories.Size = new Size(200, 23);
-            ReportsPanel_btn_DailyMealCalories.TabIndex = 3;
-            ReportsPanel_btn_DailyMealCalories.Text = "Günlük Kalori Raporu";
-            ReportsPanel_btn_DailyMealCalories.UseVisualStyleBackColor = true;
-            ReportsPanel_btn_DailyMealCalories.Click += ReportsPanel_btn_DailyMealCalories_Click;
-            // 
-            // ReportsPanel_DateTimePicker
-            // 
-            ReportsPanel_DateTimePicker.Location = new Point(8, 46);
-            ReportsPanel_DateTimePicker.Name = "ReportsPanel_DateTimePicker";
-            ReportsPanel_DateTimePicker.Size = new Size(200, 23);
-            ReportsPanel_DateTimePicker.TabIndex = 2;
-            // 
-            // ReportsPanel_Datagrid
-            // 
-            ReportsPanel_Datagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ReportsPanel_Datagrid.Location = new Point(8, 75);
-            ReportsPanel_Datagrid.Name = "ReportsPanel_Datagrid";
-            ReportsPanel_Datagrid.RowTemplate.Height = 25;
-            ReportsPanel_Datagrid.Size = new Size(261, 220);
-            ReportsPanel_Datagrid.TabIndex = 1;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(334, 71);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(281, 224);
-            dataGridView1.TabIndex = 1;
-            // 
             // button1
             // 
             button1.Location = new Point(334, 14);
@@ -775,6 +740,16 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += ReportsPanel_btn_DailyMealCalories_Click;
             // 
+            // ReportsPanel_btn_DailyMealCalories
+            // 
+            ReportsPanel_btn_DailyMealCalories.Location = new Point(8, 17);
+            ReportsPanel_btn_DailyMealCalories.Name = "ReportsPanel_btn_DailyMealCalories";
+            ReportsPanel_btn_DailyMealCalories.Size = new Size(200, 23);
+            ReportsPanel_btn_DailyMealCalories.TabIndex = 3;
+            ReportsPanel_btn_DailyMealCalories.Text = "Günlük Kalori Raporu";
+            ReportsPanel_btn_DailyMealCalories.UseVisualStyleBackColor = true;
+            ReportsPanel_btn_DailyMealCalories.Click += ReportsPanel_btn_DailyMealCalories_Click;
+            // 
             // dateTimePicker1
             // 
             dateTimePicker1.Location = new Point(334, 44);
@@ -782,13 +757,38 @@
             dateTimePicker1.Size = new Size(200, 23);
             dateTimePicker1.TabIndex = 2;
             // 
+            // ReportsPanel_DateTimePicker
+            // 
+            ReportsPanel_DateTimePicker.Location = new Point(8, 46);
+            ReportsPanel_DateTimePicker.Name = "ReportsPanel_DateTimePicker";
+            ReportsPanel_DateTimePicker.Size = new Size(200, 23);
+            ReportsPanel_DateTimePicker.TabIndex = 2;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(334, 71);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(281, 224);
+            dataGridView1.TabIndex = 1;
+            // 
+            // ReportsPanel_Datagrid
+            // 
+            ReportsPanel_Datagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ReportsPanel_Datagrid.Location = new Point(8, 75);
+            ReportsPanel_Datagrid.Name = "ReportsPanel_Datagrid";
+            ReportsPanel_Datagrid.RowTemplate.Height = 25;
+            ReportsPanel_Datagrid.Size = new Size(261, 220);
+            ReportsPanel_Datagrid.TabIndex = 1;
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1044, 450);
-            Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_MealPanel);
+            Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_LoginPanel);
             Controls.Add(pnl_FlowPanel);
             Controls.Add(pnl_ProfilPanel);
@@ -816,8 +816,8 @@
             ProfilPanel_gp_Info.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnl_ReportsPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ReportsPanel_Datagrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_Datagrid).EndInit();
             ResumeLayout(false);
         }
 

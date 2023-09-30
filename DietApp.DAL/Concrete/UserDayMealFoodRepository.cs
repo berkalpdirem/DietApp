@@ -29,8 +29,8 @@ namespace DietApp.DAL.Concrete
 
         public bool AddDayMealFood(int id, string foodName, decimal portion, string categoryName, decimal calories, string MealName, DateTime dateTime, string photoPath)
         {
-
-            if (!DbSetUserFood.Where(f => f.FoodName == foodName).Any())
+            
+            if (!DbSetUserFood.Where(f => f.FoodName == foodName && f.UserID == id).Any())
             {
                 FoodPhoto newPhoto = new();
 
