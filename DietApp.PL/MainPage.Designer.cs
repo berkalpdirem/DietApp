@@ -90,10 +90,9 @@
             ReportsPanel_btn_DailyMealCalories = new Button();
             ReportsPanel_DateTimePicker = new DateTimePicker();
             ReportsPanel_Datagrid = new DataGridView();
-            comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
-            ReportsPanel_cb_QuerySelection = new ComboBox();
-            MealPanel_FileDialog = new OpenFileDialog();
+            dataGridView1 = new DataGridView();
+            button1 = new Button();
+            dateTimePicker1 = new DateTimePicker();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_pb_FoodImage).BeginInit();
@@ -109,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnl_ReportsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_Datagrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // pnl_FlowPanel
@@ -718,31 +718,31 @@
             // pnl_ReportsPanel
             // 
             pnl_ReportsPanel.BackColor = SystemColors.ButtonShadow;
+            pnl_ReportsPanel.Controls.Add(button1);
             pnl_ReportsPanel.Controls.Add(ReportsPanel_btn_DailyMealCalories);
+            pnl_ReportsPanel.Controls.Add(dateTimePicker1);
             pnl_ReportsPanel.Controls.Add(ReportsPanel_DateTimePicker);
+            pnl_ReportsPanel.Controls.Add(dataGridView1);
             pnl_ReportsPanel.Controls.Add(ReportsPanel_Datagrid);
-            pnl_ReportsPanel.Controls.Add(comboBox2);
-            pnl_ReportsPanel.Controls.Add(comboBox1);
-            pnl_ReportsPanel.Controls.Add(ReportsPanel_cb_QuerySelection);
             pnl_ReportsPanel.Dock = DockStyle.Fill;
-            pnl_ReportsPanel.Location = new Point(0, 0);
+            pnl_ReportsPanel.Location = new Point(210, 0);
             pnl_ReportsPanel.Name = "pnl_ReportsPanel";
-            pnl_ReportsPanel.Size = new Size(1044, 450);
+            pnl_ReportsPanel.Size = new Size(834, 450);
             pnl_ReportsPanel.TabIndex = 5;
             // 
             // ReportsPanel_btn_DailyMealCalories
             // 
-            ReportsPanel_btn_DailyMealCalories.Location = new Point(39, 170);
+            ReportsPanel_btn_DailyMealCalories.Location = new Point(8, 17);
             ReportsPanel_btn_DailyMealCalories.Name = "ReportsPanel_btn_DailyMealCalories";
-            ReportsPanel_btn_DailyMealCalories.Size = new Size(75, 23);
+            ReportsPanel_btn_DailyMealCalories.Size = new Size(200, 23);
             ReportsPanel_btn_DailyMealCalories.TabIndex = 3;
-            ReportsPanel_btn_DailyMealCalories.Text = "button1";
+            ReportsPanel_btn_DailyMealCalories.Text = "Günlük Kalori Raporu";
             ReportsPanel_btn_DailyMealCalories.UseVisualStyleBackColor = true;
             ReportsPanel_btn_DailyMealCalories.Click += ReportsPanel_btn_DailyMealCalories_Click;
             // 
             // ReportsPanel_DateTimePicker
             // 
-            ReportsPanel_DateTimePicker.Location = new Point(120, 168);
+            ReportsPanel_DateTimePicker.Location = new Point(8, 46);
             ReportsPanel_DateTimePicker.Name = "ReportsPanel_DateTimePicker";
             ReportsPanel_DateTimePicker.Size = new Size(200, 23);
             ReportsPanel_DateTimePicker.TabIndex = 2;
@@ -750,53 +750,47 @@
             // ReportsPanel_Datagrid
             // 
             ReportsPanel_Datagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ReportsPanel_Datagrid.Location = new Point(45, 200);
+            ReportsPanel_Datagrid.Location = new Point(8, 75);
             ReportsPanel_Datagrid.Name = "ReportsPanel_Datagrid";
             ReportsPanel_Datagrid.RowTemplate.Height = 25;
-            ReportsPanel_Datagrid.Size = new Size(540, 220);
+            ReportsPanel_Datagrid.Size = new Size(261, 220);
             ReportsPanel_Datagrid.TabIndex = 1;
             // 
-            // comboBox2
+            // dataGridView1
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(133, 55);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 0;
-            comboBox2.Text = "Yemekler";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(334, 71);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(281, 224);
+            dataGridView1.TabIndex = 1;
             // 
-            // comboBox1
+            // button1
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(6, 55);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 0;
-            comboBox1.Text = "Öğünler";
+            button1.Location = new Point(334, 14);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 3;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += ReportsPanel_btn_DailyMealCalories_Click;
             // 
-            // ReportsPanel_cb_QuerySelection
+            // dateTimePicker1
             // 
-            ReportsPanel_cb_QuerySelection.FormattingEnabled = true;
-            ReportsPanel_cb_QuerySelection.Items.AddRange(new object[] { "Belirtilen Günün Genel Raporu", "En Çok Yenen Yemekler Raporu", "Öğünlerin Diğer Kullanıcılar İle Kıyaslanma Raporu" });
-            ReportsPanel_cb_QuerySelection.Location = new Point(6, 25);
-            ReportsPanel_cb_QuerySelection.Name = "ReportsPanel_cb_QuerySelection";
-            ReportsPanel_cb_QuerySelection.Size = new Size(248, 23);
-            ReportsPanel_cb_QuerySelection.TabIndex = 0;
-            ReportsPanel_cb_QuerySelection.Text = "Genel Raporlar";
-            // 
-            // MealPanel_FileDialog
-            // 
-            MealPanel_FileDialog.FileName = "openFileDialog1";
+            dateTimePicker1.Location = new Point(334, 44);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 2;
             // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1044, 450);
-            Controls.Add(pnl_LoginPanel);
-            Controls.Add(pnl_MealPanel);
-            Controls.Add(pnl_FlowPanel);
             Controls.Add(pnl_ReportsPanel);
+            Controls.Add(pnl_MealPanel);
+            Controls.Add(pnl_LoginPanel);
+            Controls.Add(pnl_FlowPanel);
             Controls.Add(pnl_ProfilPanel);
             Controls.Add(pnl_RegisterPage);
             Name = "MainPage";
@@ -823,6 +817,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnl_ReportsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_Datagrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -859,9 +854,6 @@
         private ComboBox MealPanel_cb_MealSelection;
         private Panel pnl_ReportsPanel;
         private DataGridView ReportsPanel_Datagrid;
-        private ComboBox ReportsPanel_cb_QuerySelection;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
         private Label ProfilePanel_lbl_Surname;
         private Label ProfilePanel_lbl_Name;
         private Label ProfilePanel_lbl_Password;
@@ -889,10 +881,12 @@
         private Button MealPanel_btn_PhotoAdd;
         private DateTimePicker MealPanel_DateTimePicker;
         private DateTimePicker ReportsPanel_DateTimePicker;
-        private OpenFileDialog MealPanel_FileDialog;
         private Button MealPanel_btn_UpdateClose;
         private Button ReportsPanel_btn_DailyMealCalories;
         private Label MealPanel_şbş_Info;
         private PictureBox MealPanel_pb_FoodImage;
+        private Button button1;
+        private DateTimePicker dateTimePicker1;
+        private DataGridView dataGridView1;
     }
 }

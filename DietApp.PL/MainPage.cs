@@ -12,8 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace DietApp.PL
 {
@@ -310,8 +309,6 @@ namespace DietApp.PL
                 {
                     MessageBox.Show(" Veri Girişiniz Hatalı");
                 }
-
-
             }
 
         }
@@ -508,14 +505,16 @@ namespace DietApp.PL
             MealGroupBoxClose();
         }
 
-        private void ReportsPanel_btn_DailyMealCalories_Click(object sender, EventArgs e)
-        {
-            ReportsPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
-        }
+
 
         #endregion
 
         #region Reports Panel
+
+        private void ReportsPanel_btn_DailyMealCalories_Click(object sender, EventArgs e)
+        {
+            ReportsPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
+        }
         #endregion
 
         //Main Page Panel Actions
