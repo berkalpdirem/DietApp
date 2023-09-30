@@ -12,10 +12,10 @@ namespace DietApp.BL.Services
     {
         string AddDayMealFood(StructUserDayMealFood sUserDayMealFood);
 
-        string RemoveUserFood(int id);
+        string DeleteDayMealFood(int id);
 
 
-        string UpdateUserFood(StructUserDayMealFood sUserDayMealFood);
+        string UpdateDayMealFood(StructUserDayMealFood sUserDayMealFood);
 
         List<StructDataGridMeal> ShowDayMealFoods(int id);
     }

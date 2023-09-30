@@ -42,29 +42,14 @@ namespace DietApp.DAL.Concrete
                         UserID = id,
                         FoodName = foodName,
                         CategoryID = categoryID,
-                        Calories = (int)calories
+                        Calories = calories
 
                     };
 
                     DbSetUserFood.Add(newFood);
+                    
 
                     var newUserDayMealFood = new UserDayMealFood();
-
-                    //if (photoPath != string.Empty)
-                    //{
-                    //    if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
-                    //    {
-                    //        newUserDayMealFood.FoodPhotoID = DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Select(fd => fd.ID).FirstOrDefault();
-                    //    }
-                    //    else
-                    //    {
-                    //        newPhoto.PhotoPath = photoPath;
-
-                    //        DbSetFoodPhoto.Add(newPhoto);
-
-                    //        newUserDayMealFood.FoodPhotoID = newPhoto.ID;
-                    //    }
-                    //}
 
                     if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
                     {
@@ -78,6 +63,7 @@ namespace DietApp.DAL.Concrete
 
                         newUserDayMealFood.FoodPhotoID = newPhoto.ID;
                     }
+                    SaveChanges();
                     int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
 
                     newUserDayMealFood.Status = Status.Active;
@@ -86,7 +72,7 @@ namespace DietApp.DAL.Concrete
                     newUserDayMealFood.UserFoodID = newFood.ID;
                     newUserDayMealFood.Portion = portion;
 
-                    SaveChanges();
+                    
                     Add(newUserDayMealFood);
 
                     return true;
@@ -143,12 +129,13 @@ namespace DietApp.DAL.Concrete
             }
         }
 
-        public bool RemoveUserFood(int id)
+        public bool DeleteDayMealFood(int id)
         {
             try
             {
                 var softDeletedData = Get(id);
                 softDeletedData.Status = Status.Passive;
+                SaveChanges();
                 return true;
             }
             catch
@@ -157,46 +144,152 @@ namespace DietApp.DAL.Concrete
             }
         }
 
-        public bool UpdateUserFood(int id, string foodName, decimal portion, string mealTypeName, DateTime dateTime, string photoPath)
+        public bool UpdateDayMealFood(int dayMealFoodId,int id, string foodName, decimal portion, string categoryName, decimal calories, string MealName, DateTime dateTime, string photoPath)
         {
-            FoodPhoto currentPhoto;
+            //FoodPhoto currentPhoto;
 
-            if (DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).Any())
+            //if (DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).Any())
+            //{
+            //    currentPhoto = DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).First();
+            //}
+            //else
+            //{
+            //    currentPhoto = new FoodPhoto()
+            //    {
+            //        PhotoPath = photoPath,
+            //    };
+            //}
+
+            //UserFood currentFood;
+            //if (DbSetUserFood.Where(f=>f.FoodName == foodName).Any())
+            //{
+            //    currentFood = DbSetUserFood.Where(f => f.FoodName == foodName).FirstOrDefault();
+            //}
+            //else
+            //{
+
+            //}
+
+
+            //try
+            //{
+            //    var oldData = DbSet.Where(uf => uf.ID == id).First();
+            //    oldData.Status = Status.Passive;
+
+            //    int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
+
+            //    var newUserFood = new UserDayMealFood()
+            //    {
+            //        UserFoodID = currentFood.ID,
+            //        MealTypeID = mealID,
+            //        Portion = portion,
+            //        DateTime = dateTime,
+            //        FoodPhotoID = currentPhoto.ID,
+            //        Status = Status.Active
+            //    };
+            //    Add(newUserFood);
+            //    return true;
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
+            if (!DbSetUserFood.Where(f => f.FoodName == foodName).Any())
             {
-                currentPhoto = DbSetFoodPhoto.Where(f => f.PhotoPath == photoPath).First();
+                FoodPhoto newPhoto = new();
+
+                try
+                {
+                    var categoryID = DbSetCategory.Where(c => c.CategoryName == categoryName).Select(c => c.ID).FirstOrDefault();
+
+                    var newFood = new UserFood()
+                    {
+                        UserID = id,
+                        FoodName = foodName,
+                        CategoryID = categoryID,
+                        Calories = calories
+
+                    };
+
+                    DbSetUserFood.Add(newFood);
+
+                    var newUserDayMealFood = DbSet.Where(x => x.ID == dayMealFoodId).First();
+
+                    if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
+                    {
+                        newUserDayMealFood.FoodPhotoID = DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Select(fd => fd.ID).FirstOrDefault();
+                    }
+                    else
+                    {
+                        newPhoto.PhotoPath = photoPath;
+
+                        DbSetFoodPhoto.Add(newPhoto);
+
+                        newUserDayMealFood.FoodPhotoID = newPhoto.ID;
+                    }
+                    SaveChanges();
+                    int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
+
+                    newUserDayMealFood.Status = Status.Active;
+                    newUserDayMealFood.MealTypeID = mealID;
+                    newUserDayMealFood.DateTime = dateTime;
+                    newUserDayMealFood.UserFoodID = newFood.ID;
+                    newUserDayMealFood.Portion = portion;
+
+
+                    SaveChanges();
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
             else
             {
-                currentPhoto = new FoodPhoto()
+                FoodPhoto newPhoto = new();
+
+                try
                 {
-                    PhotoPath = photoPath,
-                };
-            }
+                    var categoryID = DbSetCategory.Where(c => c.CategoryName == categoryName).Select(c => c.ID).FirstOrDefault();
 
-            var currentFood = DbSetUserFood.Where(f => f.FoodName == foodName).FirstOrDefault();
+                    var newUserDayMealFood = DbSet.Where(x => x.ID == dayMealFoodId).First();
 
-            try
-            {
-                var oldData = DbSet.Where(uf => uf.ID == id).First();
-                oldData.Status = Status.Passive;
+                    if (photoPath != null)
+                    {
+                        if (DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Any())
+                        {
+                            newUserDayMealFood.FoodPhotoID = DbSetFoodPhoto.Where(fd => fd.PhotoPath == photoPath).Select(fd => fd.ID).FirstOrDefault();
+                        }
+                        else
+                        {
+                            newPhoto.PhotoPath = photoPath;
 
-                int mealID = DbSetMealTypes.Where(x => x.MealName == mealTypeName).Select(x => x.ID).FirstOrDefault();
+                            DbSetFoodPhoto.Add(newPhoto);
 
-                var newUserFood = new UserDayMealFood()
+                            newUserDayMealFood.FoodPhotoID = newPhoto.ID;
+                        }
+                    }
+
+                    var userFoodID = DbSetUserFood.Where(uf => uf.FoodName == foodName).Select(uf => uf.ID).FirstOrDefault();
+
+                    int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
+
+                    newUserDayMealFood.Status = Status.Active;
+                    newUserDayMealFood.MealTypeID = mealID;
+                    newUserDayMealFood.DateTime = dateTime;
+                    newUserDayMealFood.UserFoodID = userFoodID;
+                    newUserDayMealFood.Portion = portion;
+
+                    SaveChanges();
+
+                    return true;
+                }
+                catch
                 {
-                    UserFoodID = currentFood.ID,
-                    MealTypeID = mealID,
-                    Portion = portion,
-                    DateTime = dateTime,
-                    FoodPhotoID = currentPhoto.ID,
-                    Status = Status.Active
-                };
-                Add(newUserFood);
-                return true;
-            }
-            catch
-            {
-                return false;
+                    return false;
+                }
             }
         }
 
@@ -204,13 +297,15 @@ namespace DietApp.DAL.Concrete
         {
             var currentList = DbSet.Include(uf => uf.UserFood)
                                    .ThenInclude(uf => uf.UserDayMealFoods)
+                                   .ThenInclude(uf => uf.MealType)
                                    .Where(uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id)
                                    .OrderBy(uf => uf.DateTime)
                                    .Select(uf => new StructDataGridMeal
 
                                    {
 
-                                       UserID = uf.ID,
+                                       ID = uf.ID,
+                                       MealName = uf.MealType.MealName,
                                        CategoryName = uf.UserFood.Category.CategoryName,
                                        FoodName = uf.UserFood.FoodName,
                                        Portion = uf.Portion,

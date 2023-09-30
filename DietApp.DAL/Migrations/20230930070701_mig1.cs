@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace DietApp.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class _1mig : Migration
+    public partial class mig1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -131,6 +133,32 @@ namespace DietApp.DAL.Migrations
                         column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "ID");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "ID", "CategoryName" },
+                values: new object[,]
+                {
+                    { 1, "Meyveler" },
+                    { 2, "Sebzeler" },
+                    { 3, "Hamur İşleri" },
+                    { 4, "Makarnalar" },
+                    { 5, "Kebaplar" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MealTypes",
+                columns: new[] { "ID", "MealName" },
+                values: new object[,]
+                {
+                    { 1, "Kahvaltı" },
+                    { 2, "Brunch" },
+                    { 3, "Öğle Yemeği" },
+                    { 4, "Çay Vakti" },
+                    { 5, "Akşam Yemeği" },
+                    { 6, "Hafif Akşam Yemeği" },
+                    { 7, "Gece Atıştırmalığı" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -34,6 +34,9 @@
             FlowPanel_btn_Profil = new Button();
             FlowPanel_btn_Exit = new Button();
             pnl_MealPanel = new Panel();
+            MealPanel_btn_UpdateClose = new Button();
+            MealPanel_btn_PhotoAdd = new Button();
+            MealPanel_DateTimePicker = new DateTimePicker();
             MealPanel_btn_ListDataGrid = new Button();
             MealPanel_gb_MealEditGroupBox = new GroupBox();
             MealPanel_btn_MealDelete = new Button();
@@ -47,11 +50,9 @@
             label2 = new Label();
             label1 = new Label();
             MealPanel_nup_PortionSelection = new NumericUpDown();
-            MealPanel_FoodImage = new PictureBox();
             MealPanel_cb_CatagorySelection = new ComboBox();
             MealPanel_cb_FoodSelection = new ComboBox();
             MealPanel_cb_MealSelection = new ComboBox();
-            MealPanel_Calendar = new MonthCalendar();
             MealPanel_Datagrid = new DataGridView();
             MealPanel_btn_FoodEdit = new Button();
             pnl_LoginPanel = new Panel();
@@ -84,17 +85,17 @@
             ProfilPanel_lbl_Concrate6 = new Label();
             ProfilPanel_lbl_Concrate7 = new Label();
             pnl_ReportsPanel = new Panel();
-            ReportsPanel_Calendar = new MonthCalendar();
+            dateTimePicker1 = new DateTimePicker();
             ReportsPanel_Datagrid = new DataGridView();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
             ReportsPanel_cb_QuerySelection = new ComboBox();
+            MealPanel_FileDialog = new OpenFileDialog();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
             MealPanel_gb_MealEditGroupBox.SuspendLayout();
             MealPanel_gb_FoodEditGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_nup_PortionSelection).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)MealPanel_FoodImage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MealPanel_Datagrid).BeginInit();
             pnl_LoginPanel.SuspendLayout();
             LoginPage_gp_Actions.SuspendLayout();
@@ -163,6 +164,9 @@
             // pnl_MealPanel
             // 
             pnl_MealPanel.BackColor = SystemColors.ButtonShadow;
+            pnl_MealPanel.Controls.Add(MealPanel_btn_UpdateClose);
+            pnl_MealPanel.Controls.Add(MealPanel_btn_PhotoAdd);
+            pnl_MealPanel.Controls.Add(MealPanel_DateTimePicker);
             pnl_MealPanel.Controls.Add(MealPanel_btn_ListDataGrid);
             pnl_MealPanel.Controls.Add(MealPanel_gb_MealEditGroupBox);
             pnl_MealPanel.Controls.Add(MealPanel_btn_MealAdd);
@@ -172,11 +176,9 @@
             pnl_MealPanel.Controls.Add(label2);
             pnl_MealPanel.Controls.Add(label1);
             pnl_MealPanel.Controls.Add(MealPanel_nup_PortionSelection);
-            pnl_MealPanel.Controls.Add(MealPanel_FoodImage);
             pnl_MealPanel.Controls.Add(MealPanel_cb_CatagorySelection);
             pnl_MealPanel.Controls.Add(MealPanel_cb_FoodSelection);
             pnl_MealPanel.Controls.Add(MealPanel_cb_MealSelection);
-            pnl_MealPanel.Controls.Add(MealPanel_Calendar);
             pnl_MealPanel.Controls.Add(MealPanel_Datagrid);
             pnl_MealPanel.Controls.Add(MealPanel_btn_FoodEdit);
             pnl_MealPanel.Dock = DockStyle.Fill;
@@ -184,6 +186,32 @@
             pnl_MealPanel.Name = "pnl_MealPanel";
             pnl_MealPanel.Size = new Size(1172, 450);
             pnl_MealPanel.TabIndex = 2;
+            // 
+            // MealPanel_btn_UpdateClose
+            // 
+            MealPanel_btn_UpdateClose.Location = new Point(437, 141);
+            MealPanel_btn_UpdateClose.Name = "MealPanel_btn_UpdateClose";
+            MealPanel_btn_UpdateClose.Size = new Size(28, 23);
+            MealPanel_btn_UpdateClose.TabIndex = 15;
+            MealPanel_btn_UpdateClose.Text = "x";
+            MealPanel_btn_UpdateClose.UseVisualStyleBackColor = true;
+            MealPanel_btn_UpdateClose.Click += MealPanel_btn_UpdateClose_Click;
+            // 
+            // MealPanel_btn_PhotoAdd
+            // 
+            MealPanel_btn_PhotoAdd.Location = new Point(504, 160);
+            MealPanel_btn_PhotoAdd.Name = "MealPanel_btn_PhotoAdd";
+            MealPanel_btn_PhotoAdd.Size = new Size(92, 23);
+            MealPanel_btn_PhotoAdd.TabIndex = 14;
+            MealPanel_btn_PhotoAdd.Text = "Fotoğraf Ekle";
+            MealPanel_btn_PhotoAdd.UseVisualStyleBackColor = true;
+            // 
+            // MealPanel_DateTimePicker
+            // 
+            MealPanel_DateTimePicker.Location = new Point(504, 126);
+            MealPanel_DateTimePicker.Name = "MealPanel_DateTimePicker";
+            MealPanel_DateTimePicker.Size = new Size(200, 23);
+            MealPanel_DateTimePicker.TabIndex = 13;
             // 
             // MealPanel_btn_ListDataGrid
             // 
@@ -214,6 +242,7 @@
             MealPanel_btn_MealDelete.TabIndex = 8;
             MealPanel_btn_MealDelete.Text = "Öğün İçeriği Sil";
             MealPanel_btn_MealDelete.UseVisualStyleBackColor = true;
+            MealPanel_btn_MealDelete.Click += MealPanel_btn_MealDelete_Click;
             // 
             // MealPanel_btn_MealUpdate
             // 
@@ -223,6 +252,7 @@
             MealPanel_btn_MealUpdate.TabIndex = 9;
             MealPanel_btn_MealUpdate.Text = "Öğün İçeriği Düzenle";
             MealPanel_btn_MealUpdate.UseVisualStyleBackColor = true;
+            MealPanel_btn_MealUpdate.Click += MealPanel_btn_MealUpdate_Click;
             // 
             // MealPanel_btn_MealAdd
             // 
@@ -308,16 +338,6 @@
             MealPanel_nup_PortionSelection.Size = new Size(140, 23);
             MealPanel_nup_PortionSelection.TabIndex = 5;
             // 
-            // MealPanel_FoodImage
-            // 
-            MealPanel_FoodImage.Image = Properties.Resources.YemekFoto;
-            MealPanel_FoodImage.Location = new Point(723, 25);
-            MealPanel_FoodImage.Name = "MealPanel_FoodImage";
-            MealPanel_FoodImage.Size = new Size(128, 121);
-            MealPanel_FoodImage.SizeMode = PictureBoxSizeMode.StretchImage;
-            MealPanel_FoodImage.TabIndex = 4;
-            MealPanel_FoodImage.TabStop = false;
-            // 
             // MealPanel_cb_CatagorySelection
             // 
             MealPanel_cb_CatagorySelection.FormattingEnabled = true;
@@ -346,21 +366,17 @@
             MealPanel_cb_MealSelection.TabIndex = 3;
             MealPanel_cb_MealSelection.Text = "Öğünüzü Seçiniz";
             // 
-            // MealPanel_Calendar
-            // 
-            MealPanel_Calendar.Location = new Point(857, 25);
-            MealPanel_Calendar.MaxDate = new DateTime(2023, 9, 27, 0, 0, 0, 0);
-            MealPanel_Calendar.Name = "MealPanel_Calendar";
-            MealPanel_Calendar.TabIndex = 2;
-            // 
             // MealPanel_Datagrid
             // 
+            MealPanel_Datagrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             MealPanel_Datagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             MealPanel_Datagrid.Location = new Point(7, 229);
             MealPanel_Datagrid.Name = "MealPanel_Datagrid";
+            MealPanel_Datagrid.ReadOnly = true;
             MealPanel_Datagrid.RowTemplate.Height = 25;
-            MealPanel_Datagrid.Size = new Size(669, 191);
+            MealPanel_Datagrid.Size = new Size(809, 191);
             MealPanel_Datagrid.TabIndex = 1;
+            MealPanel_Datagrid.CellDoubleClick += MealPanel_Datagrid_CellDoubleClick;
             // 
             // MealPanel_btn_FoodEdit
             // 
@@ -662,7 +678,7 @@
             // pnl_ReportsPanel
             // 
             pnl_ReportsPanel.BackColor = SystemColors.ButtonShadow;
-            pnl_ReportsPanel.Controls.Add(ReportsPanel_Calendar);
+            pnl_ReportsPanel.Controls.Add(dateTimePicker1);
             pnl_ReportsPanel.Controls.Add(ReportsPanel_Datagrid);
             pnl_ReportsPanel.Controls.Add(comboBox2);
             pnl_ReportsPanel.Controls.Add(comboBox1);
@@ -673,12 +689,12 @@
             pnl_ReportsPanel.Size = new Size(1172, 450);
             pnl_ReportsPanel.TabIndex = 5;
             // 
-            // ReportsPanel_Calendar
+            // dateTimePicker1
             // 
-            ReportsPanel_Calendar.Location = new Point(400, 0);
-            ReportsPanel_Calendar.MaxDate = new DateTime(2023, 9, 27, 0, 0, 0, 0);
-            ReportsPanel_Calendar.Name = "ReportsPanel_Calendar";
-            ReportsPanel_Calendar.TabIndex = 2;
+            dateTimePicker1.Location = new Point(428, 38);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 2;
             // 
             // ReportsPanel_Datagrid
             // 
@@ -717,6 +733,10 @@
             ReportsPanel_cb_QuerySelection.TabIndex = 0;
             ReportsPanel_cb_QuerySelection.Text = "Genel Raporlar";
             // 
+            // MealPanel_FileDialog
+            // 
+            MealPanel_FileDialog.FileName = "openFileDialog1";
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -738,7 +758,6 @@
             MealPanel_gb_FoodEditGroupBox.ResumeLayout(false);
             MealPanel_gb_FoodEditGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_nup_PortionSelection).EndInit();
-            ((System.ComponentModel.ISupportInitialize)MealPanel_FoodImage).EndInit();
             ((System.ComponentModel.ISupportInitialize)MealPanel_Datagrid).EndInit();
             pnl_LoginPanel.ResumeLayout(false);
             LoginPage_gp_Actions.ResumeLayout(false);
@@ -783,12 +802,9 @@
         private Label ProfilPanel_lbl_Concrate3;
         private GroupBox LoginPage_gp_Actions;
         private DataGridView MealPanel_Datagrid;
-        private MonthCalendar MealPanel_Calendar;
         private ComboBox MealPanel_cb_FoodSelection;
         private ComboBox MealPanel_cb_MealSelection;
-        private PictureBox MealPanel_FoodImage;
         private Panel pnl_ReportsPanel;
-        private MonthCalendar ReportsPanel_Calendar;
         private DataGridView ReportsPanel_Datagrid;
         private ComboBox ReportsPanel_cb_QuerySelection;
         private ComboBox comboBox2;
@@ -817,5 +833,10 @@
         private Label ProfilPanel_lbl_Concrate5;
         private GroupBox MealPanel_gb_MealEditGroupBox;
         private Button MealPanel_btn_ListDataGrid;
+        private Button MealPanel_btn_PhotoAdd;
+        private DateTimePicker MealPanel_DateTimePicker;
+        private DateTimePicker dateTimePicker1;
+        private OpenFileDialog MealPanel_FileDialog;
+        private Button MealPanel_btn_UpdateClose;
     }
 }

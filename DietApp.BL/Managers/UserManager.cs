@@ -44,7 +44,7 @@ namespace DietApp.BL.Managers
                     }
                     else
                     {
-                        return "Parola bir büyük harf, bir küçük harf ve bir özel karakter ( . - ! _ + ) içermelidir";
+                        return "Paralo minumum 6 karaktere sahip olmalıdır.\nParola bir büyük harf, bir küçük harf ve bir özel karakter ( . - ! _ + ) içermelidir";
                     }
 
                 }
@@ -77,6 +77,12 @@ namespace DietApp.BL.Managers
             bool HasUppercaseChar = false;
             bool HasLowercaseChar = false;
             bool HasSpecialChar = false;
+            bool PasswordLenghtControl = false;
+
+            if (password1.Length>6)
+            {
+                PasswordLenghtControl = true;
+            }
 
             foreach (char c in password1)
             {
@@ -110,8 +116,9 @@ namespace DietApp.BL.Managers
                     }
                 }
             }
+            
 
-            if (HasLowercaseChar && HasUppercaseChar && HasSpecialChar)
+            if (HasLowercaseChar && HasUppercaseChar && HasSpecialChar && PasswordLenghtControl)
             {
                 return true;
             }

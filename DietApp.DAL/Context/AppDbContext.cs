@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,8 +23,25 @@ namespace DietApp.DAL.Context
             optionsBuilder.UseSqlServer(@"Data Source=BERKALPDIREMPC\SQLEXPRESS;Initial Catalog=DietAppDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
 
+
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            //Seed Data's
+               //Categoriler
+            mb.Entity<Category>().HasData(new { ID = 1, CategoryName = "Meyveler" });
+            mb.Entity<Category>().HasData(new { ID = 2, CategoryName = "Sebzeler" });
+            mb.Entity<Category>().HasData(new { ID = 3, CategoryName = "Hamur İşleri" });
+            mb.Entity<Category>().HasData(new { ID = 4, CategoryName = "Makarnalar" });
+            mb.Entity<Category>().HasData(new { ID = 5, CategoryName = "Kebaplar" });
+               //Öğünler
+            mb.Entity<MealType>().HasData(new { ID = 1, MealName = "Kahvaltı" });
+            mb.Entity<MealType>().HasData(new { ID = 2, MealName = "Brunch" });
+            mb.Entity<MealType>().HasData(new { ID = 3, MealName = "Öğle Yemeği" });
+            mb.Entity<MealType>().HasData(new { ID = 4, MealName = "Çay Vakti" });
+            mb.Entity<MealType>().HasData(new { ID = 5, MealName = "Akşam Yemeği" });
+            mb.Entity<MealType>().HasData(new { ID = 6, MealName = "Hafif Akşam Yemeği" });
+            mb.Entity<MealType>().HasData(new { ID = 7, MealName = "Gece Atıştırmalığı" });
+            //Relations
             mb.Entity<Category>()
                 .HasKey(c => c.ID);
             mb.Entity<Category>()

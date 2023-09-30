@@ -13,6 +13,8 @@ namespace DietApp.BL.Managers
 {
     public class UserDayMealFoodManager : BaseManager<UserDayMealFood>, IUserDayMealFoodService
     {
+        public int CurrentID { get; set; }
+
         protected UserDayMealFoodRepository _userDayMealFoodRepository;
 
         public UserDayMealFoodManager(GenericRepository<UserDayMealFood> genericRepository, UserDayMealFoodRepository userDayMealFoodRepository) : base(genericRepository)
@@ -34,9 +36,9 @@ namespace DietApp.BL.Managers
             }
         }
 
-        public string RemoveUserFood(int id)
+        public string DeleteDayMealFood(int id)
         {
-            if (_userDayMealFoodRepository.RemoveUserFood(id))
+            if (_userDayMealFoodRepository.DeleteDayMealFood(id))
             {
                 return "Öğün içeriği silindi.";
             }
@@ -46,9 +48,10 @@ namespace DietApp.BL.Managers
             }
         }
 
-        public string UpdateUserFood(StructUserDayMealFood sUserDayMealFood)
+        public string UpdateDayMealFood(StructUserDayMealFood sUserDayMealFood)
         {
-            if(_userDayMealFoodRepository.UpdateUserFood(sUserDayMealFood.ID, sUserDayMealFood.FoodName, sUserDayMealFood.Portion, sUserDayMealFood.MealName, sUserDayMealFood.DateTime, sUserDayMealFood.PhotoPath))
+            if(_userDayMealFoodRepository.UpdateDayMealFood(sUserDayMealFood.ID, sUserDayMealFood.UserID, sUserDayMealFood.FoodName,
+             sUserDayMealFood.Portion, sUserDayMealFood.CategoryName, sUserDayMealFood.Calories, sUserDayMealFood.MealName, sUserDayMealFood.DateTime, sUserDayMealFood.PhotoPath))
             {
                 return "Öğün içeriği güncellendi.";
             }

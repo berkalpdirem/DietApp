@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DietApp.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230929143623_1mig")]
-    partial class _1mig
+    [Migration("20230930070701_mig1")]
+    partial class mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,33 @@ namespace DietApp.DAL.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CategoryName = "Meyveler"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CategoryName = "Sebzeler"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CategoryName = "Hamur İşleri"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CategoryName = "Makarnalar"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CategoryName = "Kebaplar"
+                        });
                 });
 
             modelBuilder.Entity("DietApp.Entities.Concrete.FoodPhoto", b =>
@@ -74,6 +101,43 @@ namespace DietApp.DAL.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("MealTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            MealName = "Kahvaltı"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            MealName = "Brunch"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            MealName = "Öğle Yemeği"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            MealName = "Çay Vakti"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            MealName = "Akşam Yemeği"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            MealName = "Hafif Akşam Yemeği"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            MealName = "Gece Atıştırmalığı"
+                        });
                 });
 
             modelBuilder.Entity("DietApp.Entities.Concrete.User", b =>
