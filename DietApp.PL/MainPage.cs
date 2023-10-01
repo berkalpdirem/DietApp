@@ -58,6 +58,7 @@ namespace DietApp.PL
             foreach (var meal in mealTypeManager.GetAll())
             {
                 MealPanel_cb_MealSelection.Items.Add(meal.MealName);
+
             }
             foreach (var category in categoryManager.GetAll())
             {
@@ -157,14 +158,14 @@ namespace DietApp.PL
             pnl_MealPanel.BringToFront();
             RefleshBoxes();
             MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
-
-
         }
 
         private void FlowPanel_btn_Reports_Click(object sender, EventArgs e)
         {
             pnl_FlowPanel.BringToFront();
             pnl_ReportsPanel.BringToFront();
+
+            ReportsPanel_cb_QuerySelection.SelectedIndex = 0;
         }
 
         private void mp_btn_Exit_Click(object sender, EventArgs e)
@@ -513,10 +514,34 @@ namespace DietApp.PL
 
         #region Reports Panel
 
+        private void ReportsPanel_cb_QuerySelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ReportsPanel_cb_QuerySelection.SelectedIndex == 0)
+            {
+                pnl_ReportsPanel_EmptyPanel.BringToFront();
+            }
+            else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 1)
+            {
+
+                pnl_ReportsPanel_DailyCalorieReport.BringToFront();
+            }
+            else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 2)
+            {
+
+                pnl_ReportsPanel_UserCompareReport.BringToFront();
+            }
+            else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 3)
+            {
+
+                pnl_ReportsPanel_MostyEatedFoodsReport.BringToFront();
+            }
+        }
+
+
         private void ReportsPanel_btn_DailyMealCalories_Click(object sender, EventArgs e)
         {
-            ReportsPanel_DatagridUser.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
-            ReportsPanel_DatagridOthers.DataSource = string.Empty;
+            ReportsPanel_DatagridUserDaily.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
+            ReportsPanel_DatagridOthersCompare.DataSource = string.Empty;
         }
 
         private void ReportsPanel_btn_WeekMounthReports_Click(object sender, EventArgs e)
@@ -525,15 +550,15 @@ namespace DietApp.PL
 
             if (ReportsPanel_rb_MonthllyReport.Checked)
             {
-                ReportsPanel_DatagridUser.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyUserMealCalories(userManager._id, 30);
-                ReportsPanel_DatagridOthers.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyEveryoneMealCalories(userManager._id, 30);
+                ReportsPanel_DatagridUserCompare.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyUserMealCalories(userManager._id, 30);
+                ReportsPanel_DatagridOthersCompare.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyEveryoneMealCalories(userManager._id, 30);
 
 
             }
             else if (ReportsPanel_rb_WeeklyReport.Checked)
             {
-                ReportsPanel_DatagridUser.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyUserMealCalories(userManager._id, 7);
-                ReportsPanel_DatagridOthers.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyEveryoneMealCalories(userManager._id, 7);
+                ReportsPanel_DatagridUserCompare.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyUserMealCalories(userManager._id, 7);
+                ReportsPanel_DatagridOthersCompare.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyEveryoneMealCalories(userManager._id, 7);
             }
 
         }
@@ -542,6 +567,8 @@ namespace DietApp.PL
         {
             ReportsPanel_DatagridMostyEatedFoods.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByMealType(userManager._id);
         }
+
+
         #endregion
 
         //Main Page Panel Actions
