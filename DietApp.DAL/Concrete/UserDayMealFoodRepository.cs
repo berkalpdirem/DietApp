@@ -29,7 +29,7 @@ namespace DietApp.DAL.Concrete
 
         public bool AddDayMealFood(int id, string foodName, decimal portion, string categoryName, decimal calories, string MealName, DateTime dateTime, string photoPath)
         {
-            
+
             if (!DbSetUserFood.Where(f => f.FoodName == foodName && f.UserID == id).Any())
             {
                 FoodPhoto newPhoto = new();
@@ -109,7 +109,7 @@ namespace DietApp.DAL.Concrete
                         }
                     }
 
-                    var userFoodID = DbSetUserFood.Where(uf => uf.FoodName == foodName).Select(uf => uf.ID).FirstOrDefault();
+                    var userFoodID = DbSetUserFood.Where(uf => uf.FoodName == foodName && uf.UserID == id).Select(uf => uf.ID).FirstOrDefault();
 
                     int mealID = DbSetMealTypes.Where(x => x.MealName == MealName).Select(x => x.ID).FirstOrDefault();
 
@@ -270,6 +270,10 @@ namespace DietApp.DAL.Concrete
             return currentList;
         }
 
+
+
+        //gün sonu raporu
+
         public List<StructDailyMealCalories> ShowDailyMealCalories(int id, DateTime dateTime)
         {
 
@@ -288,10 +292,94 @@ namespace DietApp.DAL.Concrete
             return solList.ToList();
         }
 
-        //gün sonu raporu
-
         // kıyas raporları:
 
+        public List<StructDailyMealCalories> ShowReportWeeklyOrMonthlyUserMealCalories(int id, int path)
+        {
+            var list = ShowDayMealFoods(id);
+
+            var solList = from mc in list
+                          where mc.DateTime < DateTime.Now && mc.DateTime > DateTime.Now.AddYears(-path)
+                          group mc by mc.MealName into g
+
+                          select new StructDailyMealCalories
+                          {
+                              MealName = g.Key,
+                              Calories = g.Sum(x => x.Calories)
+                          };
+
+            return solList.ToList();
+        }
+        public List<StructDailyMealCalories> ShowReportWeeklyOrMonthlyEveryoneMealCalories(int id, int path)
+        {
+
+            var currentList = DbSet.Include(uf => uf.UserFood)
+                                       .ThenInclude(uf => uf.UserDayMealFoods)
+                                       .ThenInclude(uf => uf.MealType)
+                                       .Where(uf => (uf.Status == Status.Active) && uf.UserFood.UserID != id)
+                                       .OrderBy(uf => uf.DateTime)
+                                       .Select(uf => new StructDataGridMeal
+
+                                       {
+
+                                           ID = uf.ID,
+                                           MealName = uf.MealType.MealName,
+                                           CategoryName = uf.UserFood.Category.CategoryName,
+                                           FoodName = uf.UserFood.FoodName,
+                                           Portion = uf.Portion,
+                                           Calories = (uf.UserFood.Calories) * uf.Portion,
+                                           DateTime = uf.DateTime
+
+                                       }).ToList();
+
+
+
+            var solList = from mc in currentList
+                          where mc.DateTime < DateTime.Now && mc.DateTime > DateTime.Now.AddYears(-path)
+                          group mc by mc.MealName into g
+                          select new StructDailyMealCalories
+                          {
+                              MealName = g.Key,
+                              Calories = g.Sum(x => x.Calories)
+                          };
+
+            return solList.ToList();
+        }
+
         //yemek çeşidi raporu
+
+        public List<StructMostEatenFoods> ShowReportMostEatenFoodsByMealType(int id)
+        {
+
+            var list = DbSet.Include(uf => uf.UserFood)
+                            .ThenInclude(uf => uf.UserDayMealFoods)
+                            .ThenInclude(uf => uf.MealType)
+                            .Where(uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id)
+                            .OrderBy(uf => uf.DateTime)
+                            .Select(uf => new StructDataGridMeal
+                            {
+                                ID = uf.ID,
+                                MealName = uf.MealType.MealName,
+                                CategoryName = uf.UserFood.Category.CategoryName,
+                                FoodName = uf.UserFood.FoodName,
+                                Portion = uf.Portion,
+                                Calories = (uf.UserFood.Calories) * uf.Portion,
+                                DateTime = uf.DateTime
+
+                            }).ToList();
+
+            var newList = list.GroupBy(x => new { x.MealName , x.FoodName} )
+                              .OrderByDescending(g => g.Count())
+                              .Select(x => new StructMostEatenFoods
+                              {
+                                  MealName = x.Key.MealName,
+                                  FoodName = x.Key.FoodName,
+                                  Count = x.Count()
+                              } ).ToList();
+            return newList;
+        }
     }
+    
+    
 }
+

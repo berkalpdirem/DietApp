@@ -87,12 +87,15 @@
             ProfilPanel_lbl_Concrate6 = new Label();
             ProfilPanel_lbl_Concrate7 = new Label();
             pnl_ReportsPanel = new Panel();
-            button1 = new Button();
+            ReportsPanel_rb_MonthllyReport = new RadioButton();
+            ReportsPanel_rb_WeeklyReport = new RadioButton();
+            ReportsPanel_btn_WeekMounthReports = new Button();
             ReportsPanel_btn_DailyMealCalories = new Button();
-            dateTimePicker1 = new DateTimePicker();
             ReportsPanel_DateTimePicker = new DateTimePicker();
-            dataGridView1 = new DataGridView();
-            ReportsPanel_Datagrid = new DataGridView();
+            ReportsPanel_DatagridOthers = new DataGridView();
+            ReportsPanel_DatagridUser = new DataGridView();
+            ReportsPanel_DatagridMostyEatedFoods = new DataGridView();
+            ReportsPanel_btn_MostlyEatedReports = new Button();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_pb_FoodImage).BeginInit();
@@ -107,8 +110,9 @@
             ProfilPanel_gp_Info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnl_ReportsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)ReportsPanel_Datagrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridOthers).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUser).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridMostyEatedFoods).BeginInit();
             SuspendLayout();
             // 
             // pnl_FlowPanel
@@ -201,7 +205,7 @@
             pnl_MealPanel.Dock = DockStyle.Fill;
             pnl_MealPanel.Location = new Point(210, 0);
             pnl_MealPanel.Name = "pnl_MealPanel";
-            pnl_MealPanel.Size = new Size(834, 450);
+            pnl_MealPanel.Size = new Size(1146, 450);
             pnl_MealPanel.TabIndex = 2;
             // 
             // MealPanel_pb_FoodImage
@@ -435,7 +439,7 @@
             pnl_LoginPanel.Dock = DockStyle.Fill;
             pnl_LoginPanel.Location = new Point(210, 0);
             pnl_LoginPanel.Name = "pnl_LoginPanel";
-            pnl_LoginPanel.Size = new Size(834, 450);
+            pnl_LoginPanel.Size = new Size(1146, 450);
             pnl_LoginPanel.TabIndex = 1;
             // 
             // LoginPage_gp_Actions
@@ -498,7 +502,7 @@
             pnl_RegisterPage.Enabled = false;
             pnl_RegisterPage.Location = new Point(0, 0);
             pnl_RegisterPage.Name = "pnl_RegisterPage";
-            pnl_RegisterPage.Size = new Size(1044, 450);
+            pnl_RegisterPage.Size = new Size(1356, 450);
             pnl_RegisterPage.TabIndex = 2;
             // 
             // RegisterPanel_btn_Back
@@ -552,7 +556,7 @@
             pnl_ProfilPanel.Dock = DockStyle.Fill;
             pnl_ProfilPanel.Location = new Point(0, 0);
             pnl_ProfilPanel.Name = "pnl_ProfilPanel";
-            pnl_ProfilPanel.Size = new Size(1044, 450);
+            pnl_ProfilPanel.Size = new Size(1356, 450);
             pnl_ProfilPanel.TabIndex = 2;
             // 
             // ProfilPanel_gp_Info
@@ -718,27 +722,52 @@
             // pnl_ReportsPanel
             // 
             pnl_ReportsPanel.BackColor = SystemColors.ButtonShadow;
-            pnl_ReportsPanel.Controls.Add(button1);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_rb_MonthllyReport);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_rb_WeeklyReport);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_btn_MostlyEatedReports);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_btn_WeekMounthReports);
             pnl_ReportsPanel.Controls.Add(ReportsPanel_btn_DailyMealCalories);
-            pnl_ReportsPanel.Controls.Add(dateTimePicker1);
             pnl_ReportsPanel.Controls.Add(ReportsPanel_DateTimePicker);
-            pnl_ReportsPanel.Controls.Add(dataGridView1);
-            pnl_ReportsPanel.Controls.Add(ReportsPanel_Datagrid);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_DatagridMostyEatedFoods);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_DatagridOthers);
+            pnl_ReportsPanel.Controls.Add(ReportsPanel_DatagridUser);
             pnl_ReportsPanel.Dock = DockStyle.Fill;
             pnl_ReportsPanel.Location = new Point(210, 0);
             pnl_ReportsPanel.Name = "pnl_ReportsPanel";
-            pnl_ReportsPanel.Size = new Size(834, 450);
+            pnl_ReportsPanel.Size = new Size(1146, 450);
             pnl_ReportsPanel.TabIndex = 5;
             // 
-            // button1
+            // ReportsPanel_rb_MonthllyReport
             // 
-            button1.Location = new Point(334, 14);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 3;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += ReportsPanel_btn_DailyMealCalories_Click;
+            ReportsPanel_rb_MonthllyReport.AutoSize = true;
+            ReportsPanel_rb_MonthllyReport.Location = new Point(445, 43);
+            ReportsPanel_rb_MonthllyReport.Name = "ReportsPanel_rb_MonthllyReport";
+            ReportsPanel_rb_MonthllyReport.Size = new Size(51, 19);
+            ReportsPanel_rb_MonthllyReport.TabIndex = 4;
+            ReportsPanel_rb_MonthllyReport.TabStop = true;
+            ReportsPanel_rb_MonthllyReport.Text = "Aylık";
+            ReportsPanel_rb_MonthllyReport.UseVisualStyleBackColor = true;
+            // 
+            // ReportsPanel_rb_WeeklyReport
+            // 
+            ReportsPanel_rb_WeeklyReport.AutoSize = true;
+            ReportsPanel_rb_WeeklyReport.Location = new Point(336, 44);
+            ReportsPanel_rb_WeeklyReport.Name = "ReportsPanel_rb_WeeklyReport";
+            ReportsPanel_rb_WeeklyReport.Size = new Size(66, 19);
+            ReportsPanel_rb_WeeklyReport.TabIndex = 4;
+            ReportsPanel_rb_WeeklyReport.TabStop = true;
+            ReportsPanel_rb_WeeklyReport.Text = "Haftalık";
+            ReportsPanel_rb_WeeklyReport.UseVisualStyleBackColor = true;
+            // 
+            // ReportsPanel_btn_WeekMounthReports
+            // 
+            ReportsPanel_btn_WeekMounthReports.Location = new Point(334, 17);
+            ReportsPanel_btn_WeekMounthReports.Name = "ReportsPanel_btn_WeekMounthReports";
+            ReportsPanel_btn_WeekMounthReports.Size = new Size(136, 23);
+            ReportsPanel_btn_WeekMounthReports.TabIndex = 3;
+            ReportsPanel_btn_WeekMounthReports.Text = "Öğün Kıyas Raporu";
+            ReportsPanel_btn_WeekMounthReports.UseVisualStyleBackColor = true;
+            ReportsPanel_btn_WeekMounthReports.Click += ReportsPanel_btn_WeekMounthReports_Click;
             // 
             // ReportsPanel_btn_DailyMealCalories
             // 
@@ -750,13 +779,6 @@
             ReportsPanel_btn_DailyMealCalories.UseVisualStyleBackColor = true;
             ReportsPanel_btn_DailyMealCalories.Click += ReportsPanel_btn_DailyMealCalories_Click;
             // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(334, 44);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 2;
-            // 
             // ReportsPanel_DateTimePicker
             // 
             ReportsPanel_DateTimePicker.Location = new Point(8, 46);
@@ -764,31 +786,50 @@
             ReportsPanel_DateTimePicker.Size = new Size(200, 23);
             ReportsPanel_DateTimePicker.TabIndex = 2;
             // 
-            // dataGridView1
+            // ReportsPanel_DatagridOthers
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(334, 71);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(281, 224);
-            dataGridView1.TabIndex = 1;
+            ReportsPanel_DatagridOthers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ReportsPanel_DatagridOthers.Location = new Point(334, 71);
+            ReportsPanel_DatagridOthers.Name = "ReportsPanel_DatagridOthers";
+            ReportsPanel_DatagridOthers.RowTemplate.Height = 25;
+            ReportsPanel_DatagridOthers.Size = new Size(281, 224);
+            ReportsPanel_DatagridOthers.TabIndex = 1;
             // 
-            // ReportsPanel_Datagrid
+            // ReportsPanel_DatagridUser
             // 
-            ReportsPanel_Datagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ReportsPanel_Datagrid.Location = new Point(8, 75);
-            ReportsPanel_Datagrid.Name = "ReportsPanel_Datagrid";
-            ReportsPanel_Datagrid.RowTemplate.Height = 25;
-            ReportsPanel_Datagrid.Size = new Size(261, 220);
-            ReportsPanel_Datagrid.TabIndex = 1;
+            ReportsPanel_DatagridUser.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ReportsPanel_DatagridUser.Location = new Point(8, 75);
+            ReportsPanel_DatagridUser.Name = "ReportsPanel_DatagridUser";
+            ReportsPanel_DatagridUser.RowTemplate.Height = 25;
+            ReportsPanel_DatagridUser.Size = new Size(261, 220);
+            ReportsPanel_DatagridUser.TabIndex = 1;
+            // 
+            // ReportsPanel_DatagridMostyEatedFoods
+            // 
+            ReportsPanel_DatagridMostyEatedFoods.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ReportsPanel_DatagridMostyEatedFoods.Location = new Point(645, 71);
+            ReportsPanel_DatagridMostyEatedFoods.Name = "ReportsPanel_DatagridMostyEatedFoods";
+            ReportsPanel_DatagridMostyEatedFoods.RowTemplate.Height = 25;
+            ReportsPanel_DatagridMostyEatedFoods.Size = new Size(281, 224);
+            ReportsPanel_DatagridMostyEatedFoods.TabIndex = 1;
+            // 
+            // ReportsPanel_btn_MostlyEatedReports
+            // 
+            ReportsPanel_btn_MostlyEatedReports.Location = new Point(634, 17);
+            ReportsPanel_btn_MostlyEatedReports.Name = "ReportsPanel_btn_MostlyEatedReports";
+            ReportsPanel_btn_MostlyEatedReports.Size = new Size(228, 23);
+            ReportsPanel_btn_MostlyEatedReports.TabIndex = 3;
+            ReportsPanel_btn_MostlyEatedReports.Text = "En Çok Yenen Yemekler Raporu";
+            ReportsPanel_btn_MostlyEatedReports.UseVisualStyleBackColor = true;
+            ReportsPanel_btn_MostlyEatedReports.Click += ReportsPanel_btn_MostlyEatedReports_Click;
             // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1044, 450);
-            Controls.Add(pnl_MealPanel);
+            ClientSize = new Size(1356, 450);
             Controls.Add(pnl_ReportsPanel);
+            Controls.Add(pnl_MealPanel);
             Controls.Add(pnl_LoginPanel);
             Controls.Add(pnl_FlowPanel);
             Controls.Add(pnl_ProfilPanel);
@@ -816,8 +857,10 @@
             ProfilPanel_gp_Info.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnl_ReportsPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)ReportsPanel_Datagrid).EndInit();
+            pnl_ReportsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridOthers).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUser).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridMostyEatedFoods).EndInit();
             ResumeLayout(false);
         }
 
@@ -853,7 +896,7 @@
         private ComboBox MealPanel_cb_FoodSelection;
         private ComboBox MealPanel_cb_MealSelection;
         private Panel pnl_ReportsPanel;
-        private DataGridView ReportsPanel_Datagrid;
+        private DataGridView ReportsPanel_DatagridUser;
         private Label ProfilePanel_lbl_Surname;
         private Label ProfilePanel_lbl_Name;
         private Label ProfilePanel_lbl_Password;
@@ -885,8 +928,11 @@
         private Button ReportsPanel_btn_DailyMealCalories;
         private Label MealPanel_şbş_Info;
         private PictureBox MealPanel_pb_FoodImage;
-        private Button button1;
-        private DateTimePicker dateTimePicker1;
-        private DataGridView dataGridView1;
+        private Button ReportsPanel_btn_WeekMounthReports;
+        private DataGridView ReportsPanel_DatagridOthers;
+        private RadioButton ReportsPanel_rb_MonthllyReport;
+        private RadioButton ReportsPanel_rb_WeeklyReport;
+        private Button ReportsPanel_btn_MostlyEatedReports;
+        private DataGridView ReportsPanel_DatagridMostyEatedFoods;
     }
 }
