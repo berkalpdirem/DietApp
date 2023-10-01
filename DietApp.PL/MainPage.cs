@@ -543,6 +543,11 @@ namespace DietApp.PL
             //Daily Calorie Report with DataGrid
             ReportsPanel_DatagridUserDaily.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
 
+            List<StructDailyMealCalories> DailyMealList = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
+
+
+
+
             //Total Calorie Calculation
             decimal CaloriesSum = 0;
             foreach (DataGridViewRow row in ReportsPanel_DatagridUserDaily.Rows)
@@ -581,9 +586,9 @@ namespace DietApp.PL
         private void ReportsPanel_btn_MostlyEatedReports_Click(object sender, EventArgs e)
         {
             ReportsPanel_DatagridMostyEatedFoods.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByMealType(userManager._id);
+
+            ReportsPanel_DatagridEveryMostyEatedFoods.DataSource= userDayMealFoodManager.ShowReportEveryMostEatenFoodsByMealType(userManager._id);
         }
-
-
 
 
 

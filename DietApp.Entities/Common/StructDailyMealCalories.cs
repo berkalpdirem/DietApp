@@ -8,8 +8,9 @@ namespace DietApp.Entities.Common
 {
     public struct StructDailyMealCalories
     {
-        public decimal Calories { get; set; }
         public string MealName { get; set; }
+        public decimal Calories { get; set; }
+        
 
     }
 }
