@@ -967,8 +967,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1064, 465);
-            Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_MealPanel);
+            Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_LoginPanel);
             Controls.Add(pnl_FlowPanel);
             Controls.Add(pnl_ProfilPanel);
