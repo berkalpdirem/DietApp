@@ -385,7 +385,36 @@ namespace DietApp.DAL.Concrete
 
         //yemek çeşidi raporu
 
-        public List<StructMostEatenFoods> ShowReportMostEatenFoodsByMealType(int id)
+        public List<StructMostEatenFoodsByFoodName> ShowReportMostEatenFoodsByFoodName(int id)
+        {
+
+            var list = DbSet.Include(uf => uf.UserFood)
+                            .ThenInclude(uf => uf.UserDayMealFoods)
+                            .ThenInclude(uf => uf.MealType)
+                            .Where(uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id)
+                            .OrderBy(uf => uf.MealTypeID)
+                            .Select(uf => new StructDataGridMeal
+                            {
+                                ID = uf.ID,
+                                MealName = uf.MealType.MealName,
+                                CategoryName = uf.UserFood.Category.CategoryName,
+                                FoodName = uf.UserFood.FoodName,
+                                Portion = uf.Portion,
+                                Calories = (uf.UserFood.Calories) * uf.Portion,
+                                DateTime = uf.DateTime
+
+                            }).ToList();
+
+            var newList = list.GroupBy(x => x.FoodName)
+                              .OrderByDescending(g => g.Count())
+                              .Select(x => new StructMostEatenFoodsByFoodName
+                              {
+                                  FoodName = x.Key,
+                                  Count = x.Count()
+                              }).ToList();
+            return newList;
+        }
+        public List<StructMostEatenFoodsByMealName> ShowReportMostEatenFoodsByMealType(int id)
         {
 
             var list = DbSet.Include(uf => uf.UserFood)
@@ -406,42 +435,10 @@ namespace DietApp.DAL.Concrete
                             }).ToList();
 
             var newList = list.GroupBy(x => new { x.MealName, x.FoodName })
-                              .OrderByDescending(g => g.Count())
-                              .Select(x => new StructMostEatenFoods
+                              .Select(x => new StructMostEatenFoodsByMealName
                               {
                                   MealName = x.Key.MealName,
                                   FoodName = x.Key.FoodName,
-                                  Count = x.Count()
-                              }).ToList();
-            return newList;
-        }
-
-        public List<StructMostEatenFoods> ShowReportEveryMostEatenFoodsByMealType(int id)
-        {
-
-            var list = DbSet.Include(uf => uf.UserFood)
-                            .ThenInclude(uf => uf.UserDayMealFoods)
-                            .ThenInclude(uf => uf.MealType)
-                            .Where(uf => (uf.Status == Status.Active) && uf.UserFood.UserID == id)
-                            .OrderBy(uf => uf.MealTypeID)
-                            .Select(uf => new StructDataGridMeal
-                            {
-                                ID = uf.ID,
-                                MealName = uf.MealType.MealName,
-                                CategoryName = uf.UserFood.Category.CategoryName,
-                                FoodName = uf.UserFood.FoodName,
-                                Portion = uf.Portion,
-                                Calories = (uf.UserFood.Calories) * uf.Portion,
-                                DateTime = uf.DateTime
-
-                            }).ToList();
-
-            var newList = list.GroupBy(x => x.MealName)
-                              .OrderByDescending(g => g.Count())
-                              .Select(x => new StructMostEatenFoods
-                              {
-                                  MealName = x.Key,
-                                  //FoodName Gelmeli
                                   Count = x.Count()
                               }).ToList();
             return newList;

@@ -27,7 +27,7 @@ namespace DietApp.BL.Services
 
         // En Çok Yenen Yemekler Raporu
 
-        List<StructMostEatenFoods> ShowReportMostEatenFoodsByMealType(int id);
+        List<StructMostEatenFoodsByMealName> ShowReportMostEatenFoodsByMeaName(int id);
 
     }
 }

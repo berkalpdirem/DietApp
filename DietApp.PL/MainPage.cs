@@ -23,8 +23,6 @@ namespace DietApp.PL
         CategoryManager categoryManager;
         UserFoodManager userFoodManager;
         UserDayMealFoodManager userDayMealFoodManager;
-
-
         public MainPage()
         {
             InitializeComponent();
@@ -34,9 +32,7 @@ namespace DietApp.PL
             categoryManager = new CategoryManager(new GenericRepository<Category>(new AppDbContext()));
             userFoodManager = new UserFoodManager(new GenericRepository<UserFood>(new AppDbContext()), new UserFoodRepository(new AppDbContext()));
             userDayMealFoodManager = new UserDayMealFoodManager(new GenericRepository<UserDayMealFood>(new AppDbContext()), new UserDayMealFoodRepository(new AppDbContext()));
-
         }
-
         private void MainPage_Load(object sender, EventArgs e)
         {
             MealPanel_gb_MealEditGroupBox.Enabled = false;
@@ -77,248 +73,6 @@ namespace DietApp.PL
             MealPanel_btn_MealAdd.Enabled = true;
             MealPanel_btn_UpdateClose.Visible = false;
         }
-        #endregion
-
-        #region Login Panel
-        private void lp_btn_Entry_Click(object sender, EventArgs e)
-        {
-            userManager.Login(LoginPanel_tb_Email.Text, LoginPanel_tb_Password.Text);
-            if (userManager._id != 0)
-            {
-                ProfilePanel_lbl_Eposta.Text = LoginPanel_tb_Email.Text;
-                ProfilePanel_lbl_Password.Text = LoginPanel_tb_Password.Text;
-
-                LoginPanel_tb_Email.Clear();
-                LoginPanel_tb_Password.Clear();
-                pnl_LoginPanel.Enabled = false;
-
-                pnl_ProfilPanel.Enabled = true;
-                pnl_FlowPanel.Visible = true;
-                pnl_ProfilPanel.BringToFront();
-            }
-            else
-            {
-                MessageBox.Show("Giriş Bilgileriniz Hatalı Lütfen Tekrardan Deneyiniz!!!");
-            }
-
-
-
-        }
-        private void lg_btn_Register_Click(object sender, EventArgs e)
-        {
-
-            LoginPanel_tb_Email.Clear();
-            LoginPanel_tb_Password.Clear();
-            pnl_RegisterPage.BringToFront();
-            pnl_LoginPanel.Enabled = false;
-            pnl_RegisterPage.Enabled = true;
-        }
-
-
-
-
-        #endregion
-
-        #region Register Panel
-
-        private void rg_btn_Register_Click(object sender, EventArgs e)
-        {
-            string returnNotification = userManager.AddUser(RegisterPanel_tb_Email.Text, RegisterPanel_tb_Password.Text, RegisterPanel_tb_Password2.Text);
-            MessageBox.Show(returnNotification);
-
-            RegisterPanel_tb_Email.Clear();
-            RegisterPanel_tb_Password.Clear();
-            RegisterPanel_tb_Password2.Clear();
-            pnl_RegisterPage.Enabled = false;
-            pnl_LoginPanel.Enabled = true;
-            pnl_LoginPanel.BringToFront();
-        }
-        private void rg_btn_Back_Click(object sender, EventArgs e)
-        {
-            RegisterPanel_tb_Email.Clear();
-            RegisterPanel_tb_Password.Clear();
-            RegisterPanel_tb_Password2.Clear();
-            pnl_RegisterPage.Enabled = false;
-            pnl_LoginPanel.Enabled = true;
-            pnl_LoginPanel.BringToFront();
-
-        }
-        #endregion
-
-        #region Flow Panel
-        private void FlowPanel_btn_Profil_Click(object sender, EventArgs e)
-        {
-            pnl_FlowPanel.Visible = true;
-            pnl_ProfilPanel.BringToFront();
-
-        }
-        private void FlowPanel_btn_Meals_Click(object sender, EventArgs e)
-        {
-            pnl_FlowPanel.BringToFront();
-            pnl_MealPanel.BringToFront();
-            RefleshBoxes();
-            MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
-        }
-
-        private void FlowPanel_btn_Reports_Click(object sender, EventArgs e)
-        {
-            pnl_FlowPanel.BringToFront();
-            pnl_ReportsPanel.BringToFront();
-
-            ReportsPanel_cb_QuerySelection.SelectedIndex = 0;
-        }
-
-        private void mp_btn_Exit_Click(object sender, EventArgs e)
-        {
-            pnl_FlowPanel.Visible = false;
-            pnl_LoginPanel.Enabled = true;
-            pnl_LoginPanel.BringToFront();
-        }
-
-
-        #endregion
-
-        #region Profile Panel
-        #endregion
-
-        #region Meal Panel
-
-        private void MealPanel_btn_FoodEdit_Click(object sender, EventArgs e)
-        {
-            // Panel Anismasyonları
-            if (!MealPanel_gb_FoodEditGroupBox.Visible) // yemek güncelleme pasif ise (Başlangıçta) 
-            {
-                MealPanel_cb_FoodSelection.Enabled = false;
-
-                MealPanel_btn_FoodEdit.Enabled = true;
-                MealPanel_gb_FoodEditGroupBox.Enabled = true;
-                MealPanel_gb_FoodEditGroupBox.Visible = true;
-
-                MealPanel_btn_FoodEdit.Text = "-";
-
-            }
-            else                                       // yemek güncelleme aktif ise (+'ya basıldığında) 
-            {
-                MealPanel_cb_FoodSelection.Enabled = true;
-
-                MealPanel_btn_FoodEdit.Enabled = true;
-                MealPanel_gb_FoodEditGroupBox.Visible = false;
-                MealPanel_btn_FoodEdit.Text = "+";
-            }
-        }
-        // Yemek Ekleme Operasyonları
-        private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
-        {
-            int userIDInput = userManager._id;
-            string FoodNameInput = string.Empty;
-            decimal PortionInput = 0;
-            string CategoryNameInput = string.Empty;
-            decimal CalorieInput = 0;
-            string MealNameInput = string.Empty;
-            DateTime dateTimeInput = MealPanel_DateTimePicker.Value;
-            string PhotoPathInput = string.Empty;
-
-
-
-
-            UserDayMealFood relatedDayMealFood = new UserDayMealFood();
-
-            if (MealPanel_btn_FoodEdit.Text == "-")
-            {
-
-                if (checkUIValues(MealPanel_cb_MealSelection,
-                                   MealPanel_cb_CatagorySelection,
-                                   MealPanel_cb_FoodSelection,
-                                   MealPanel_nup_PortionSelection,
-                                   MealPanel_tb_FoodName,
-                                   MealPanel_tb_FoodCalorie,
-                                   MealPanel_btn_FoodEdit.Text) && decimal.TryParse(MealPanel_tb_FoodCalorie.Text, out CalorieInput))
-                {
-                    FoodNameInput = MealPanel_tb_FoodName.Text;
-                    PortionInput = MealPanel_nup_PortionSelection.Value;
-                    CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
-                    //CalorieInput İf'in içinde out ile atanıyor
-                    MealNameInput = MealPanel_cb_MealSelection.Text;                                    //Düzenlenecek
-                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
-
-                    StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
-                    {
-
-                        UserID = userIDInput,
-                        FoodName = FoodNameInput,
-                        Portion = PortionInput,
-                        CategoryName = CategoryNameInput,
-                        Calories = CalorieInput,
-                        MealName = MealNameInput,
-                        DateTime = dateTimeInput,                  //Calendardan alınacak
-                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
-                                                                       // Helper metodu içinde göm ıkısınefde metodla yap
-
-                    };
-
-                    MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
-                    MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
-                    RefleshBoxes();
-
-                }
-                else
-                {
-                    MessageBox.Show(" Veri Girişiniz Hatalı");
-                }
-            }
-            else // + iken
-            {
-                if (checkUIValues(MealPanel_cb_MealSelection,
-                                   MealPanel_cb_CatagorySelection,
-                                   MealPanel_cb_FoodSelection,
-                                   MealPanel_nup_PortionSelection,
-                                   MealPanel_tb_FoodName,
-                                   MealPanel_tb_FoodCalorie,
-                                   MealPanel_btn_FoodEdit.Text))
-                {
-                    var UserFood = userFoodManager.GetAll();
-                    foreach (var item in UserFood)
-                    {
-                        if (item.FoodName == MealPanel_cb_FoodSelection.Text)
-                        {
-                            CalorieInput = item.Calories;
-                            break;
-                        }
-                    }
-
-
-                    FoodNameInput = MealPanel_cb_FoodSelection.Text;
-                    PortionInput = MealPanel_nup_PortionSelection.Value;
-                    CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
-                    //CalorieInput İf'in içinde out ile atanıyor
-                    MealNameInput = MealPanel_cb_MealSelection.Text;                             //Düzenlenecek
-                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
-
-                    StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
-                    {
-
-                        UserID = userIDInput,
-                        FoodName = FoodNameInput,
-                        Portion = PortionInput,
-                        CategoryName = CategoryNameInput,
-                        Calories = CalorieInput,
-                        MealName = MealNameInput,
-                        DateTime = dateTimeInput,                        //Calendardan alınacak
-                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
-
-                    };
-                    MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
-                    MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
-                    RefleshBoxes();
-                }
-                else
-                {
-                    MessageBox.Show(" Veri Girişiniz Hatalı");
-                }
-            }
-
-        }
-
         public bool checkUIValues(ComboBox MealPanel_cb_MealSelection,
                                   ComboBox MealPanel_cb_CatagorySelection,
                                   ComboBox MealPanel_cb_FoodSelection,
@@ -348,6 +102,222 @@ namespace DietApp.PL
                 else { return false; }
             }
         }
+        #endregion
+
+        #region Login Panel
+        private void lp_btn_Entry_Click(object sender, EventArgs e)
+        {
+            userManager.Login(LoginPanel_tb_Email.Text, LoginPanel_tb_Password.Text);
+            if (userManager._id != 0)
+            {
+                ProfilePanel_lbl_Eposta.Text = LoginPanel_tb_Email.Text;
+                ProfilePanel_lbl_Password.Text = LoginPanel_tb_Password.Text;
+
+                LoginPanel_tb_Email.Clear();
+                LoginPanel_tb_Password.Clear();
+                pnl_LoginPanel.Enabled = false;
+
+                pnl_ProfilPanel.Enabled = true;
+                pnl_FlowPanel.Visible = true;
+                pnl_ProfilPanel.BringToFront();
+            }
+            else
+            {
+                MessageBox.Show("Giriş Bilgileriniz Hatalı Lütfen Tekrardan Deneyiniz!!!");
+            }
+        }
+        private void lg_btn_Register_Click(object sender, EventArgs e)
+        {
+            LoginPanel_tb_Email.Clear();
+            LoginPanel_tb_Password.Clear();
+            pnl_RegisterPage.BringToFront();
+            pnl_LoginPanel.Enabled = false;
+            pnl_RegisterPage.Enabled = true;
+        }
+        #endregion
+
+        #region Register Panel
+        private void rg_btn_Register_Click(object sender, EventArgs e)
+        {
+            string returnNotification = userManager.AddUser(RegisterPanel_tb_Email.Text, RegisterPanel_tb_Password.Text, RegisterPanel_tb_Password2.Text);
+            MessageBox.Show(returnNotification);
+
+            RegisterPanel_tb_Email.Clear();
+            RegisterPanel_tb_Password.Clear();
+            RegisterPanel_tb_Password2.Clear();
+            pnl_RegisterPage.Enabled = false;
+            pnl_LoginPanel.Enabled = true;
+            pnl_LoginPanel.BringToFront();
+        }
+        private void rg_btn_Back_Click(object sender, EventArgs e)
+        {
+            RegisterPanel_tb_Email.Clear();
+            RegisterPanel_tb_Password.Clear();
+            RegisterPanel_tb_Password2.Clear();
+            pnl_RegisterPage.Enabled = false;
+            pnl_LoginPanel.Enabled = true;
+            pnl_LoginPanel.BringToFront();
+
+        }
+        #endregion
+
+        #region Flow Panel
+        private void FlowPanel_btn_Profil_Click(object sender, EventArgs e)
+        {
+            pnl_FlowPanel.Visible = true;
+            pnl_ProfilPanel.BringToFront();
+        }
+        private void FlowPanel_btn_Meals_Click(object sender, EventArgs e)
+        {
+            MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
+            RefleshBoxes();
+
+            pnl_FlowPanel.BringToFront();
+            pnl_MealPanel.BringToFront();
+        }
+
+        private void FlowPanel_btn_Reports_Click(object sender, EventArgs e)
+        {
+            ReportsPanel_cb_QuerySelection.SelectedIndex = 0;
+
+            pnl_FlowPanel.BringToFront();
+            pnl_ReportsPanel.BringToFront();
+        }
+
+        private void mp_btn_Exit_Click(object sender, EventArgs e)
+        {
+            pnl_FlowPanel.Visible = false;
+            pnl_LoginPanel.Enabled = true;
+
+            pnl_LoginPanel.BringToFront();
+        }
+        #endregion
+
+        #region Profile Panel
+        #endregion
+
+        #region Meal Panel
+        private void MealPanel_btn_FoodEdit_Click(object sender, EventArgs e)
+        {
+            // Panel Anismasyonları
+            if (!MealPanel_gb_FoodEditGroupBox.Visible) // yemek güncelleme pasif ise (Başlangıçta) 
+            {
+                MealPanel_cb_FoodSelection.Enabled = false;
+
+                MealPanel_btn_FoodEdit.Enabled = true;
+                MealPanel_gb_FoodEditGroupBox.Enabled = true;
+                MealPanel_gb_FoodEditGroupBox.Visible = true;
+
+                MealPanel_btn_FoodEdit.Text = "-";
+            }
+            else                                       // yemek güncelleme aktif ise (+'ya basıldığında) 
+            {
+                MealPanel_cb_FoodSelection.Enabled = true;
+
+                MealPanel_btn_FoodEdit.Enabled = true;
+                MealPanel_gb_FoodEditGroupBox.Visible = false;
+                MealPanel_btn_FoodEdit.Text = "+";
+            }
+        }
+        // Yemek Ekleme Operasyonları
+        private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
+        {
+            int userIDInput = userManager._id;
+            string FoodNameInput = string.Empty;
+            decimal PortionInput = 0;
+            string CategoryNameInput = string.Empty;
+            decimal CalorieInput = 0;
+            string MealNameInput = string.Empty;
+            DateTime dateTimeInput = MealPanel_DateTimePicker.Value;
+            string PhotoPathInput = string.Empty;
+
+            UserDayMealFood relatedDayMealFood = new UserDayMealFood();
+
+            if (MealPanel_btn_FoodEdit.Text == "-")
+            {
+
+                if (checkUIValues(MealPanel_cb_MealSelection,
+                                   MealPanel_cb_CatagorySelection,
+                                   MealPanel_cb_FoodSelection,
+                                   MealPanel_nup_PortionSelection,
+                                   MealPanel_tb_FoodName,
+                                   MealPanel_tb_FoodCalorie,
+                                   MealPanel_btn_FoodEdit.Text) && decimal.TryParse(MealPanel_tb_FoodCalorie.Text, out CalorieInput))
+                {
+                    FoodNameInput = MealPanel_tb_FoodName.Text;
+                    PortionInput = MealPanel_nup_PortionSelection.Value;
+                    CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
+                    //CalorieInput İf'in içinde out ile atanıyor
+                    MealNameInput = MealPanel_cb_MealSelection.Text;                                    //Düzenlenecek
+                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
+
+                    StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
+                    {
+                        UserID = userIDInput,
+                        FoodName = FoodNameInput,
+                        Portion = PortionInput,
+                        CategoryName = CategoryNameInput,
+                        Calories = CalorieInput,
+                        MealName = MealNameInput,
+                        DateTime = dateTimeInput,
+                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
+                    };
+                    MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
+                    MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
+                    RefleshBoxes();
+                }
+                else
+                {
+                    MessageBox.Show(" Veri Girişiniz Hatalı");
+                }
+            }
+            else // + iken -------------------------------------------------------------------------------------------------------
+            {
+                if (checkUIValues(MealPanel_cb_MealSelection,
+                                   MealPanel_cb_CatagorySelection,
+                                   MealPanel_cb_FoodSelection,
+                                   MealPanel_nup_PortionSelection,
+                                   MealPanel_tb_FoodName,
+                                   MealPanel_tb_FoodCalorie,
+                                   MealPanel_btn_FoodEdit.Text))
+                {
+                    var UserFood = userFoodManager.GetAll();
+                    foreach (var item in UserFood)
+                    {
+                        if (item.FoodName == MealPanel_cb_FoodSelection.Text)
+                        {
+                            CalorieInput = item.Calories;
+                            break;
+                        }
+                    }
+                    FoodNameInput = MealPanel_cb_FoodSelection.Text;
+                    PortionInput = MealPanel_nup_PortionSelection.Value;
+                    CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
+                    //CalorieInput İf'in içinde out ile atanıyor
+                    MealNameInput = MealPanel_cb_MealSelection.Text;
+                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
+
+                    StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
+                    {
+                        UserID = userIDInput,
+                        FoodName = FoodNameInput,
+                        Portion = PortionInput,
+                        CategoryName = CategoryNameInput,
+                        Calories = CalorieInput,
+                        MealName = MealNameInput,
+                        DateTime = dateTimeInput,
+                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
+                    };
+                    MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
+                    MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
+                    RefleshBoxes();
+                }
+                else
+                {
+                    MessageBox.Show(" Veri Girişiniz Hatalı");
+                }
+            }
+        }
 
         private void MealPanel_btn_ListDataGrid_Click(object sender, EventArgs e)
         {
@@ -357,10 +327,7 @@ namespace DietApp.PL
 
         private void MealPanel_Datagrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
             //Delete Actions
-
             if (MealPanel_Datagrid.SelectedRows.Count == 1)
             {
                 userDayMealFoodManager.CurrentID = int.Parse(MealPanel_Datagrid.SelectedRows[0].Cells[0].Value.ToString());
@@ -507,9 +474,6 @@ namespace DietApp.PL
             MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
             MealGroupBoxClose();
         }
-
-
-
         #endregion
 
         #region Reports Panel
@@ -522,17 +486,14 @@ namespace DietApp.PL
             }
             else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 1)
             {
-
                 pnl_ReportsPanel_DailyCalorieReport.BringToFront();
             }
             else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 2)
             {
-
                 pnl_ReportsPanel_UserCompareReport.BringToFront();
             }
             else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 3)
             {
-
                 pnl_ReportsPanel_MostyEatedFoodsReport.BringToFront();
             }
         }
@@ -544,9 +505,6 @@ namespace DietApp.PL
             ReportsPanel_DatagridUserDaily.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
 
             List<StructDailyMealCalories> DailyMealList = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
-
-
-
 
             //Total Calorie Calculation
             decimal CaloriesSum = 0;
@@ -580,21 +538,18 @@ namespace DietApp.PL
                 ReportsPanel_DatagridUserCompare.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyUserMealCalories(userManager._id, 7);
                 ReportsPanel_DatagridOthersCompare.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyEveryoneMealCalories(userManager._id, 7);
             }
-
         }
 
         private void ReportsPanel_btn_MostlyEatedReports_Click(object sender, EventArgs e)
         {
-            ReportsPanel_DatagridMostyEatedFoods.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByMealType(userManager._id);
+            ReportsPanel_DatagridMostyEatedFoodsByFoodName.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByFoodName(userManager._id);
 
-            ReportsPanel_DatagridEveryMostyEatedFoods.DataSource= userDayMealFoodManager.ShowReportEveryMostEatenFoodsByMealType(userManager._id);
+            ReportsPanel_DatagridMostyEatedFoodsByMealName.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByMeaName(userManager._id);
         }
 
 
 
         #endregion
-
-        //Main Page Panel Actions
 
     }
 }

@@ -81,15 +81,17 @@ namespace DietApp.BL.Managers
             return _userDayMealFoodRepository.ShowReportWeeklyOrMonthlyEveryoneMealCalories(id, path);
         }
 
-        public List<StructMostEatenFoods> ShowReportMostEatenFoodsByMealType(int id)
+        public List<StructMostEatenFoodsByFoodName> ShowReportMostEatenFoodsByFoodName(int id)
+        {
+            return _userDayMealFoodRepository.ShowReportMostEatenFoodsByFoodName(id);
+        }
+
+        public List<StructMostEatenFoodsByMealName> ShowReportMostEatenFoodsByMeaName(int id)
         {
             return _userDayMealFoodRepository.ShowReportMostEatenFoodsByMealType(id);
         }
 
-        public List<StructMostEatenFoods> ShowReportEveryMostEatenFoodsByMealType(int id)
-        {
-            return _userDayMealFoodRepository.ShowReportEveryMostEatenFoodsByMealType(id);
-        }
+        
     }
     
 }
