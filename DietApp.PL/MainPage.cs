@@ -540,8 +540,23 @@ namespace DietApp.PL
 
         private void ReportsPanel_btn_DailyMealCalories_Click(object sender, EventArgs e)
         {
+            //Daily Calorie Report with DataGrid
             ReportsPanel_DatagridUserDaily.DataSource = userDayMealFoodManager.ShowDailyMealCalories(userManager._id, ReportsPanel_DateTimePicker.Value);
-            ReportsPanel_DatagridOthersCompare.DataSource = string.Empty;
+
+            //Total Calorie Calculation
+            decimal CaloriesSum = 0;
+            foreach (DataGridViewRow row in ReportsPanel_DatagridUserDaily.Rows)
+            {
+                if (row.Cells["Calories"].Value != null)
+                {
+                    decimal cellValue;
+                    if (decimal.TryParse(row.Cells["Calories"].Value.ToString(), out cellValue))
+                    {
+                        CaloriesSum += cellValue;
+                    }
+                }
+            }
+            ReportsPanel_lbl_TotalDailyCalories.Text = $"{ReportsPanel_DateTimePicker.Value.ToShortDateString()} tarihinde toplam {CaloriesSum} kadar kalori aldınız.";
         }
 
         private void ReportsPanel_btn_WeekMounthReports_Click(object sender, EventArgs e)
@@ -567,6 +582,9 @@ namespace DietApp.PL
         {
             ReportsPanel_DatagridMostyEatedFoods.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByMealType(userManager._id);
         }
+
+
+
 
 
         #endregion
