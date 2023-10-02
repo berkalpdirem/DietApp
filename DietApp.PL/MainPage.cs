@@ -38,7 +38,8 @@ namespace DietApp.PL
         private void MainPage_Load(object sender, EventArgs e)
         {
             PanelList = new List<Panel>() { pnl_LoginPanel,pnl_RegisterPage,pnl_ProfilPanel,pnl_MealPanel,pnl_ReportsPanel,pnl_ReportsPanel_EmptyPanel,
-                                            pnl_ReportsPanel_DailyCalorieReport,pnl_ReportsPanel_MostyEatedFoodsReport,pnl_ReportsPanel_UserCompareReport};
+                                            pnl_ReportsPanel_DailyCalorieReport,pnl_ReportsPanel_MostyEatedFoodsReport,pnl_ReportsPanel_UserCompareReport,
+                                            pnl_ProfilPanel_Info,pnl_ProfilPanel_ChangeInfo};
             pnl_LoginPanel.Enabled = true;
 
             MealPanel_gb_MealEditGroupBox.Enabled = false;
@@ -329,8 +330,8 @@ namespace DietApp.PL
             userManager.Login(LoginPanel_tb_Email.Text, LoginPanel_tb_Password.Text);
             if (userManager._id != 0)
             {
-                ProfilPanel_Info__lbl_Eposta.Text = LoginPanel_tb_Email.Text;
-                ProfilPanel_Info__lbl_Password.Text = LoginPanel_tb_Password.Text;
+                ProfilPanel_Info_lbl_Eposta.Text = LoginPanel_tb_Email.Text;
+                ProfilPanel_Info_lbl_Password.Text = LoginPanel_tb_Password.Text;
 
                 LoginPanel_tb_Email.Clear();
                 LoginPanel_tb_Password.Clear();
@@ -338,6 +339,8 @@ namespace DietApp.PL
                 pnl_FlowPanel.Enabled = true;
                 pnl_FlowPanel.Visible = true;
                 AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
+                pnl_ProfilPanel_Info.BringToFront();
+                pnl_ProfilPanel_Info.Enabled = true;
             }
             else
             {
@@ -382,6 +385,8 @@ namespace DietApp.PL
         private void FlowPanel_btn_Profil_Click(object sender, EventArgs e)
         {
             AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
+            pnl_ProfilPanel_Info.BringToFront();
+            pnl_ProfilPanel_Info.Enabled = true;
         }
         private void FlowPanel_btn_Meals_Click(object sender, EventArgs e)
         {
@@ -410,7 +415,33 @@ namespace DietApp.PL
         #region Profile Panel
         private void ProfilPanel_Info_btn_EditInfos_Click(object sender, EventArgs e)
         {
-            //AllPanelsEnableFalseOutsideRelatedPanel(pnl_);
+            AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
+            pnl_ProfilPanel_ChangeInfo.BringToFront();
+            pnl_ProfilPanel_ChangeInfo.Enabled = true;
+
+            ProfilPanel_ChangeInfo_tb_Eposta.Text = ProfilPanel_Info_lbl_Eposta.Text;
+            ProfilPanel_ChangeInfo_tb_Password.Text = ProfilPanel_Info_lbl_Password.Text;
+            ProfilPanel_ChangeInfo_tb_Name.Text = ProfilPanel_Info_lbl_Name.Text;
+            ProfilPanel_ChangeInfo_tb_Surname.Text = ProfilPanel_Info_lbl_Surname.Text;
+            ProfilPanel_ChangeInfo_tb_Height.Text = ProfilPanel_Info_lbl_Height.Text;
+            ProfilPanel_ChangeInfo_tb_Weight.Text = ProfilPanel_Info_lbl_Weight.Text;
+            ProfilPanel_ChangeInfo_tb_Index.Text = ProfilPanel_Info_lbl_Index.Text;
+            ProfilPanel_ChangeInfo_pb_ProfileImage.Image = ProfilPanel_Info_pb_ProfileImage.Image;
+        }
+        private void ProfilPanel_ChangeInfo_btn_Save_Click(object sender, EventArgs e)
+        {
+            AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
+            pnl_ProfilPanel_Info.BringToFront();
+            pnl_ProfilPanel_Info.Enabled = true;
+
+            ProfilPanel_Info_lbl_Eposta.Text = ProfilPanel_ChangeInfo_tb_Eposta.Text;
+            ProfilPanel_Info_lbl_Password.Text = ProfilPanel_ChangeInfo_tb_Password.Text;
+            ProfilPanel_Info_lbl_Name.Text = ProfilPanel_ChangeInfo_tb_Name.Text;
+            ProfilPanel_Info_lbl_Surname.Text = ProfilPanel_ChangeInfo_tb_Surname.Text;
+            ProfilPanel_Info_lbl_Height.Text = ProfilPanel_ChangeInfo_tb_Height.Text;
+            ProfilPanel_Info_lbl_Weight.Text = ProfilPanel_ChangeInfo_tb_Weight.Text;
+            ProfilPanel_Info_lbl_Index.Text = ProfilPanel_ChangeInfo_tb_Index.Text;
+            ProfilPanel_Info_pb_ProfileImage.Image = ProfilPanel_ChangeInfo_pb_ProfileImage.Image;
         }
         #endregion
 
@@ -599,6 +630,5 @@ namespace DietApp.PL
             ReportsPanel_DatagridMostyEatedFoodsByMealName.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByMeaName(userManager._id);
         }
         #endregion
-
     }
 }

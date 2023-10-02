@@ -83,33 +83,33 @@
             pnl_ProfilPanel = new Panel();
             pnl_ProfilPanel_Info = new Panel();
             ProfilPanel_Info_gb = new GroupBox();
+            ProfilPanel_Info_pb_ProfileImage = new PictureBox();
             ProfilPanel_Info_btn_EditInfos = new Button();
-            ProfilPanel_Info__pb_ProfileImage = new PictureBox();
-            ProfilPanel_Info__lbl_Eposta = new Label();
-            ProfilPanel_Info__lbl_Password = new Label();
-            ProfilPanel_Info__lbl_Name = new Label();
-            ProfilPanel_Info__lbl_Surname = new Label();
-            ProfilPanel_Info__lbl_Heights = new Label();
-            ProfilPanel_Info__lbl_Weight = new Label();
-            ProfilPanel_Info__lbl_Index = new Label();
-            ProfilPanel_Info__lbl_Concrate1 = new Label();
-            ProfilPanel_Info__lbl_Concrate2 = new Label();
-            ProfilPanel_Info__lbl_Concrate3 = new Label();
-            ProfilPanel_Info__lbl_Concrate4 = new Label();
-            ProfilPanel_Info__lbl_Concrate5 = new Label();
-            ProfilPanel_Info__lbl_Concrate6 = new Label();
-            ProfilPanel_Info__lbl_Concrate7 = new Label();
+            ProfilPanel_Info_lbl_Eposta = new Label();
+            ProfilPanel_Info_lbl_Password = new Label();
+            ProfilPanel_Info_lbl_Name = new Label();
+            ProfilPanel_Info_lbl_Surname = new Label();
+            ProfilPanel_Info_lbl_Height = new Label();
+            ProfilPanel_Info_lbl_Weight = new Label();
+            ProfilPanel_Info_lbl_Index = new Label();
+            ProfilPanel_Info_lbl_Concrate1 = new Label();
+            ProfilPanel_Info_lbl_Concrate2 = new Label();
+            ProfilPanel_Info_lbl_Concrate3 = new Label();
+            ProfilPanel_Info_lbl_Concrate4 = new Label();
+            ProfilPanel_Info_lbl_Concrate5 = new Label();
+            ProfilPanel_Info_lbl_Concrate6 = new Label();
+            ProfilPanel_Info_lbl_Concrate7 = new Label();
             pnl_ProfilPanel_ChangeInfo = new Panel();
             ProfilPanel_ChangeInfo_gb = new GroupBox();
-            ProfilPanel_ChangeInfo__tb_Index = new TextBox();
-            ProfilPanel_ChangeInfo__tb_Eposta = new TextBox();
-            ProfilPanel_ChangeInfo__tb_Password = new TextBox();
-            ProfilPanel_ChangeInfo__tb_Name = new TextBox();
-            ProfilPanel_ChangeInfo__tb_Surname = new TextBox();
-            ProfilPanel_ChangeInfo__tb_Height = new TextBox();
-            ProfilPanel_ChangeInfo__tb_Wieght = new TextBox();
-            pnl_ProfilPanel_ChangeInfo_btn_Save = new Button();
-            ProfilPanel_ChangeInfo__pb_ProfileImage = new PictureBox();
+            ProfilPanel_ChangeInfo_pb_ProfileImage = new PictureBox();
+            ProfilPanel_ChangeInfo_tb_Index = new TextBox();
+            ProfilPanel_ChangeInfo_tb_Eposta = new TextBox();
+            ProfilPanel_ChangeInfo_tb_Password = new TextBox();
+            ProfilPanel_ChangeInfo_tb_Name = new TextBox();
+            ProfilPanel_ChangeInfo_tb_Surname = new TextBox();
+            ProfilPanel_ChangeInfo_tb_Height = new TextBox();
+            ProfilPanel_ChangeInfo_tb_Weight = new TextBox();
+            ProfilPanel_ChangeInfo_btn_Save = new Button();
             ProfilPanel_ChangeInfo_lbl_Concrate1 = new Label();
             ProfilPanel_ChangeInfo_lbl_Concrate2 = new Label();
             ProfilPanel_ChangeInfo_lbl_Concrate3 = new Label();
@@ -150,10 +150,10 @@
             pnl_ProfilPanel.SuspendLayout();
             pnl_ProfilPanel_Info.SuspendLayout();
             ProfilPanel_Info_gb.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ProfilPanel_Info__pb_ProfileImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ProfilPanel_Info_pb_ProfileImage).BeginInit();
             pnl_ProfilPanel_ChangeInfo.SuspendLayout();
             ProfilPanel_ChangeInfo_gb.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ProfilPanel_ChangeInfo__pb_ProfileImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ProfilPanel_ChangeInfo_pb_ProfileImage).BeginInit();
             pnl_ReportsPanel.SuspendLayout();
             pnl_ReportsPanel_UserCompareReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUserCompare).BeginInit();
@@ -743,31 +743,42 @@
             pnl_ProfilPanel_Info.Name = "pnl_ProfilPanel_Info";
             pnl_ProfilPanel_Info.Size = new Size(292, 400);
             pnl_ProfilPanel_Info.TabIndex = 3;
+            pnl_ProfilPanel_Info.TabStop = true;
             // 
             // ProfilPanel_Info_gb
             // 
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__pb_ProfileImage);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_pb_ProfileImage);
             ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_btn_EditInfos);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Eposta);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Password);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Name);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Surname);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Heights);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Weight);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Index);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Concrate1);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Concrate2);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Concrate3);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Concrate4);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Concrate5);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Concrate6);
-            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info__lbl_Concrate7);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Eposta);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Password);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Name);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Surname);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Height);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Weight);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Index);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Concrate1);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Concrate2);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Concrate3);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Concrate4);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Concrate5);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Concrate6);
+            ProfilPanel_Info_gb.Controls.Add(ProfilPanel_Info_lbl_Concrate7);
             ProfilPanel_Info_gb.Location = new Point(17, 15);
             ProfilPanel_Info_gb.Name = "ProfilPanel_Info_gb";
             ProfilPanel_Info_gb.Size = new Size(256, 319);
             ProfilPanel_Info_gb.TabIndex = 2;
             ProfilPanel_Info_gb.TabStop = false;
             ProfilPanel_Info_gb.Text = "Profil Bilgileri";
+            // 
+            // ProfilPanel_Info_pb_ProfileImage
+            // 
+            ProfilPanel_Info_pb_ProfileImage.Image = Properties.Resources.emptyProfileImg;
+            ProfilPanel_Info_pb_ProfileImage.Location = new Point(90, 27);
+            ProfilPanel_Info_pb_ProfileImage.Name = "ProfilPanel_Info_pb_ProfileImage";
+            ProfilPanel_Info_pb_ProfileImage.Size = new Size(85, 80);
+            ProfilPanel_Info_pb_ProfileImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            ProfilPanel_Info_pb_ProfileImage.TabIndex = 0;
+            ProfilPanel_Info_pb_ProfileImage.TabStop = false;
             // 
             // ProfilPanel_Info_btn_EditInfos
             // 
@@ -779,141 +790,131 @@
             ProfilPanel_Info_btn_EditInfos.UseVisualStyleBackColor = true;
             ProfilPanel_Info_btn_EditInfos.Click += ProfilPanel_Info_btn_EditInfos_Click;
             // 
-            // ProfilPanel_Info__pb_ProfileImage
+            // ProfilPanel_Info_lbl_Eposta
             // 
-            ProfilPanel_Info__pb_ProfileImage.Image = Properties.Resources.emptyProfileImg;
-            ProfilPanel_Info__pb_ProfileImage.Location = new Point(90, 27);
-            ProfilPanel_Info__pb_ProfileImage.Name = "ProfilPanel_Info__pb_ProfileImage";
-            ProfilPanel_Info__pb_ProfileImage.Size = new Size(85, 80);
-            ProfilPanel_Info__pb_ProfileImage.SizeMode = PictureBoxSizeMode.StretchImage;
-            ProfilPanel_Info__pb_ProfileImage.TabIndex = 0;
-            ProfilPanel_Info__pb_ProfileImage.TabStop = false;
+            ProfilPanel_Info_lbl_Eposta.AutoSize = true;
+            ProfilPanel_Info_lbl_Eposta.Location = new Point(131, 122);
+            ProfilPanel_Info_lbl_Eposta.Name = "ProfilPanel_Info_lbl_Eposta";
+            ProfilPanel_Info_lbl_Eposta.Size = new Size(12, 15);
+            ProfilPanel_Info_lbl_Eposta.TabIndex = 1;
+            ProfilPanel_Info_lbl_Eposta.Text = "-";
             // 
-            // ProfilPanel_Info__lbl_Eposta
+            // ProfilPanel_Info_lbl_Password
             // 
-            ProfilPanel_Info__lbl_Eposta.AutoSize = true;
-            ProfilPanel_Info__lbl_Eposta.Location = new Point(131, 122);
-            ProfilPanel_Info__lbl_Eposta.Name = "ProfilPanel_Info__lbl_Eposta";
-            ProfilPanel_Info__lbl_Eposta.Size = new Size(12, 15);
-            ProfilPanel_Info__lbl_Eposta.TabIndex = 1;
-            ProfilPanel_Info__lbl_Eposta.Text = "-";
+            ProfilPanel_Info_lbl_Password.AutoSize = true;
+            ProfilPanel_Info_lbl_Password.Location = new Point(131, 147);
+            ProfilPanel_Info_lbl_Password.Name = "ProfilPanel_Info_lbl_Password";
+            ProfilPanel_Info_lbl_Password.Size = new Size(12, 15);
+            ProfilPanel_Info_lbl_Password.TabIndex = 1;
+            ProfilPanel_Info_lbl_Password.Text = "-";
             // 
-            // ProfilPanel_Info__lbl_Password
+            // ProfilPanel_Info_lbl_Name
             // 
-            ProfilPanel_Info__lbl_Password.AutoSize = true;
-            ProfilPanel_Info__lbl_Password.Location = new Point(131, 147);
-            ProfilPanel_Info__lbl_Password.Name = "ProfilPanel_Info__lbl_Password";
-            ProfilPanel_Info__lbl_Password.Size = new Size(12, 15);
-            ProfilPanel_Info__lbl_Password.TabIndex = 1;
-            ProfilPanel_Info__lbl_Password.Text = "-";
+            ProfilPanel_Info_lbl_Name.AutoSize = true;
+            ProfilPanel_Info_lbl_Name.Location = new Point(131, 168);
+            ProfilPanel_Info_lbl_Name.Name = "ProfilPanel_Info_lbl_Name";
+            ProfilPanel_Info_lbl_Name.Size = new Size(12, 15);
+            ProfilPanel_Info_lbl_Name.TabIndex = 1;
+            ProfilPanel_Info_lbl_Name.Text = "-";
             // 
-            // ProfilPanel_Info__lbl_Name
+            // ProfilPanel_Info_lbl_Surname
             // 
-            ProfilPanel_Info__lbl_Name.AutoSize = true;
-            ProfilPanel_Info__lbl_Name.Location = new Point(131, 168);
-            ProfilPanel_Info__lbl_Name.Name = "ProfilPanel_Info__lbl_Name";
-            ProfilPanel_Info__lbl_Name.Size = new Size(12, 15);
-            ProfilPanel_Info__lbl_Name.TabIndex = 1;
-            ProfilPanel_Info__lbl_Name.Text = "-";
+            ProfilPanel_Info_lbl_Surname.AutoSize = true;
+            ProfilPanel_Info_lbl_Surname.Location = new Point(131, 188);
+            ProfilPanel_Info_lbl_Surname.Name = "ProfilPanel_Info_lbl_Surname";
+            ProfilPanel_Info_lbl_Surname.Size = new Size(12, 15);
+            ProfilPanel_Info_lbl_Surname.TabIndex = 1;
+            ProfilPanel_Info_lbl_Surname.Text = "-";
             // 
-            // ProfilPanel_Info__lbl_Surname
+            // ProfilPanel_Info_lbl_Height
             // 
-            ProfilPanel_Info__lbl_Surname.AutoSize = true;
-            ProfilPanel_Info__lbl_Surname.Location = new Point(131, 188);
-            ProfilPanel_Info__lbl_Surname.Name = "ProfilPanel_Info__lbl_Surname";
-            ProfilPanel_Info__lbl_Surname.Size = new Size(12, 15);
-            ProfilPanel_Info__lbl_Surname.TabIndex = 1;
-            ProfilPanel_Info__lbl_Surname.Text = "-";
+            ProfilPanel_Info_lbl_Height.AutoSize = true;
+            ProfilPanel_Info_lbl_Height.Location = new Point(131, 214);
+            ProfilPanel_Info_lbl_Height.Name = "ProfilPanel_Info_lbl_Height";
+            ProfilPanel_Info_lbl_Height.Size = new Size(12, 15);
+            ProfilPanel_Info_lbl_Height.TabIndex = 1;
+            ProfilPanel_Info_lbl_Height.Text = "-";
             // 
-            // ProfilPanel_Info__lbl_Heights
+            // ProfilPanel_Info_lbl_Weight
             // 
-            ProfilPanel_Info__lbl_Heights.AutoSize = true;
-            ProfilPanel_Info__lbl_Heights.Location = new Point(131, 214);
-            ProfilPanel_Info__lbl_Heights.Name = "ProfilPanel_Info__lbl_Heights";
-            ProfilPanel_Info__lbl_Heights.Size = new Size(12, 15);
-            ProfilPanel_Info__lbl_Heights.TabIndex = 1;
-            ProfilPanel_Info__lbl_Heights.Text = "-";
+            ProfilPanel_Info_lbl_Weight.AutoSize = true;
+            ProfilPanel_Info_lbl_Weight.Location = new Point(131, 239);
+            ProfilPanel_Info_lbl_Weight.Name = "ProfilPanel_Info_lbl_Weight";
+            ProfilPanel_Info_lbl_Weight.Size = new Size(12, 15);
+            ProfilPanel_Info_lbl_Weight.TabIndex = 1;
+            ProfilPanel_Info_lbl_Weight.Text = "-";
             // 
-            // ProfilPanel_Info__lbl_Weight
+            // ProfilPanel_Info_lbl_Index
             // 
-            ProfilPanel_Info__lbl_Weight.AutoSize = true;
-            ProfilPanel_Info__lbl_Weight.Location = new Point(131, 239);
-            ProfilPanel_Info__lbl_Weight.Name = "ProfilPanel_Info__lbl_Weight";
-            ProfilPanel_Info__lbl_Weight.Size = new Size(12, 15);
-            ProfilPanel_Info__lbl_Weight.TabIndex = 1;
-            ProfilPanel_Info__lbl_Weight.Text = "-";
+            ProfilPanel_Info_lbl_Index.AutoSize = true;
+            ProfilPanel_Info_lbl_Index.Location = new Point(131, 260);
+            ProfilPanel_Info_lbl_Index.Name = "ProfilPanel_Info_lbl_Index";
+            ProfilPanel_Info_lbl_Index.Size = new Size(12, 15);
+            ProfilPanel_Info_lbl_Index.TabIndex = 1;
+            ProfilPanel_Info_lbl_Index.Text = "-";
             // 
-            // ProfilPanel_Info__lbl_Index
+            // ProfilPanel_Info_lbl_Concrate1
             // 
-            ProfilPanel_Info__lbl_Index.AutoSize = true;
-            ProfilPanel_Info__lbl_Index.Location = new Point(131, 260);
-            ProfilPanel_Info__lbl_Index.Name = "ProfilPanel_Info__lbl_Index";
-            ProfilPanel_Info__lbl_Index.Size = new Size(12, 15);
-            ProfilPanel_Info__lbl_Index.TabIndex = 1;
-            ProfilPanel_Info__lbl_Index.Text = "-";
+            ProfilPanel_Info_lbl_Concrate1.AutoSize = true;
+            ProfilPanel_Info_lbl_Concrate1.Location = new Point(18, 122);
+            ProfilPanel_Info_lbl_Concrate1.Name = "ProfilPanel_Info_lbl_Concrate1";
+            ProfilPanel_Info_lbl_Concrate1.Size = new Size(53, 15);
+            ProfilPanel_Info_lbl_Concrate1.TabIndex = 1;
+            ProfilPanel_Info_lbl_Concrate1.Text = "E-Posta :";
             // 
-            // ProfilPanel_Info__lbl_Concrate1
+            // ProfilPanel_Info_lbl_Concrate2
             // 
-            ProfilPanel_Info__lbl_Concrate1.AutoSize = true;
-            ProfilPanel_Info__lbl_Concrate1.Location = new Point(18, 122);
-            ProfilPanel_Info__lbl_Concrate1.Name = "ProfilPanel_Info__lbl_Concrate1";
-            ProfilPanel_Info__lbl_Concrate1.Size = new Size(53, 15);
-            ProfilPanel_Info__lbl_Concrate1.TabIndex = 1;
-            ProfilPanel_Info__lbl_Concrate1.Text = "E-Posta :";
+            ProfilPanel_Info_lbl_Concrate2.AutoSize = true;
+            ProfilPanel_Info_lbl_Concrate2.Location = new Point(17, 145);
+            ProfilPanel_Info_lbl_Concrate2.Name = "ProfilPanel_Info_lbl_Concrate2";
+            ProfilPanel_Info_lbl_Concrate2.Size = new Size(33, 15);
+            ProfilPanel_Info_lbl_Concrate2.TabIndex = 1;
+            ProfilPanel_Info_lbl_Concrate2.Text = "Şifre:";
             // 
-            // ProfilPanel_Info__lbl_Concrate2
+            // ProfilPanel_Info_lbl_Concrate3
             // 
-            ProfilPanel_Info__lbl_Concrate2.AutoSize = true;
-            ProfilPanel_Info__lbl_Concrate2.Location = new Point(17, 145);
-            ProfilPanel_Info__lbl_Concrate2.Name = "ProfilPanel_Info__lbl_Concrate2";
-            ProfilPanel_Info__lbl_Concrate2.Size = new Size(33, 15);
-            ProfilPanel_Info__lbl_Concrate2.TabIndex = 1;
-            ProfilPanel_Info__lbl_Concrate2.Text = "Şifre:";
+            ProfilPanel_Info_lbl_Concrate3.AutoSize = true;
+            ProfilPanel_Info_lbl_Concrate3.Location = new Point(18, 165);
+            ProfilPanel_Info_lbl_Concrate3.Name = "ProfilPanel_Info_lbl_Concrate3";
+            ProfilPanel_Info_lbl_Concrate3.Size = new Size(32, 15);
+            ProfilPanel_Info_lbl_Concrate3.TabIndex = 1;
+            ProfilPanel_Info_lbl_Concrate3.Text = "İsim:";
             // 
-            // ProfilPanel_Info__lbl_Concrate3
+            // ProfilPanel_Info_lbl_Concrate4
             // 
-            ProfilPanel_Info__lbl_Concrate3.AutoSize = true;
-            ProfilPanel_Info__lbl_Concrate3.Location = new Point(18, 165);
-            ProfilPanel_Info__lbl_Concrate3.Name = "ProfilPanel_Info__lbl_Concrate3";
-            ProfilPanel_Info__lbl_Concrate3.Size = new Size(32, 15);
-            ProfilPanel_Info__lbl_Concrate3.TabIndex = 1;
-            ProfilPanel_Info__lbl_Concrate3.Text = "İsim:";
+            ProfilPanel_Info_lbl_Concrate4.AutoSize = true;
+            ProfilPanel_Info_lbl_Concrate4.Location = new Point(15, 188);
+            ProfilPanel_Info_lbl_Concrate4.Name = "ProfilPanel_Info_lbl_Concrate4";
+            ProfilPanel_Info_lbl_Concrate4.Size = new Size(54, 15);
+            ProfilPanel_Info_lbl_Concrate4.TabIndex = 1;
+            ProfilPanel_Info_lbl_Concrate4.Text = "Soy İsim:";
             // 
-            // ProfilPanel_Info__lbl_Concrate4
+            // ProfilPanel_Info_lbl_Concrate5
             // 
-            ProfilPanel_Info__lbl_Concrate4.AutoSize = true;
-            ProfilPanel_Info__lbl_Concrate4.Location = new Point(15, 188);
-            ProfilPanel_Info__lbl_Concrate4.Name = "ProfilPanel_Info__lbl_Concrate4";
-            ProfilPanel_Info__lbl_Concrate4.Size = new Size(54, 15);
-            ProfilPanel_Info__lbl_Concrate4.TabIndex = 1;
-            ProfilPanel_Info__lbl_Concrate4.Text = "Soy İsim:";
+            ProfilPanel_Info_lbl_Concrate5.AutoSize = true;
+            ProfilPanel_Info_lbl_Concrate5.Location = new Point(15, 214);
+            ProfilPanel_Info_lbl_Concrate5.Name = "ProfilPanel_Info_lbl_Concrate5";
+            ProfilPanel_Info_lbl_Concrate5.Size = new Size(30, 15);
+            ProfilPanel_Info_lbl_Concrate5.TabIndex = 1;
+            ProfilPanel_Info_lbl_Concrate5.Text = "Boy:";
             // 
-            // ProfilPanel_Info__lbl_Concrate5
+            // ProfilPanel_Info_lbl_Concrate6
             // 
-            ProfilPanel_Info__lbl_Concrate5.AutoSize = true;
-            ProfilPanel_Info__lbl_Concrate5.Location = new Point(15, 214);
-            ProfilPanel_Info__lbl_Concrate5.Name = "ProfilPanel_Info__lbl_Concrate5";
-            ProfilPanel_Info__lbl_Concrate5.Size = new Size(30, 15);
-            ProfilPanel_Info__lbl_Concrate5.TabIndex = 1;
-            ProfilPanel_Info__lbl_Concrate5.Text = "Boy:";
+            ProfilPanel_Info_lbl_Concrate6.AutoSize = true;
+            ProfilPanel_Info_lbl_Concrate6.Location = new Point(17, 236);
+            ProfilPanel_Info_lbl_Concrate6.Name = "ProfilPanel_Info_lbl_Concrate6";
+            ProfilPanel_Info_lbl_Concrate6.Size = new Size(33, 15);
+            ProfilPanel_Info_lbl_Concrate6.TabIndex = 1;
+            ProfilPanel_Info_lbl_Concrate6.Text = "Kilo :";
             // 
-            // ProfilPanel_Info__lbl_Concrate6
+            // ProfilPanel_Info_lbl_Concrate7
             // 
-            ProfilPanel_Info__lbl_Concrate6.AutoSize = true;
-            ProfilPanel_Info__lbl_Concrate6.Location = new Point(17, 236);
-            ProfilPanel_Info__lbl_Concrate6.Name = "ProfilPanel_Info__lbl_Concrate6";
-            ProfilPanel_Info__lbl_Concrate6.Size = new Size(33, 15);
-            ProfilPanel_Info__lbl_Concrate6.TabIndex = 1;
-            ProfilPanel_Info__lbl_Concrate6.Text = "Kilo :";
-            // 
-            // ProfilPanel_Info__lbl_Concrate7
-            // 
-            ProfilPanel_Info__lbl_Concrate7.AutoSize = true;
-            ProfilPanel_Info__lbl_Concrate7.Location = new Point(18, 260);
-            ProfilPanel_Info__lbl_Concrate7.Name = "ProfilPanel_Info__lbl_Concrate7";
-            ProfilPanel_Info__lbl_Concrate7.Size = new Size(102, 15);
-            ProfilPanel_Info__lbl_Concrate7.TabIndex = 1;
-            ProfilPanel_Info__lbl_Concrate7.Text = "Vücut Kitle İndexi:";
+            ProfilPanel_Info_lbl_Concrate7.AutoSize = true;
+            ProfilPanel_Info_lbl_Concrate7.Location = new Point(18, 260);
+            ProfilPanel_Info_lbl_Concrate7.Name = "ProfilPanel_Info_lbl_Concrate7";
+            ProfilPanel_Info_lbl_Concrate7.Size = new Size(102, 15);
+            ProfilPanel_Info_lbl_Concrate7.TabIndex = 1;
+            ProfilPanel_Info_lbl_Concrate7.Text = "Vücut Kitle İndexi:";
             // 
             // pnl_ProfilPanel_ChangeInfo
             // 
@@ -922,18 +923,19 @@
             pnl_ProfilPanel_ChangeInfo.Name = "pnl_ProfilPanel_ChangeInfo";
             pnl_ProfilPanel_ChangeInfo.Size = new Size(306, 410);
             pnl_ProfilPanel_ChangeInfo.TabIndex = 4;
+            pnl_ProfilPanel_ChangeInfo.TabStop = true;
             // 
             // ProfilPanel_ChangeInfo_gb
             // 
-            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo__pb_ProfileImage);
-            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo__tb_Index);
-            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo__tb_Eposta);
-            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo__tb_Password);
-            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo__tb_Name);
-            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo__tb_Surname);
-            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo__tb_Height);
-            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo__tb_Wieght);
-            ProfilPanel_ChangeInfo_gb.Controls.Add(pnl_ProfilPanel_ChangeInfo_btn_Save);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_pb_ProfileImage);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_tb_Index);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_tb_Eposta);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_tb_Password);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_tb_Name);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_tb_Surname);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_tb_Height);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_tb_Weight);
+            ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_btn_Save);
             ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_lbl_Concrate1);
             ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_lbl_Concrate2);
             ProfilPanel_ChangeInfo_gb.Controls.Add(ProfilPanel_ChangeInfo_lbl_Concrate3);
@@ -946,75 +948,76 @@
             ProfilPanel_ChangeInfo_gb.Size = new Size(256, 375);
             ProfilPanel_ChangeInfo_gb.TabIndex = 2;
             ProfilPanel_ChangeInfo_gb.TabStop = false;
-            ProfilPanel_ChangeInfo_gb.Text = "Profil Bilgileri";
+            ProfilPanel_ChangeInfo_gb.Text = "Profil Bilgilerini Değiştir";
             // 
-            // ProfilPanel_ChangeInfo__tb_Index
+            // ProfilPanel_ChangeInfo_pb_ProfileImage
             // 
-            ProfilPanel_ChangeInfo__tb_Index.Location = new Point(109, 317);
-            ProfilPanel_ChangeInfo__tb_Index.Name = "ProfilPanel_ChangeInfo__tb_Index";
-            ProfilPanel_ChangeInfo__tb_Index.Size = new Size(141, 23);
-            ProfilPanel_ChangeInfo__tb_Index.TabIndex = 3;
+            ProfilPanel_ChangeInfo_pb_ProfileImage.Image = Properties.Resources.emptyProfileImg;
+            ProfilPanel_ChangeInfo_pb_ProfileImage.Location = new Point(103, 22);
+            ProfilPanel_ChangeInfo_pb_ProfileImage.Name = "ProfilPanel_ChangeInfo_pb_ProfileImage";
+            ProfilPanel_ChangeInfo_pb_ProfileImage.Size = new Size(85, 80);
+            ProfilPanel_ChangeInfo_pb_ProfileImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            ProfilPanel_ChangeInfo_pb_ProfileImage.TabIndex = 0;
+            ProfilPanel_ChangeInfo_pb_ProfileImage.TabStop = false;
             // 
-            // ProfilPanel_ChangeInfo__tb_Eposta
+            // ProfilPanel_ChangeInfo_tb_Index
             // 
-            ProfilPanel_ChangeInfo__tb_Eposta.Location = new Point(109, 135);
-            ProfilPanel_ChangeInfo__tb_Eposta.Name = "ProfilPanel_ChangeInfo__tb_Eposta";
-            ProfilPanel_ChangeInfo__tb_Eposta.Size = new Size(142, 23);
-            ProfilPanel_ChangeInfo__tb_Eposta.TabIndex = 3;
+            ProfilPanel_ChangeInfo_tb_Index.Location = new Point(109, 317);
+            ProfilPanel_ChangeInfo_tb_Index.Name = "ProfilPanel_ChangeInfo_tb_Index";
+            ProfilPanel_ChangeInfo_tb_Index.Size = new Size(141, 23);
+            ProfilPanel_ChangeInfo_tb_Index.TabIndex = 7;
             // 
-            // ProfilPanel_ChangeInfo__tb_Password
+            // ProfilPanel_ChangeInfo_tb_Eposta
             // 
-            ProfilPanel_ChangeInfo__tb_Password.Location = new Point(109, 168);
-            ProfilPanel_ChangeInfo__tb_Password.Name = "ProfilPanel_ChangeInfo__tb_Password";
-            ProfilPanel_ChangeInfo__tb_Password.Size = new Size(141, 23);
-            ProfilPanel_ChangeInfo__tb_Password.TabIndex = 3;
+            ProfilPanel_ChangeInfo_tb_Eposta.Location = new Point(109, 135);
+            ProfilPanel_ChangeInfo_tb_Eposta.Name = "ProfilPanel_ChangeInfo_tb_Eposta";
+            ProfilPanel_ChangeInfo_tb_Eposta.Size = new Size(142, 23);
+            ProfilPanel_ChangeInfo_tb_Eposta.TabIndex = 1;
             // 
-            // ProfilPanel_ChangeInfo__tb_Name
+            // ProfilPanel_ChangeInfo_tb_Password
             // 
-            ProfilPanel_ChangeInfo__tb_Name.Location = new Point(109, 199);
-            ProfilPanel_ChangeInfo__tb_Name.Name = "ProfilPanel_ChangeInfo__tb_Name";
-            ProfilPanel_ChangeInfo__tb_Name.Size = new Size(141, 23);
-            ProfilPanel_ChangeInfo__tb_Name.TabIndex = 3;
+            ProfilPanel_ChangeInfo_tb_Password.Location = new Point(109, 168);
+            ProfilPanel_ChangeInfo_tb_Password.Name = "ProfilPanel_ChangeInfo_tb_Password";
+            ProfilPanel_ChangeInfo_tb_Password.Size = new Size(141, 23);
+            ProfilPanel_ChangeInfo_tb_Password.TabIndex = 2;
             // 
-            // ProfilPanel_ChangeInfo__tb_Surname
+            // ProfilPanel_ChangeInfo_tb_Name
             // 
-            ProfilPanel_ChangeInfo__tb_Surname.Location = new Point(109, 230);
-            ProfilPanel_ChangeInfo__tb_Surname.Name = "ProfilPanel_ChangeInfo__tb_Surname";
-            ProfilPanel_ChangeInfo__tb_Surname.Size = new Size(141, 23);
-            ProfilPanel_ChangeInfo__tb_Surname.TabIndex = 3;
+            ProfilPanel_ChangeInfo_tb_Name.Location = new Point(109, 199);
+            ProfilPanel_ChangeInfo_tb_Name.Name = "ProfilPanel_ChangeInfo_tb_Name";
+            ProfilPanel_ChangeInfo_tb_Name.Size = new Size(141, 23);
+            ProfilPanel_ChangeInfo_tb_Name.TabIndex = 3;
             // 
-            // ProfilPanel_ChangeInfo__tb_Height
+            // ProfilPanel_ChangeInfo_tb_Surname
             // 
-            ProfilPanel_ChangeInfo__tb_Height.Location = new Point(109, 259);
-            ProfilPanel_ChangeInfo__tb_Height.Name = "ProfilPanel_ChangeInfo__tb_Height";
-            ProfilPanel_ChangeInfo__tb_Height.Size = new Size(141, 23);
-            ProfilPanel_ChangeInfo__tb_Height.TabIndex = 3;
+            ProfilPanel_ChangeInfo_tb_Surname.Location = new Point(109, 230);
+            ProfilPanel_ChangeInfo_tb_Surname.Name = "ProfilPanel_ChangeInfo_tb_Surname";
+            ProfilPanel_ChangeInfo_tb_Surname.Size = new Size(141, 23);
+            ProfilPanel_ChangeInfo_tb_Surname.TabIndex = 4;
             // 
-            // ProfilPanel_ChangeInfo__tb_Wieght
+            // ProfilPanel_ChangeInfo_tb_Height
             // 
-            ProfilPanel_ChangeInfo__tb_Wieght.Location = new Point(109, 288);
-            ProfilPanel_ChangeInfo__tb_Wieght.Name = "ProfilPanel_ChangeInfo__tb_Wieght";
-            ProfilPanel_ChangeInfo__tb_Wieght.Size = new Size(141, 23);
-            ProfilPanel_ChangeInfo__tb_Wieght.TabIndex = 3;
+            ProfilPanel_ChangeInfo_tb_Height.Location = new Point(109, 259);
+            ProfilPanel_ChangeInfo_tb_Height.Name = "ProfilPanel_ChangeInfo_tb_Height";
+            ProfilPanel_ChangeInfo_tb_Height.Size = new Size(141, 23);
+            ProfilPanel_ChangeInfo_tb_Height.TabIndex = 5;
             // 
-            // pnl_ProfilPanel_ChangeInfo_btn_Save
+            // ProfilPanel_ChangeInfo_tb_Weight
             // 
-            pnl_ProfilPanel_ChangeInfo_btn_Save.Location = new Point(109, 346);
-            pnl_ProfilPanel_ChangeInfo_btn_Save.Name = "pnl_ProfilPanel_ChangeInfo_btn_Save";
-            pnl_ProfilPanel_ChangeInfo_btn_Save.Size = new Size(142, 23);
-            pnl_ProfilPanel_ChangeInfo_btn_Save.TabIndex = 2;
-            pnl_ProfilPanel_ChangeInfo_btn_Save.Text = "Bilgileri Kaydet";
-            pnl_ProfilPanel_ChangeInfo_btn_Save.UseVisualStyleBackColor = true;
+            ProfilPanel_ChangeInfo_tb_Weight.Location = new Point(109, 288);
+            ProfilPanel_ChangeInfo_tb_Weight.Name = "ProfilPanel_ChangeInfo_tb_Weight";
+            ProfilPanel_ChangeInfo_tb_Weight.Size = new Size(141, 23);
+            ProfilPanel_ChangeInfo_tb_Weight.TabIndex = 6;
             // 
-            // ProfilPanel_ChangeInfo__pb_ProfileImage
+            // ProfilPanel_ChangeInfo_btn_Save
             // 
-            ProfilPanel_ChangeInfo__pb_ProfileImage.Image = Properties.Resources.emptyProfileImg;
-            ProfilPanel_ChangeInfo__pb_ProfileImage.Location = new Point(103, 22);
-            ProfilPanel_ChangeInfo__pb_ProfileImage.Name = "ProfilPanel_ChangeInfo__pb_ProfileImage";
-            ProfilPanel_ChangeInfo__pb_ProfileImage.Size = new Size(85, 80);
-            ProfilPanel_ChangeInfo__pb_ProfileImage.SizeMode = PictureBoxSizeMode.StretchImage;
-            ProfilPanel_ChangeInfo__pb_ProfileImage.TabIndex = 0;
-            ProfilPanel_ChangeInfo__pb_ProfileImage.TabStop = false;
+            ProfilPanel_ChangeInfo_btn_Save.Location = new Point(109, 346);
+            ProfilPanel_ChangeInfo_btn_Save.Name = "ProfilPanel_ChangeInfo_btn_Save";
+            ProfilPanel_ChangeInfo_btn_Save.Size = new Size(142, 23);
+            ProfilPanel_ChangeInfo_btn_Save.TabIndex = 8;
+            ProfilPanel_ChangeInfo_btn_Save.Text = "Bilgileri Kaydet";
+            ProfilPanel_ChangeInfo_btn_Save.UseVisualStyleBackColor = true;
+            ProfilPanel_ChangeInfo_btn_Save.Click += ProfilPanel_ChangeInfo_btn_Save_Click;
             // 
             // ProfilPanel_ChangeInfo_lbl_Concrate1
             // 
@@ -1293,11 +1296,11 @@
             pnl_ProfilPanel_Info.ResumeLayout(false);
             ProfilPanel_Info_gb.ResumeLayout(false);
             ProfilPanel_Info_gb.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ProfilPanel_Info__pb_ProfileImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ProfilPanel_Info_pb_ProfileImage).EndInit();
             pnl_ProfilPanel_ChangeInfo.ResumeLayout(false);
             ProfilPanel_ChangeInfo_gb.ResumeLayout(false);
             ProfilPanel_ChangeInfo_gb.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ProfilPanel_ChangeInfo__pb_ProfileImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ProfilPanel_ChangeInfo_pb_ProfileImage).EndInit();
             pnl_ReportsPanel.ResumeLayout(false);
             pnl_ReportsPanel_UserCompareReport.ResumeLayout(false);
             pnl_ReportsPanel_UserCompareReport.PerformLayout();
@@ -1330,21 +1333,21 @@
         private Panel pnl_MealPanel;
         private Button MealPanel_btn_FoodEdit;
         private GroupBox ProfilPanel_Info_gb;
-        private PictureBox ProfilPanel_Info__pb_ProfileImage;
-        private Label ProfilPanel_Info__lbl_Concrate2;
-        private Label ProfilPanel_Info__lbl_Concrate1;
-        private Label ProfilPanel_Info__lbl_Concrate4;
-        private Label ProfilPanel_Info__lbl_Concrate3;
+        private PictureBox ProfilPanel_Info_pb_ProfileImage;
+        private Label ProfilPanel_Info_lbl_Concrate2;
+        private Label ProfilPanel_Info_lbl_Concrate1;
+        private Label ProfilPanel_Info_lbl_Concrate4;
+        private Label ProfilPanel_Info_lbl_Concrate3;
         private GroupBox LoginPage_gp_Actions;
         private DataGridView MealPanel_Datagrid;
         private ComboBox MealPanel_cb_FoodSelection;
         private ComboBox MealPanel_cb_MealSelection;
         private Panel pnl_ReportsPanel;
         private DataGridView ReportsPanel_DatagridUserCompare;
-        private Label ProfilPanel_Info__lbl_Surname;
-        private Label ProfilPanel_Info__lbl_Name;
-        private Label ProfilPanel_Info__lbl_Password;
-        private Label ProfilPanel_Info__lbl_Eposta;
+        private Label ProfilPanel_Info_lbl_Surname;
+        private Label ProfilPanel_Info_lbl_Name;
+        private Label ProfilPanel_Info_lbl_Password;
+        private Label ProfilPanel_Info_lbl_Eposta;
         private ComboBox MealPanel_cb_CatagorySelection;
         private NumericUpDown MealPanel_nup_PortionSelection;
         private Label MealPanel_lbl_MealSelection;
@@ -1357,12 +1360,12 @@
         private Button MealPanel_btn_MealDelete;
         private Button MealPanel_btn_MealUpdate;
         private Button MealPanel_btn_MealAdd;
-        private Label ProfilPanel_Info__lbl_Index;
-        private Label ProfilPanel_Info__lbl_Weight;
-        private Label ProfilPanel_Info__lbl_Heights;
-        private Label ProfilPanel_Info__lbl_Concrate7;
-        private Label ProfilPanel_Info__lbl_Concrate6;
-        private Label ProfilPanel_Info__lbl_Concrate5;
+        private Label ProfilPanel_Info_lbl_Index;
+        private Label ProfilPanel_Info_lbl_Weight;
+        private Label ProfilPanel_Info_lbl_Height;
+        private Label ProfilPanel_Info_lbl_Concrate7;
+        private Label ProfilPanel_Info_lbl_Concrate6;
+        private Label ProfilPanel_Info_lbl_Concrate5;
         private GroupBox MealPanel_gb_MealEditGroupBox;
         private Button MealPanel_btn_ListDataGrid;
         private Button MealPanel_btn_PhotoAdd;
@@ -1399,8 +1402,8 @@
         private Panel pnl_ProfilPanel_Info;
         private Panel pnl_ProfilPanel_ChangeInfo;
         private GroupBox ProfilPanel_ChangeInfo_gb;
-        private Button pnl_ProfilPanel_ChangeInfo_btn_Save;
-        private PictureBox ProfilPanel_ChangeInfo__pb_ProfileImage;
+        private Button ProfilPanel_ChangeInfo_btn_Save;
+        private PictureBox ProfilPanel_ChangeInfo_pb_ProfileImage;
         private Label ProfilPanel_ChangeInfo_lbl_Concrate1;
         private Label ProfilPanel_ChangeInfo_lbl_Concrate2;
         private Label ProfilPanel_ChangeInfo_lbl_Concrate3;
@@ -1408,12 +1411,12 @@
         private Label ProfilPanel_ChangeInfo_lbl_Concrate5;
         private Label ProfilPanel_ChangeInfo_lbl_Concrate6;
         private Label ProfilPanel_ChangeInfo_lbl_Concrate7;
-        private TextBox ProfilPanel_ChangeInfo__tb_Index;
-        private TextBox ProfilPanel_ChangeInfo__tb_Eposta;
-        private TextBox ProfilPanel_ChangeInfo__tb_Password;
-        private TextBox ProfilPanel_ChangeInfo__tb_Name;
-        private TextBox ProfilPanel_ChangeInfo__tb_Surname;
-        private TextBox ProfilPanel_ChangeInfo__tb_Height;
-        private TextBox ProfilPanel_ChangeInfo__tb_Wieght;
+        private TextBox ProfilPanel_ChangeInfo_tb_Index;
+        private TextBox ProfilPanel_ChangeInfo_tb_Eposta;
+        private TextBox ProfilPanel_ChangeInfo_tb_Password;
+        private TextBox ProfilPanel_ChangeInfo_tb_Name;
+        private TextBox ProfilPanel_ChangeInfo_tb_Surname;
+        private TextBox ProfilPanel_ChangeInfo_tb_Height;
+        private TextBox ProfilPanel_ChangeInfo_tb_Weight;
     }
 }
