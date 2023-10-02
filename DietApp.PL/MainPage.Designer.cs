@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             pnl_FlowPanel = new Panel();
             FlowPanel_btn_Reports = new Button();
             FlowPanel_btn_Meals = new Button();
@@ -82,6 +83,7 @@
             RegisterPanel_btn_Register = new Button();
             RegisterPanel_tb_Password2 = new TextBox();
             pnl_ProfilPanel = new Panel();
+            label1 = new Label();
             pnl_ProfilPanel_Info = new Panel();
             ProfilPanel_Info_gb = new GroupBox();
             ProfilPanel_Info_pb_ProfileImage = new PictureBox();
@@ -134,7 +136,6 @@
             ReportsPanel_btn_DailyMealCalories = new Button();
             ReportsPanel_DatagridUserDaily = new DataGridView();
             ReportsPanel_DateTimePicker = new DateTimePicker();
-            label1 = new Label();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_pb_FoodImage).BeginInit();
@@ -181,7 +182,7 @@
             // 
             // FlowPanel_btn_Reports
             // 
-            FlowPanel_btn_Reports.Image = Properties.Resources.Report;
+            FlowPanel_btn_Reports.Image = (Image)resources.GetObject("FlowPanel_btn_Reports.Image");
             FlowPanel_btn_Reports.ImageAlign = ContentAlignment.MiddleLeft;
             FlowPanel_btn_Reports.Location = new Point(28, 237);
             FlowPanel_btn_Reports.Name = "FlowPanel_btn_Reports";
@@ -194,7 +195,7 @@
             // 
             // FlowPanel_btn_Meals
             // 
-            FlowPanel_btn_Meals.Image = Properties.Resources.meal;
+            FlowPanel_btn_Meals.Image = (Image)resources.GetObject("FlowPanel_btn_Meals.Image");
             FlowPanel_btn_Meals.ImageAlign = ContentAlignment.MiddleLeft;
             FlowPanel_btn_Meals.Location = new Point(28, 128);
             FlowPanel_btn_Meals.Name = "FlowPanel_btn_Meals";
@@ -207,7 +208,7 @@
             // 
             // FlowPanel_btn_Profil
             // 
-            FlowPanel_btn_Profil.Image = Properties.Resources.Profile;
+            FlowPanel_btn_Profil.Image = (Image)resources.GetObject("FlowPanel_btn_Profil.Image");
             FlowPanel_btn_Profil.ImageAlign = ContentAlignment.MiddleLeft;
             FlowPanel_btn_Profil.Location = new Point(28, 22);
             FlowPanel_btn_Profil.Name = "FlowPanel_btn_Profil";
@@ -220,7 +221,7 @@
             // 
             // FlowPanel_btn_Exit
             // 
-            FlowPanel_btn_Exit.Image = Properties.Resources.Exit;
+            FlowPanel_btn_Exit.Image = (Image)resources.GetObject("FlowPanel_btn_Exit.Image");
             FlowPanel_btn_Exit.ImageAlign = ContentAlignment.MiddleLeft;
             FlowPanel_btn_Exit.Location = new Point(28, 350);
             FlowPanel_btn_Exit.Name = "FlowPanel_btn_Exit";
@@ -323,7 +324,7 @@
             // 
             // MealPanel_pb_FoodImage
             // 
-            MealPanel_pb_FoodImage.Image = Properties.Resources.DefaultFoodImage;
+            MealPanel_pb_FoodImage.Image = (Image)resources.GetObject("MealPanel_pb_FoodImage.Image");
             MealPanel_pb_FoodImage.Location = new Point(710, 12);
             MealPanel_pb_FoodImage.Name = "MealPanel_pb_FoodImage";
             MealPanel_pb_FoodImage.Size = new Size(100, 105);
@@ -562,7 +563,7 @@
             // pnl_LoginPanel
             // 
             pnl_LoginPanel.BackColor = Color.Transparent;
-            pnl_LoginPanel.BackgroundImage = Properties.Resources.backGround;
+            pnl_LoginPanel.BackgroundImage = (Image)resources.GetObject("pnl_LoginPanel.BackgroundImage");
             pnl_LoginPanel.BackgroundImageLayout = ImageLayout.Stretch;
             pnl_LoginPanel.BorderStyle = BorderStyle.FixedSingle;
             pnl_LoginPanel.Controls.Add(LoginPanel_lb_Context);
@@ -649,7 +650,7 @@
             // pnl_RegisterPage
             // 
             pnl_RegisterPage.BackColor = Color.Transparent;
-            pnl_RegisterPage.BackgroundImage = Properties.Resources.backGround;
+            pnl_RegisterPage.BackgroundImage = (Image)resources.GetObject("pnl_RegisterPage.BackgroundImage");
             pnl_RegisterPage.BackgroundImageLayout = ImageLayout.Stretch;
             pnl_RegisterPage.Controls.Add(RegisterPanel_lb_Title);
             pnl_RegisterPage.Controls.Add(RegisterPanel_lb_Context);
@@ -757,6 +758,15 @@
             pnl_ProfilPanel.TabIndex = 2;
             pnl_ProfilPanel.TabStop = true;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(544, 214);
+            label1.Name = "label1";
+            label1.Size = new Size(258, 15);
+            label1.TabIndex = 5;
+            label1.Text = "Ekstra Bölüm: Gelecekte Geliştirmek İçin Eklendi";
+            // 
             // pnl_ProfilPanel_Info
             // 
             pnl_ProfilPanel_Info.Controls.Add(ProfilPanel_Info_gb);
@@ -793,7 +803,7 @@
             // 
             // ProfilPanel_Info_pb_ProfileImage
             // 
-            ProfilPanel_Info_pb_ProfileImage.Image = Properties.Resources.emptyProfileImg;
+            ProfilPanel_Info_pb_ProfileImage.Image = (Image)resources.GetObject("ProfilPanel_Info_pb_ProfileImage.Image");
             ProfilPanel_Info_pb_ProfileImage.Location = new Point(90, 27);
             ProfilPanel_Info_pb_ProfileImage.Name = "ProfilPanel_Info_pb_ProfileImage";
             ProfilPanel_Info_pb_ProfileImage.Size = new Size(85, 80);
@@ -973,7 +983,7 @@
             // 
             // ProfilPanel_ChangeInfo_pb_ProfileImage
             // 
-            ProfilPanel_ChangeInfo_pb_ProfileImage.Image = Properties.Resources.emptyProfileImg;
+            ProfilPanel_ChangeInfo_pb_ProfileImage.Image = (Image)resources.GetObject("ProfilPanel_ChangeInfo_pb_ProfileImage.Image");
             ProfilPanel_ChangeInfo_pb_ProfileImage.Location = new Point(103, 22);
             ProfilPanel_ChangeInfo_pb_ProfileImage.Name = "ProfilPanel_ChangeInfo_pb_ProfileImage";
             ProfilPanel_ChangeInfo_pb_ProfileImage.Size = new Size(85, 80);
@@ -1276,23 +1286,14 @@
             ReportsPanel_DateTimePicker.Size = new Size(281, 23);
             ReportsPanel_DateTimePicker.TabIndex = 2;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(544, 214);
-            label1.Name = "label1";
-            label1.Size = new Size(258, 15);
-            label1.TabIndex = 5;
-            label1.Text = "Ekstra Bölüm: Gelecekte Geliştirmek İçin Eklendi";
-            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1030, 465);
-            Controls.Add(pnl_ProfilPanel);
-            Controls.Add(pnl_RegisterPage);
             Controls.Add(pnl_LoginPanel);
+            Controls.Add(pnl_RegisterPage);
+            Controls.Add(pnl_ProfilPanel);
             Controls.Add(pnl_MealPanel);
             Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_FlowPanel);

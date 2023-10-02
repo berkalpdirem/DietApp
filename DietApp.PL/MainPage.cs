@@ -61,6 +61,10 @@ namespace DietApp.PL
 
         #region HelperMethods
 
+        /// <summary>
+        /// Panel Switch Method
+        /// </summary>
+        /// <param name="RelatedPanel"></param>
         private void AllPanelsEnableFalseOutsideRelatedPanel(Panel RelatedPanel)
         {
             foreach (var item in PanelList)
@@ -70,6 +74,9 @@ namespace DietApp.PL
             RelatedPanel.Enabled = true;
             RelatedPanel.BringToFront();
         }
+        /// <summary>
+        /// Cleaning and filling Combo Boxes in the Meal Panel
+        /// </summary>
         private void RefleshBoxes()
         {
             MealPanel_cb_MealSelection.Items.Clear();
@@ -96,6 +103,9 @@ namespace DietApp.PL
                 MealPanel_cb_FoodSelection.Items.Add(userFoodName);
             }
         }
+        /// <summary>
+        /// Closing the Group Box in the Meal Panel and changing the enable feture
+        /// </summary>
         private void MealGroupBoxClose()
         {
             MealPanel_gb_MealEditGroupBox.Enabled = false;
@@ -103,7 +113,18 @@ namespace DietApp.PL
             MealPanel_btn_MealAdd.Enabled = true;
             MealPanel_btn_UpdateClose.Visible = false;
         }
-
+        /// <summary>
+        /// It creates a struct based on the inputs and transfers the inputs to the Manager to send them to the database for add.
+        /// </summary>
+        /// <param name="IsGroupBoxClose"></param>
+        /// <param name="userIDInput"></param>
+        /// <param name="FoodNameInput"></param>
+        /// <param name="PortionInput"></param>
+        /// <param name="CategoryNameInput"></param>
+        /// <param name="CalorieInput"></param>
+        /// <param name="MealNameInput"></param>
+        /// <param name="dateTimeInput"></param>
+        /// <param name="PhotoPathInput"></param>
         private void addMealWithFoodEditGroupBox(string IsGroupBoxClose, int userIDInput, string FoodNameInput, decimal PortionInput, string CategoryNameInput, decimal CalorieInput, string MealNameInput, DateTime dateTimeInput, string PhotoPathInput)
         {
             if (IsGroupBoxClose == "Close")
@@ -199,6 +220,19 @@ namespace DietApp.PL
 
         }
 
+        /// <summary>
+        /// It creates a struct based on the inputs and transfers the inputs to the Manager to send them to the database for update.
+        /// </summary>
+        /// <param name="IsGroupBoxClose"></param>
+        /// <param name="userDayMealInput"></param>
+        /// <param name="userIDInput"></param>
+        /// <param name="FoodNameInput"></param>
+        /// <param name="PortionInput"></param>
+        /// <param name="CategoryNameInput"></param>
+        /// <param name="CalorieInput"></param>
+        /// <param name="MealNameInput"></param>
+        /// <param name="dateTimeInput"></param>
+        /// <param name="PhotoPathInput"></param>
         private void updateMealWithFoodEditGroupBox(string IsGroupBoxClose, int userDayMealInput, int userIDInput, string FoodNameInput, decimal PortionInput, string CategoryNameInput, decimal CalorieInput, string MealNameInput, DateTime dateTimeInput, string PhotoPathInput)
         {
             if (IsGroupBoxClose == "Close")
@@ -306,7 +340,17 @@ namespace DietApp.PL
 
         }
 
-
+        /// <summary>
+        /// Checking the necessary inputs in Meal Panel for Adding and updateding
+        /// </summary>
+        /// <param name="MealPanel_cb_MealSelection"></param>
+        /// <param name="MealPanel_cb_CatagorySelection"></param>
+        /// <param name="MealPanel_cb_FoodSelection"></param>
+        /// <param name="MealPanel_nup_PortionSelection"></param>
+        /// <param name="MealPanel_tb_FoodName"></param>
+        /// <param name="MealPanel_tb_FoodCalorie"></param>
+        /// <param name="controlButtonText"></param>
+        /// <returns></returns>
         private bool checkUIValues(ComboBox MealPanel_cb_MealSelection,
                                   ComboBox MealPanel_cb_CatagorySelection,
                                   ComboBox MealPanel_cb_FoodSelection,
@@ -339,6 +383,11 @@ namespace DietApp.PL
         #endregion
 
         #region Login Panel
+        /// <summary>
+        /// Logs into systems according to user information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lp_btn_Entry_Click(object sender, EventArgs e)
         {
             userManager.Login(LoginPanel_tb_Email.Text, LoginPanel_tb_Password.Text);
@@ -361,6 +410,11 @@ namespace DietApp.PL
                 MessageBox.Show("Giriş Bilgileriniz Hatalı Lütfen Tekrardan Deneyiniz!!!");
             }
         }
+        /// <summary>
+        /// Switches to the Registration Panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lg_btn_Register_Click(object sender, EventArgs e)
         {
             LoginPanel_tb_Email.Clear();
@@ -371,6 +425,12 @@ namespace DietApp.PL
         #endregion
 
         #region Register Panel
+
+        /// <summary>
+        /// Registers the user into the system according to the inputs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rg_btn_Register_Click(object sender, EventArgs e)
         {
             string returnNotification = userManager.AddUser(RegisterPanel_tb_Email.Text, RegisterPanel_tb_Password.Text, RegisterPanel_tb_Password2.Text);
@@ -385,6 +445,11 @@ namespace DietApp.PL
                 AllPanelsEnableFalseOutsideRelatedPanel(pnl_LoginPanel);
             }
         }
+        /// <summary>
+        /// Switches to the login panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rg_btn_Back_Click(object sender, EventArgs e)
         {
             RegisterPanel_tb_Email.Clear();
@@ -396,12 +461,22 @@ namespace DietApp.PL
         #endregion
 
         #region Flow Panel
+        /// <summary>
+        /// Switches to the Profil panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FlowPanel_btn_Profil_Click(object sender, EventArgs e)
         {
             AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
             pnl_ProfilPanel_Info.BringToFront();
             pnl_ProfilPanel_Info.Enabled = true;
         }
+        /// <summary>
+        /// Switches to the meal panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FlowPanel_btn_Meals_Click(object sender, EventArgs e)
         {
             MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
@@ -410,6 +485,11 @@ namespace DietApp.PL
             AllPanelsEnableFalseOutsideRelatedPanel(pnl_MealPanel);
         }
 
+        /// <summary>
+        /// Switches to the reports panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FlowPanel_btn_Reports_Click(object sender, EventArgs e)
         {
             ReportsPanel_cb_QuerySelection.SelectedIndex = 0;
@@ -417,6 +497,11 @@ namespace DietApp.PL
             AllPanelsEnableFalseOutsideRelatedPanel(pnl_ReportsPanel);
         }
 
+        /// <summary>
+        /// Logs out of the system and returns to the login screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mp_btn_Exit_Click(object sender, EventArgs e)
         {
             pnl_FlowPanel.Visible = false;
@@ -427,6 +512,11 @@ namespace DietApp.PL
         #endregion
 
         #region Profile Panel
+        /// <summary>
+        /// Switches to Profilepanel Info Subpanel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProfilPanel_Info_btn_EditInfos_Click(object sender, EventArgs e)
         {
             AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
@@ -442,6 +532,12 @@ namespace DietApp.PL
             ProfilPanel_ChangeInfo_tb_Index.Text = ProfilPanel_Info_lbl_Index.Text;
             ProfilPanel_ChangeInfo_pb_ProfileImage.Image = ProfilPanel_Info_pb_ProfileImage.Image;
         }
+
+        /// <summary>
+        /// Switches to Profilepanel ChangeInfo Subpanel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProfilPanel_ChangeInfo_btn_Save_Click(object sender, EventArgs e)
         {
             AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
@@ -461,6 +557,12 @@ namespace DietApp.PL
         #endregion
 
         #region Meal Panel
+
+        /// <summary>
+        /// Opens the groupbox for entering meal names and calories.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MealPanel_btn_FoodEdit_Click(object sender, EventArgs e)
         {
             // Panel Animations
@@ -483,7 +585,12 @@ namespace DietApp.PL
                 MealPanel_btn_FoodEdit.Text = "+";
             }
         }
-        //Adding Food - Update - Delete Operations
+
+        /// <summary>
+        /// Adding a Photo to the Meal Panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MealPanel_btn_PhotoAdd_Click(object sender, EventArgs e)
         {
             string PhotoPathInput = string.Empty;
@@ -504,6 +611,12 @@ namespace DietApp.PL
             }
 
         }
+
+        /// <summary>
+        /// Adds meals to the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
         {
             int userIDInput = userManager._id;
@@ -530,6 +643,11 @@ namespace DietApp.PL
             }
         }
 
+        /// <summary>
+        /// Updates the Meal in the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MealPanel_btn_MealUpdate_Click(object sender, EventArgs e)
         {
             int userDayMealInput = userDayMealFoodManager.CurrentID;
@@ -557,6 +675,11 @@ namespace DietApp.PL
             }
         }
 
+        /// <summary>
+        /// Deletes meals from the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MealPanel_btn_MealDelete_Click(object sender, EventArgs e)
         {
             MessageBox.Show(userDayMealFoodManager.DeleteDayMealFood(userDayMealFoodManager.CurrentID));
@@ -564,11 +687,21 @@ namespace DietApp.PL
             MealGroupBoxClose();
         }
 
+        /// <summary>
+        /// Lists the user's meal history
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MealPanel_btn_ListDataGrid_Click(object sender, EventArgs e)
         {
             MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
         }
 
+        /// <summary>
+        /// Allows selecting meals from data grid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MealPanel_Datagrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Select the row to which the selected cell belongs
@@ -617,6 +750,11 @@ namespace DietApp.PL
             }
         }
 
+        /// <summary>
+        /// Closes the group box opened for Update and Delete operations.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MealPanel_btn_UpdateClose_Click(object sender, EventArgs e)
         {
             MealGroupBoxClose();
@@ -626,6 +764,11 @@ namespace DietApp.PL
 
         #region Reports Panel
 
+        /// <summary>
+        /// Allows switching from the relevant ComboBox to the desired query panel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReportsPanel_cb_QuerySelection_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ReportsPanel_cb_QuerySelection.SelectedIndex == 0)
@@ -651,6 +794,11 @@ namespace DietApp.PL
         }
 
 
+        /// <summary>
+        /// Lists Daily Meal Report 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReportsPanel_btn_DailyMealCalories_Click(object sender, EventArgs e)
         {
             //Daily Calorie Report with DataGrid
@@ -675,6 +823,11 @@ namespace DietApp.PL
             ReportsPanel_lbl_TotalDailyCalories.Text = $"{ReportsPanel_DateTimePicker.Value.ToShortDateString()} tarihinde toplam {CaloriesSum} kadar kalori aldınız.";
         }
 
+        /// <summary>
+        /// Lists meal reports for the last week or the last month
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReportsPanel_btn_WeekMounthReports_Click(object sender, EventArgs e)
         {
             if (ReportsPanel_rb_MonthllyReport.Checked)
@@ -689,6 +842,11 @@ namespace DietApp.PL
             }
         }
 
+        /// <summary>
+        /// Lists reports about the most eaten foods
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReportsPanel_btn_MostlyEatedReports_Click(object sender, EventArgs e)
         {
             ReportsPanel_DatagridMostyEatedFoodsByFoodName.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByFoodName(userManager._id);
