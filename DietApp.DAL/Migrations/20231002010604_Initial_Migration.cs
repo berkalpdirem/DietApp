@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DietApp.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class mig1 : Migration
+    public partial class Initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -140,11 +140,36 @@ namespace DietApp.DAL.Migrations
                 columns: new[] { "ID", "CategoryName" },
                 values: new object[,]
                 {
-                    { 1, "Meyveler" },
-                    { 2, "Sebzeler" },
-                    { 3, "Hamur İşleri" },
-                    { 4, "Makarnalar" },
-                    { 5, "Kebaplar" }
+                    { 1, "Et Ürünleri" },
+                    { 2, "Deniz Ürünleri" },
+                    { 3, "Sebzeler" },
+                    { 4, "Meyveler" },
+                    { 5, "Süt ve Süt Ürünleri" },
+                    { 6, "Baklagiller" },
+                    { 7, "Tahıllar ve Ekmekler" },
+                    { 8, "Hamur İşleri" },
+                    { 9, "Atıştırmalıklar" },
+                    { 10, "Tatlılar ve Şekerli Ürünler" },
+                    { 11, "Salatalar" },
+                    { 12, "İçecekler" },
+                    { 13, "Çorba ve Çorba Çeşitleri" },
+                    { 14, "Baharatlar ve Soslar" },
+                    { 15, "Atıştırmalık Yiyecekler" },
+                    { 16, "Diyabetik Ürünler" },
+                    { 17, "Vegan Yiyecekler" },
+                    { 18, "Vejetaryen Yiyecekler" },
+                    { 19, "Glutensiz Ürünler" },
+                    { 20, "Laktosiz Ürünler" },
+                    { 21, "Sağlıklı Yağlar ve Yağlı Yiyecekler" },
+                    { 22, "Dondurulmuş Yiyecekler" },
+                    { 23, "Hazır Yemekler" },
+                    { 24, "Hızlı Yiyecekler" },
+                    { 25, "Sağlıklı Atıştırmalıklar" },
+                    { 26, "Organik Ürünler" },
+                    { 27, "Yoğurt ve Fermente Ürünler" },
+                    { 28, "Kahvaltılıklar" },
+                    { 29, "Kuruyemişler ve Tohumlar" },
+                    { 30, "Diyet İçecekler" }
                 });
 
             migrationBuilder.InsertData(

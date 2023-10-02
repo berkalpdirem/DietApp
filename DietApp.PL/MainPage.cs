@@ -33,8 +33,14 @@ namespace DietApp.PL
             userFoodManager = new UserFoodManager(new GenericRepository<UserFood>(new AppDbContext()), new UserFoodRepository(new AppDbContext()));
             userDayMealFoodManager = new UserDayMealFoodManager(new GenericRepository<UserDayMealFood>(new AppDbContext()), new UserDayMealFoodRepository(new AppDbContext()));
         }
+
+        List<Panel> PanelList;
         private void MainPage_Load(object sender, EventArgs e)
         {
+            PanelList = new List<Panel>() { pnl_LoginPanel,pnl_RegisterPage,pnl_ProfilPanel,pnl_MealPanel,pnl_ReportsPanel,pnl_ReportsPanel_EmptyPanel,
+                                            pnl_ReportsPanel_DailyCalorieReport,pnl_ReportsPanel_MostyEatedFoodsReport,pnl_ReportsPanel_UserCompareReport};
+            pnl_LoginPanel.Enabled = true;
+
             MealPanel_gb_MealEditGroupBox.Enabled = false;
             MealPanel_btn_UpdateClose.Visible = false;
 
@@ -51,6 +57,16 @@ namespace DietApp.PL
         }
 
         #region HelperMethods
+
+        private void AllPanelsEnableFalseOutsideRelatedPanel(Panel RelatedPanel)
+        {
+            foreach (var item in PanelList)
+            {
+                item.Enabled = false;
+            }
+            RelatedPanel.Enabled = true;
+            RelatedPanel.BringToFront();
+        }
         private void RefleshBoxes()
         {
             MealPanel_cb_MealSelection.Items.Clear();
@@ -217,7 +233,7 @@ namespace DietApp.PL
                 }
                 else
                 {
-                    MessageBox.Show("Veri Güncellemesi İçin İlgili Verinin Bilgilerini Yukarıda Tekrardan Doldurunuz");
+                    MessageBox.Show("Veri Güncellemesi İçin İlgili Verinin Bilgilerini\nYukarıda Tekrardan Doldurunuz");
                 }
             }
             else if (IsGroupBoxClose == "Open")
@@ -269,7 +285,7 @@ namespace DietApp.PL
                 }
                 else
                 {
-                    MessageBox.Show("Veri Güncellemesi İçin İlgili Verinin Bilgilerini Yukarıda Tekrardan Doldurunuz");
+                    MessageBox.Show("Veri Güncellemesi İçin İlgili Verinin Bilgilerini\nYukarıda Tekrardan Doldurunuz");
                 }
             }
 
@@ -313,16 +329,15 @@ namespace DietApp.PL
             userManager.Login(LoginPanel_tb_Email.Text, LoginPanel_tb_Password.Text);
             if (userManager._id != 0)
             {
-                ProfilePanel_lbl_Eposta.Text = LoginPanel_tb_Email.Text;
-                ProfilePanel_lbl_Password.Text = LoginPanel_tb_Password.Text;
+                ProfilPanel_Info__lbl_Eposta.Text = LoginPanel_tb_Email.Text;
+                ProfilPanel_Info__lbl_Password.Text = LoginPanel_tb_Password.Text;
 
                 LoginPanel_tb_Email.Clear();
                 LoginPanel_tb_Password.Clear();
-                pnl_LoginPanel.Enabled = false;
 
-                pnl_ProfilPanel.Enabled = true;
+                pnl_FlowPanel.Enabled = true;
                 pnl_FlowPanel.Visible = true;
-                pnl_ProfilPanel.BringToFront();
+                AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
             }
             else
             {
@@ -333,9 +348,8 @@ namespace DietApp.PL
         {
             LoginPanel_tb_Email.Clear();
             LoginPanel_tb_Password.Clear();
-            pnl_RegisterPage.BringToFront();
-            pnl_LoginPanel.Enabled = false;
-            pnl_RegisterPage.Enabled = true;
+
+            AllPanelsEnableFalseOutsideRelatedPanel(pnl_RegisterPage);
         }
         #endregion
 
@@ -345,46 +359,43 @@ namespace DietApp.PL
             string returnNotification = userManager.AddUser(RegisterPanel_tb_Email.Text, RegisterPanel_tb_Password.Text, RegisterPanel_tb_Password2.Text);
             MessageBox.Show(returnNotification);
 
-            RegisterPanel_tb_Email.Clear();
-            RegisterPanel_tb_Password.Clear();
-            RegisterPanel_tb_Password2.Clear();
-            pnl_RegisterPage.Enabled = false;
-            pnl_LoginPanel.Enabled = true;
-            pnl_LoginPanel.BringToFront();
+            if (returnNotification == "Kullanıcı ekleme başarılı.")
+            {
+                RegisterPanel_tb_Email.Clear();
+                RegisterPanel_tb_Password.Clear();
+                RegisterPanel_tb_Password2.Clear();
+
+                AllPanelsEnableFalseOutsideRelatedPanel(pnl_LoginPanel);
+            }
         }
         private void rg_btn_Back_Click(object sender, EventArgs e)
         {
             RegisterPanel_tb_Email.Clear();
             RegisterPanel_tb_Password.Clear();
             RegisterPanel_tb_Password2.Clear();
-            pnl_RegisterPage.Enabled = false;
-            pnl_LoginPanel.Enabled = true;
-            pnl_LoginPanel.BringToFront();
 
+            AllPanelsEnableFalseOutsideRelatedPanel(pnl_LoginPanel);
         }
         #endregion
 
         #region Flow Panel
         private void FlowPanel_btn_Profil_Click(object sender, EventArgs e)
         {
-            pnl_FlowPanel.Visible = true;
-            pnl_ProfilPanel.BringToFront();
+            AllPanelsEnableFalseOutsideRelatedPanel(pnl_ProfilPanel);
         }
         private void FlowPanel_btn_Meals_Click(object sender, EventArgs e)
         {
             MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
             RefleshBoxes();
 
-            pnl_FlowPanel.BringToFront();
-            pnl_MealPanel.BringToFront();
+            AllPanelsEnableFalseOutsideRelatedPanel(pnl_MealPanel);
         }
 
         private void FlowPanel_btn_Reports_Click(object sender, EventArgs e)
         {
             ReportsPanel_cb_QuerySelection.SelectedIndex = 0;
 
-            pnl_FlowPanel.BringToFront();
-            pnl_ReportsPanel.BringToFront();
+            AllPanelsEnableFalseOutsideRelatedPanel(pnl_ReportsPanel);
         }
 
         private void mp_btn_Exit_Click(object sender, EventArgs e)
@@ -392,11 +403,15 @@ namespace DietApp.PL
             pnl_FlowPanel.Visible = false;
             pnl_LoginPanel.Enabled = true;
 
-            pnl_LoginPanel.BringToFront();
+            AllPanelsEnableFalseOutsideRelatedPanel(pnl_LoginPanel);
         }
         #endregion
 
         #region Profile Panel
+        private void ProfilPanel_Info_btn_EditInfos_Click(object sender, EventArgs e)
+        {
+            //AllPanelsEnableFalseOutsideRelatedPanel(pnl_);
+        }
         #endregion
 
         #region Meal Panel
@@ -518,19 +533,23 @@ namespace DietApp.PL
         {
             if (ReportsPanel_cb_QuerySelection.SelectedIndex == 0)
             {
-                pnl_ReportsPanel_EmptyPanel.BringToFront();
+                AllPanelsEnableFalseOutsideRelatedPanel(pnl_ReportsPanel_EmptyPanel);
+                pnl_ReportsPanel.Enabled = true;
             }
             else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 1)
             {
-                pnl_ReportsPanel_DailyCalorieReport.BringToFront();
+                AllPanelsEnableFalseOutsideRelatedPanel(pnl_ReportsPanel_DailyCalorieReport);
+                pnl_ReportsPanel.Enabled = true;
             }
             else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 2)
             {
-                pnl_ReportsPanel_UserCompareReport.BringToFront();
+                AllPanelsEnableFalseOutsideRelatedPanel(pnl_ReportsPanel_UserCompareReport);
+                pnl_ReportsPanel.Enabled = true;
             }
             else if (ReportsPanel_cb_QuerySelection.SelectedIndex == 3)
             {
-                pnl_ReportsPanel_MostyEatedFoodsReport.BringToFront();
+                AllPanelsEnableFalseOutsideRelatedPanel(pnl_ReportsPanel_MostyEatedFoodsReport);
+                pnl_ReportsPanel.Enabled = true;
             }
         }
 
@@ -561,14 +580,10 @@ namespace DietApp.PL
 
         private void ReportsPanel_btn_WeekMounthReports_Click(object sender, EventArgs e)
         {
-
-
             if (ReportsPanel_rb_MonthllyReport.Checked)
             {
                 ReportsPanel_DatagridUserCompare.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyUserMealCalories(userManager._id, 30);
                 ReportsPanel_DatagridOthersCompare.DataSource = userDayMealFoodManager.ShowReportWeeklyOrMonthlyEveryoneMealCalories(userManager._id, 30);
-
-
             }
             else if (ReportsPanel_rb_WeeklyReport.Checked)
             {
@@ -583,9 +598,6 @@ namespace DietApp.PL
 
             ReportsPanel_DatagridMostyEatedFoodsByMealName.DataSource = userDayMealFoodManager.ShowReportMostEatenFoodsByMeaName(userManager._id);
         }
-
-
-
         #endregion
 
     }

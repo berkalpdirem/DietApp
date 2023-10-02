@@ -27,13 +27,40 @@ namespace DietApp.DAL.Context
         protected override void OnModelCreating(ModelBuilder mb)
         {
             //Seed Data's
-               //Categoriler
-            mb.Entity<Category>().HasData(new { ID = 1, CategoryName = "Meyveler" });
-            mb.Entity<Category>().HasData(new { ID = 2, CategoryName = "Sebzeler" });
-            mb.Entity<Category>().HasData(new { ID = 3, CategoryName = "Hamur İşleri" });
-            mb.Entity<Category>().HasData(new { ID = 4, CategoryName = "Makarnalar" });
-            mb.Entity<Category>().HasData(new { ID = 5, CategoryName = "Kebaplar" });
-               //Öğünler
+            //Categoriler
+            mb.Entity<Category>().HasData(
+                                            new { ID = 1, CategoryName = "Et Ürünleri" },
+                                            new { ID = 2, CategoryName = "Deniz Ürünleri" },
+                                            new { ID = 3, CategoryName = "Sebzeler" },
+                                            new { ID = 4, CategoryName = "Meyveler" },
+                                            new { ID = 5, CategoryName = "Süt ve Süt Ürünleri" },
+                                            new { ID = 6, CategoryName = "Baklagiller" },
+                                            new { ID = 7, CategoryName = "Tahıllar ve Ekmekler" },
+                                            new { ID = 8, CategoryName = "Hamur İşleri" },
+                                            new { ID = 9, CategoryName = "Atıştırmalıklar" },
+                                            new { ID = 10, CategoryName = "Tatlılar ve Şekerli Ürünler" },
+                                            new { ID = 11, CategoryName = "Salatalar" },
+                                            new { ID = 12, CategoryName = "İçecekler" },
+                                            new { ID = 13, CategoryName = "Çorba ve Çorba Çeşitleri" },
+                                            new { ID = 14, CategoryName = "Baharatlar ve Soslar" },
+                                            new { ID = 15, CategoryName = "Atıştırmalık Yiyecekler" },
+                                            new { ID = 16, CategoryName = "Diyabetik Ürünler" },
+                                            new { ID = 17, CategoryName = "Vegan Yiyecekler" },
+                                            new { ID = 18, CategoryName = "Vejetaryen Yiyecekler" },
+                                            new { ID = 19, CategoryName = "Glutensiz Ürünler" },
+                                            new { ID = 20, CategoryName = "Laktosiz Ürünler" },
+                                            new { ID = 21, CategoryName = "Sağlıklı Yağlar ve Yağlı Yiyecekler" },
+                                            new { ID = 22, CategoryName = "Dondurulmuş Yiyecekler" },
+                                            new { ID = 23, CategoryName = "Hazır Yemekler" },
+                                            new { ID = 24, CategoryName = "Hızlı Yiyecekler" },
+                                            new { ID = 25, CategoryName = "Sağlıklı Atıştırmalıklar" },
+                                            new { ID = 26, CategoryName = "Organik Ürünler" },
+                                            new { ID = 27, CategoryName = "Yoğurt ve Fermente Ürünler" },
+                                            new { ID = 28, CategoryName = "Kahvaltılıklar" },
+                                            new { ID = 29, CategoryName = "Kuruyemişler ve Tohumlar" },
+                                            new { ID = 30, CategoryName = "Diyet İçecekler" });
+
+            //Öğünler
             mb.Entity<MealType>().HasData(new { ID = 1, MealName = "Kahvaltı" });
             mb.Entity<MealType>().HasData(new { ID = 2, MealName = "Brunch" });
             mb.Entity<MealType>().HasData(new { ID = 3, MealName = "Öğle Yemeği" });

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DietApp.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230930070701_mig1")]
-    partial class mig1
+    [Migration("20231002010604_Initial_Migration")]
+    partial class Initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,27 +45,152 @@ namespace DietApp.DAL.Migrations
                         new
                         {
                             ID = 1,
-                            CategoryName = "Meyveler"
+                            CategoryName = "Et Ürünleri"
                         },
                         new
                         {
                             ID = 2,
-                            CategoryName = "Sebzeler"
+                            CategoryName = "Deniz Ürünleri"
                         },
                         new
                         {
                             ID = 3,
-                            CategoryName = "Hamur İşleri"
+                            CategoryName = "Sebzeler"
                         },
                         new
                         {
                             ID = 4,
-                            CategoryName = "Makarnalar"
+                            CategoryName = "Meyveler"
                         },
                         new
                         {
                             ID = 5,
-                            CategoryName = "Kebaplar"
+                            CategoryName = "Süt ve Süt Ürünleri"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            CategoryName = "Baklagiller"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CategoryName = "Tahıllar ve Ekmekler"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CategoryName = "Hamur İşleri"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CategoryName = "Atıştırmalıklar"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            CategoryName = "Tatlılar ve Şekerli Ürünler"
+                        },
+                        new
+                        {
+                            ID = 11,
+                            CategoryName = "Salatalar"
+                        },
+                        new
+                        {
+                            ID = 12,
+                            CategoryName = "İçecekler"
+                        },
+                        new
+                        {
+                            ID = 13,
+                            CategoryName = "Çorba ve Çorba Çeşitleri"
+                        },
+                        new
+                        {
+                            ID = 14,
+                            CategoryName = "Baharatlar ve Soslar"
+                        },
+                        new
+                        {
+                            ID = 15,
+                            CategoryName = "Atıştırmalık Yiyecekler"
+                        },
+                        new
+                        {
+                            ID = 16,
+                            CategoryName = "Diyabetik Ürünler"
+                        },
+                        new
+                        {
+                            ID = 17,
+                            CategoryName = "Vegan Yiyecekler"
+                        },
+                        new
+                        {
+                            ID = 18,
+                            CategoryName = "Vejetaryen Yiyecekler"
+                        },
+                        new
+                        {
+                            ID = 19,
+                            CategoryName = "Glutensiz Ürünler"
+                        },
+                        new
+                        {
+                            ID = 20,
+                            CategoryName = "Laktosiz Ürünler"
+                        },
+                        new
+                        {
+                            ID = 21,
+                            CategoryName = "Sağlıklı Yağlar ve Yağlı Yiyecekler"
+                        },
+                        new
+                        {
+                            ID = 22,
+                            CategoryName = "Dondurulmuş Yiyecekler"
+                        },
+                        new
+                        {
+                            ID = 23,
+                            CategoryName = "Hazır Yemekler"
+                        },
+                        new
+                        {
+                            ID = 24,
+                            CategoryName = "Hızlı Yiyecekler"
+                        },
+                        new
+                        {
+                            ID = 25,
+                            CategoryName = "Sağlıklı Atıştırmalıklar"
+                        },
+                        new
+                        {
+                            ID = 26,
+                            CategoryName = "Organik Ürünler"
+                        },
+                        new
+                        {
+                            ID = 27,
+                            CategoryName = "Yoğurt ve Fermente Ürünler"
+                        },
+                        new
+                        {
+                            ID = 28,
+                            CategoryName = "Kahvaltılıklar"
+                        },
+                        new
+                        {
+                            ID = 29,
+                            CategoryName = "Kuruyemişler ve Tohumlar"
+                        },
+                        new
+                        {
+                            ID = 30,
+                            CategoryName = "Diyet İçecekler"
                         });
                 });
 
