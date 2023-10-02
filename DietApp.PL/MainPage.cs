@@ -23,11 +23,13 @@ namespace DietApp.PL
         CategoryManager categoryManager;
         UserFoodManager userFoodManager;
         UserDayMealFoodManager userDayMealFoodManager;
+        UserDetailsManager userDetailsManager;
         public MainPage()
         {
             InitializeComponent();
             pnl_LoginPanel.BringToFront();
             userManager = new UserManager(new GenericRepository<User>(new AppDbContext()), new UserRepository(new AppDbContext()));
+            userDetailsManager = new UserDetailsManager(new GenericRepository<UserDetails>(new AppDbContext()), new UserDetailsRepository(new AppDbContext()));
             mealTypeManager = new MealTypeManager(new GenericRepository<MealType>(new AppDbContext()));
             categoryManager = new CategoryManager(new GenericRepository<Category>(new AppDbContext()));
             userFoodManager = new UserFoodManager(new GenericRepository<UserFood>(new AppDbContext()), new UserFoodRepository(new AppDbContext()));
@@ -118,8 +120,12 @@ namespace DietApp.PL
                     PortionInput = MealPanel_nup_PortionSelection.Value;
                     CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
                     //CalorieInput İf'in içinde out ile atanıyor
-                    MealNameInput = MealPanel_cb_MealSelection.Text;                                    //Düzenlenecek
-                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
+                    MealNameInput = MealPanel_cb_MealSelection.Text;
+                    if (MealPanel_lbl_PhotoPath.Text != null)
+                    {
+                        PhotoPathInput = MealPanel_lbl_PhotoPath.Text;
+                    }
+
 
                     StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
                     {
@@ -130,7 +136,7 @@ namespace DietApp.PL
                         Calories = CalorieInput,
                         MealName = MealNameInput,
                         DateTime = dateTimeInput,
-                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
+                        PhotoPath = PhotoPathInput
                     };
                     MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
                     MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
@@ -165,7 +171,10 @@ namespace DietApp.PL
                     CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
                     //CalorieInput İf'in içinde out ile atanıyor
                     MealNameInput = MealPanel_cb_MealSelection.Text;
-                    PhotoPathInput = string.Empty;                                     //Düzenlenecek
+                    if (MealPanel_lbl_PhotoPath.Text != null)
+                    {
+                        PhotoPathInput = MealPanel_lbl_PhotoPath.Text;
+                    }
 
                     StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
                     {
@@ -176,7 +185,7 @@ namespace DietApp.PL
                         Calories = CalorieInput,
                         MealName = MealNameInput,
                         DateTime = dateTimeInput,
-                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
+                        PhotoPath = PhotoPathInput
                     };
                     MessageBox.Show(userDayMealFoodManager.AddDayMealFood(structUserDayMealFood));
                     MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
@@ -206,8 +215,12 @@ namespace DietApp.PL
                     PortionInput = MealPanel_nup_PortionSelection.Value;
                     CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
                     //CalorieInput İf'in içinde out ile atanıyor
-                    MealNameInput = MealPanel_cb_MealSelection.Text;                                    //Düzenlenecek
-                    PhotoPathInput = string.Empty;                                                      //Düzenlenecek
+                    MealNameInput = MealPanel_cb_MealSelection.Text;
+                    if (MealPanel_lbl_PhotoPath.Text != null)
+                    {
+                        PhotoPathInput = MealPanel_lbl_PhotoPath.Text;
+                    }
+
 
                     StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
                     {
@@ -219,9 +232,7 @@ namespace DietApp.PL
                         Calories = CalorieInput,
                         MealName = MealNameInput,
                         DateTime = dateTimeInput,
-                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
-                                                                       // Helper metodu içinde göm ıkısınefde metodla yap
-
+                        PhotoPath = PhotoPathInput
                     };
 
                     MessageBox.Show(userDayMealFoodManager.UpdateDayMealFood(structUserDayMealFood));
@@ -229,7 +240,6 @@ namespace DietApp.PL
                     RefleshBoxes();
                     MealGroupBoxClose();
                     MessageBox.Show(" Veri Güncellemeniz Başarılı");
-
 
                 }
                 else
@@ -261,8 +271,12 @@ namespace DietApp.PL
                     PortionInput = MealPanel_nup_PortionSelection.Value;
                     CategoryNameInput = MealPanel_cb_CatagorySelection.Text;
                     //CalorieInput İf'in içinde out ile atanıyor
-                    MealNameInput = MealPanel_cb_MealSelection.Text;                             //Düzenlenecek
-                    PhotoPathInput = string.Empty;                                               //Düzenlenecek
+                    MealNameInput = MealPanel_cb_MealSelection.Text;
+                    if (MealPanel_lbl_PhotoPath.Text != null)
+                    {
+                        PhotoPathInput = MealPanel_lbl_PhotoPath.Text;
+                    }
+
 
                     StructUserDayMealFood structUserDayMealFood = new StructUserDayMealFood()
                     {
@@ -273,8 +287,8 @@ namespace DietApp.PL
                         CategoryName = CategoryNameInput,
                         Calories = CalorieInput,
                         MealName = MealNameInput,
-                        DateTime = dateTimeInput,                        //Calendardan alınacak
-                        PhotoPath = PhotoPathInput                     //String Empty verdik düzeltilecek
+                        DateTime = dateTimeInput,
+                        PhotoPath = PhotoPathInput
 
                     };
                     MessageBox.Show(userDayMealFoodManager.UpdateDayMealFood(structUserDayMealFood));
@@ -476,17 +490,17 @@ namespace DietApp.PL
             try
             {
                 OpenFileDialog diolog = new OpenFileDialog();
-                //diolog.Filter = "Resim Dosyaları (.jpg,.jpeg, .png,.gif)|.jpg;.jpeg;.png;.gif";
-
                 if (diolog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     PhotoPathInput = diolog.FileName;
-
+                    MealPanel_lbl_PhotoPath.Text = PhotoPathInput;
+                    MealPanel_pb_FoodImage.Image = new Bitmap(PhotoPathInput);
                 }
             }
             catch
             {
-                MessageBox.Show("Bir hata oluştu");
+                MealPanel_lbl_PhotoPath.Text = string.Empty;
+                MessageBox.Show("Fotoraf Yüklemesi Başarısız.");
             }
 
         }
@@ -500,6 +514,11 @@ namespace DietApp.PL
             string MealNameInput = string.Empty;
             DateTime dateTimeInput = MealPanel_DateTimePicker.Value;
             string PhotoPathInput = string.Empty;
+            if (MealPanel_lbl_PhotoPath.Text != null)
+            {
+                PhotoPathInput = MealPanel_lbl_PhotoPath.Text;
+            }
+
 
             if (MealPanel_btn_FoodEdit.Text == "-")
             {
@@ -511,7 +530,6 @@ namespace DietApp.PL
             }
         }
 
-        
         private void MealPanel_btn_MealUpdate_Click(object sender, EventArgs e)
         {
             int userDayMealInput = userDayMealFoodManager.CurrentID;
@@ -524,6 +542,10 @@ namespace DietApp.PL
             string MealNameInput = string.Empty;
             DateTime dateTimeInput = MealPanel_DateTimePicker.Value;
             string PhotoPathInput = string.Empty;
+            if (MealPanel_lbl_PhotoPath.Text != null)
+            {
+                PhotoPathInput = MealPanel_lbl_PhotoPath.Text;
+            }
 
             if (MealPanel_btn_FoodEdit.Text == "-")
             {
@@ -560,6 +582,28 @@ namespace DietApp.PL
             if (MealPanel_Datagrid.SelectedRows.Count == 1)
             {
                 userDayMealFoodManager.CurrentID = int.Parse(MealPanel_Datagrid.SelectedRows[0].Cells[0].Value.ToString());
+                MealPanel_lbl_PhotoPath.Text = MealPanel_Datagrid.SelectedRows[0].Cells[7].Value.ToString();
+
+                string PhotoPathInput = MealPanel_lbl_PhotoPath.Text;
+                if (PhotoPathInput == null || PhotoPathInput == string.Empty)
+                {
+                    MealPanel_pb_FoodImage.Image = Properties.Resources.DefaultFoodImage;
+                }
+                else
+                {
+                    try
+                    {
+                        MealPanel_pb_FoodImage.Image = new Bitmap(PhotoPathInput);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("İlgili öğünün fotoğrafı bilgisyarınızdan\n" +
+                                         "Silindiği için eski fotrafı yerine\n" +
+                                         "varsayılan fotraf konulmuştur.");
+
+                        MealPanel_pb_FoodImage.Image = Properties.Resources.DefaultFoodImage;
+                    }
+                }
 
 
                 MealPanel_gb_MealEditGroupBox.Enabled = true;

@@ -23,6 +23,10 @@ namespace DietApp.Entities.Concrete
         public ICollection<UserFood> UserFoods { get; set; }
         #endregion
 
+        #region UserDetails
+        public UserDetails UserDetails { get; set; }
+        #endregion
+
         #endregion
 
     }

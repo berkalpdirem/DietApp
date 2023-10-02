@@ -16,6 +16,7 @@ namespace DietApp.Entities.Common
         public decimal Portion { get; set; }
         public decimal Calories { get; set; }
         public DateTime DateTime { get; set; }
+        public string PhotoPath { get; set; }
 
     }
 }

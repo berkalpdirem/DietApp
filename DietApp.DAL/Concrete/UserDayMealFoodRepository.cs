@@ -61,7 +61,7 @@ namespace DietApp.DAL.Concrete
                         newPhoto.PhotoPath = photoPath;
 
                         DbSetFoodPhoto.Add(newPhoto);
-
+                        SaveChanges();
                         newUserDayMealFood.FoodPhotoID = newPhoto.ID;
                     }
                     SaveChanges();
@@ -104,7 +104,7 @@ namespace DietApp.DAL.Concrete
                             newPhoto.PhotoPath = photoPath;
 
                             DbSetFoodPhoto.Add(newPhoto);
-
+                            SaveChanges();
                             newUserDayMealFood.FoodPhotoID = newPhoto.ID;
                         }
                     }
@@ -178,7 +178,7 @@ namespace DietApp.DAL.Concrete
                         newPhoto.PhotoPath = photoPath;
 
                         DbSetFoodPhoto.Add(newPhoto);
-
+                        SaveChanges();
                         newUserDayMealFood.FoodPhotoID = newPhoto.ID;
                     }
                     SaveChanges();
@@ -221,7 +221,7 @@ namespace DietApp.DAL.Concrete
                             newPhoto.PhotoPath = photoPath;
 
                             DbSetFoodPhoto.Add(newPhoto);
-
+                            SaveChanges();
                             newUserDayMealFood.FoodPhotoID = newPhoto.ID;
                         }
                     }
@@ -264,7 +264,8 @@ namespace DietApp.DAL.Concrete
                                        FoodName = uf.UserFood.FoodName,
                                        Portion = uf.Portion,
                                        Calories = (uf.UserFood.Calories) * uf.Portion,
-                                       DateTime = uf.DateTime
+                                       DateTime = uf.DateTime,
+                                       PhotoPath = uf.FoodPhoto.PhotoPath
 
                                    }).ToList();
             return currentList;

@@ -34,6 +34,7 @@
             FlowPanel_btn_Profil = new Button();
             FlowPanel_btn_Exit = new Button();
             pnl_MealPanel = new Panel();
+            MealPanel_lbl_PhotoPath = new Label();
             MealPanel_lbl_MealSelection = new Label();
             MealPanel_lbl_CategorySelection = new Label();
             MealPanel_lbl_FoodSelection = new Label();
@@ -133,6 +134,7 @@
             ReportsPanel_btn_DailyMealCalories = new Button();
             ReportsPanel_DatagridUserDaily = new DataGridView();
             ReportsPanel_DateTimePicker = new DateTimePicker();
+            label1 = new Label();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MealPanel_pb_FoodImage).BeginInit();
@@ -232,6 +234,7 @@
             // pnl_MealPanel
             // 
             pnl_MealPanel.BackColor = SystemColors.ButtonShadow;
+            pnl_MealPanel.Controls.Add(MealPanel_lbl_PhotoPath);
             pnl_MealPanel.Controls.Add(MealPanel_lbl_MealSelection);
             pnl_MealPanel.Controls.Add(MealPanel_lbl_CategorySelection);
             pnl_MealPanel.Controls.Add(MealPanel_lbl_FoodSelection);
@@ -256,6 +259,15 @@
             pnl_MealPanel.Name = "pnl_MealPanel";
             pnl_MealPanel.Size = new Size(820, 465);
             pnl_MealPanel.TabIndex = 2;
+            // 
+            // MealPanel_lbl_PhotoPath
+            // 
+            MealPanel_lbl_PhotoPath.AutoSize = true;
+            MealPanel_lbl_PhotoPath.Location = new Point(710, 159);
+            MealPanel_lbl_PhotoPath.Name = "MealPanel_lbl_PhotoPath";
+            MealPanel_lbl_PhotoPath.Size = new Size(0, 15);
+            MealPanel_lbl_PhotoPath.TabIndex = 18;
+            MealPanel_lbl_PhotoPath.Visible = false;
             // 
             // MealPanel_lbl_MealSelection
             // 
@@ -416,6 +428,7 @@
             // MealPanel_tb_FoodName
             // 
             MealPanel_tb_FoodName.Location = new Point(6, 24);
+            MealPanel_tb_FoodName.MaxLength = 100;
             MealPanel_tb_FoodName.Name = "MealPanel_tb_FoodName";
             MealPanel_tb_FoodName.PlaceholderText = "Yemek İsmini Giriniz";
             MealPanel_tb_FoodName.Size = new Size(116, 23);
@@ -424,6 +437,7 @@
             // MealPanel_tb_FoodCalorie
             // 
             MealPanel_tb_FoodCalorie.Location = new Point(130, 26);
+            MealPanel_tb_FoodCalorie.MaxLength = 100;
             MealPanel_tb_FoodCalorie.Name = "MealPanel_tb_FoodCalorie";
             MealPanel_tb_FoodCalorie.PlaceholderText = "Yemeğin 1 Porsiyondaki Kalorisini Giriniz";
             MealPanel_tb_FoodCalorie.Size = new Size(220, 23);
@@ -565,7 +579,7 @@
             // 
             LoginPanel_lb_Context.AutoSize = true;
             LoginPanel_lb_Context.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            LoginPanel_lb_Context.ForeColor = Color.FromArgb(35, 40, 45);
+            LoginPanel_lb_Context.ForeColor = Color.Silver;
             LoginPanel_lb_Context.Location = new Point(10, 124);
             LoginPanel_lb_Context.Name = "LoginPanel_lb_Context";
             LoginPanel_lb_Context.Size = new Size(68, 21);
@@ -575,7 +589,7 @@
             // LoginPanel_lb_Title
             // 
             LoginPanel_lb_Title.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            LoginPanel_lb_Title.ForeColor = Color.FromArgb(35, 40, 45);
+            LoginPanel_lb_Title.ForeColor = Color.Silver;
             LoginPanel_lb_Title.Location = new Point(10, 47);
             LoginPanel_lb_Title.Name = "LoginPanel_lb_Title";
             LoginPanel_lb_Title.Size = new Size(360, 55);
@@ -607,6 +621,7 @@
             // LoginPanel_tb_Email
             // 
             LoginPanel_tb_Email.Location = new Point(18, 29);
+            LoginPanel_tb_Email.MaxLength = 100;
             LoginPanel_tb_Email.Name = "LoginPanel_tb_Email";
             LoginPanel_tb_Email.PlaceholderText = "E-Mail";
             LoginPanel_tb_Email.Size = new Size(206, 23);
@@ -625,6 +640,7 @@
             // LoginPanel_tb_Password
             // 
             LoginPanel_tb_Password.Location = new Point(18, 58);
+            LoginPanel_tb_Password.MaxLength = 100;
             LoginPanel_tb_Password.Name = "LoginPanel_tb_Password";
             LoginPanel_tb_Password.PlaceholderText = "Şifre";
             LoginPanel_tb_Password.Size = new Size(206, 23);
@@ -648,7 +664,7 @@
             // RegisterPanel_lb_Title
             // 
             RegisterPanel_lb_Title.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            RegisterPanel_lb_Title.ForeColor = Color.FromArgb(35, 40, 45);
+            RegisterPanel_lb_Title.ForeColor = Color.Silver;
             RegisterPanel_lb_Title.Location = new Point(10, 47);
             RegisterPanel_lb_Title.Name = "RegisterPanel_lb_Title";
             RegisterPanel_lb_Title.Size = new Size(360, 55);
@@ -659,7 +675,7 @@
             // 
             RegisterPanel_lb_Context.AutoSize = true;
             RegisterPanel_lb_Context.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            RegisterPanel_lb_Context.ForeColor = Color.FromArgb(35, 40, 45);
+            RegisterPanel_lb_Context.ForeColor = Color.Silver;
             RegisterPanel_lb_Context.Location = new Point(10, 124);
             RegisterPanel_lb_Context.Name = "RegisterPanel_lb_Context";
             RegisterPanel_lb_Context.Size = new Size(68, 21);
@@ -683,6 +699,7 @@
             // RegisterPanel_tb_Email
             // 
             RegisterPanel_tb_Email.Location = new Point(31, 22);
+            RegisterPanel_tb_Email.MaxLength = 100;
             RegisterPanel_tb_Email.Name = "RegisterPanel_tb_Email";
             RegisterPanel_tb_Email.PlaceholderText = "E-Mailinizi Giriniz";
             RegisterPanel_tb_Email.Size = new Size(146, 23);
@@ -701,6 +718,7 @@
             // RegisterPanel_tb_Password
             // 
             RegisterPanel_tb_Password.Location = new Point(31, 51);
+            RegisterPanel_tb_Password.MaxLength = 100;
             RegisterPanel_tb_Password.Name = "RegisterPanel_tb_Password";
             RegisterPanel_tb_Password.PlaceholderText = "Şifrenizi Giriniz";
             RegisterPanel_tb_Password.Size = new Size(146, 23);
@@ -719,6 +737,7 @@
             // RegisterPanel_tb_Password2
             // 
             RegisterPanel_tb_Password2.Location = new Point(31, 80);
+            RegisterPanel_tb_Password2.MaxLength = 100;
             RegisterPanel_tb_Password2.Name = "RegisterPanel_tb_Password2";
             RegisterPanel_tb_Password2.PlaceholderText = "Şifrenizi Tekrardan Giriniz";
             RegisterPanel_tb_Password2.Size = new Size(146, 23);
@@ -727,6 +746,7 @@
             // pnl_ProfilPanel
             // 
             pnl_ProfilPanel.BackColor = SystemColors.ButtonShadow;
+            pnl_ProfilPanel.Controls.Add(label1);
             pnl_ProfilPanel.Controls.Add(pnl_ProfilPanel_Info);
             pnl_ProfilPanel.Controls.Add(pnl_ProfilPanel_ChangeInfo);
             pnl_ProfilPanel.Dock = DockStyle.Fill;
@@ -1256,16 +1276,25 @@
             ReportsPanel_DateTimePicker.Size = new Size(281, 23);
             ReportsPanel_DateTimePicker.TabIndex = 2;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(544, 214);
+            label1.Name = "label1";
+            label1.Size = new Size(258, 15);
+            label1.TabIndex = 5;
+            label1.Text = "Ekstra Bölüm: Gelecekte Geliştirmek İçin Eklendi";
+            // 
             // MainPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1030, 465);
-            Controls.Add(pnl_MealPanel);
             Controls.Add(pnl_ProfilPanel);
-            Controls.Add(pnl_LoginPanel);
-            Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_RegisterPage);
+            Controls.Add(pnl_LoginPanel);
+            Controls.Add(pnl_MealPanel);
+            Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_FlowPanel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "MainPage";
@@ -1294,6 +1323,7 @@
             RegisterPage_gp_Actions.ResumeLayout(false);
             RegisterPage_gp_Actions.PerformLayout();
             pnl_ProfilPanel.ResumeLayout(false);
+            pnl_ProfilPanel.PerformLayout();
             pnl_ProfilPanel_Info.ResumeLayout(false);
             ProfilPanel_Info_gb.ResumeLayout(false);
             ProfilPanel_Info_gb.PerformLayout();
@@ -1419,5 +1449,7 @@
         private TextBox ProfilPanel_ChangeInfo_tb_Surname;
         private TextBox ProfilPanel_ChangeInfo_tb_Height;
         private TextBox ProfilPanel_ChangeInfo_tb_Weight;
+        private Label MealPanel_lbl_PhotoPath;
+        private Label label1;
     }
 }

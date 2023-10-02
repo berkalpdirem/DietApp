@@ -95,6 +95,12 @@ namespace DietApp.DAL.Context
                 .HasForeignKey(um => um.UserID);
 
 
+            mb.Entity<User>()
+                .HasOne(u => u.UserDetails)
+                .WithOne(um => um.User)
+                .HasForeignKey<UserDetails>(um => um.UserID);
+
+
             mb.Entity<MealType>()
                 .HasKey(mt => mt.ID);
             mb.Entity<MealType>()
@@ -125,6 +131,11 @@ namespace DietApp.DAL.Context
                 .WithOne(uf => uf.FoodPhoto)
                 .HasForeignKey(uf => uf.FoodPhotoID)
                 .IsRequired(false);
+
+
+            mb.Entity<UserDetails>()
+            .HasKey(uf => uf.ID);
+
 
 
         }
