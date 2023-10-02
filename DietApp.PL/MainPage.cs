@@ -442,6 +442,7 @@ namespace DietApp.PL
             ProfilPanel_Info_lbl_Weight.Text = ProfilPanel_ChangeInfo_tb_Weight.Text;
             ProfilPanel_Info_lbl_Index.Text = ProfilPanel_ChangeInfo_tb_Index.Text;
             ProfilPanel_Info_pb_ProfileImage.Image = ProfilPanel_ChangeInfo_pb_ProfileImage.Image;
+
         }
         #endregion
 
@@ -469,6 +470,26 @@ namespace DietApp.PL
             }
         }
         //Adding Food - Update - Delete Operations
+        private void MealPanel_btn_PhotoAdd_Click(object sender, EventArgs e)
+        {
+            string PhotoPathInput = string.Empty;
+            try
+            {
+                OpenFileDialog diolog = new OpenFileDialog();
+                //diolog.Filter = "Resim Dosyaları (.jpg,.jpeg, .png,.gif)|.jpg;.jpeg;.png;.gif";
+
+                if (diolog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    PhotoPathInput = diolog.FileName;
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Bir hata oluştu");
+            }
+
+        }
         private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
         {
             int userIDInput = userManager._id;
@@ -489,6 +510,8 @@ namespace DietApp.PL
                 addMealWithFoodEditGroupBox("Open", userIDInput, FoodNameInput, PortionInput, CategoryNameInput, CalorieInput, MealNameInput, dateTimeInput, PhotoPathInput);
             }
         }
+
+        
         private void MealPanel_btn_MealUpdate_Click(object sender, EventArgs e)
         {
             int userDayMealInput = userDayMealFoodManager.CurrentID;
@@ -554,7 +577,6 @@ namespace DietApp.PL
         {
             MealGroupBoxClose();
         }
-
 
         #endregion
 

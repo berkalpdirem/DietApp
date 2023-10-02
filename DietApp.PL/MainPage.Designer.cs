@@ -327,6 +327,7 @@
             MealPanel_btn_PhotoAdd.TabIndex = 16;
             MealPanel_btn_PhotoAdd.Text = "Fotoğraf Ekle";
             MealPanel_btn_PhotoAdd.UseVisualStyleBackColor = true;
+            MealPanel_btn_PhotoAdd.Click += MealPanel_btn_PhotoAdd_Click;
             // 
             // MealPanel_btn_ListDataGrid
             // 
@@ -1260,8 +1261,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1030, 465);
-            Controls.Add(pnl_ProfilPanel);
             Controls.Add(pnl_MealPanel);
+            Controls.Add(pnl_ProfilPanel);
             Controls.Add(pnl_LoginPanel);
             Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_RegisterPage);
