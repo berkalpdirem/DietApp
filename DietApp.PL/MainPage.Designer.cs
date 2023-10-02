@@ -58,17 +58,22 @@
             MealPanel_Datagrid = new DataGridView();
             MealPanel_btn_FoodEdit = new Button();
             pnl_LoginPanel = new Panel();
+            LoginPanel_lb_Context = new Label();
+            LoginPanel_lb_Title = new Label();
             LoginPage_gp_Actions = new GroupBox();
             LoginPanel_btn_Register = new Button();
             LoginPanel_tb_Email = new TextBox();
             LoginPanel_btn_Entry = new Button();
             LoginPanel_tb_Password = new TextBox();
             pnl_RegisterPage = new Panel();
+            RegisterPanel_lb_Title = new Label();
+            RegisterPanel_lb_Context = new Label();
+            RegisterPage_gp_Actions = new GroupBox();
+            RegisterPanel_tb_Email = new TextBox();
             RegisterPanel_btn_Back = new Button();
+            RegisterPanel_tb_Password = new TextBox();
             RegisterPanel_btn_Register = new Button();
             RegisterPanel_tb_Password2 = new TextBox();
-            RegisterPanel_tb_Password = new TextBox();
-            RegisterPanel_tb_Email = new TextBox();
             pnl_ProfilPanel = new Panel();
             ProfilPanel_gp_Info = new GroupBox();
             pictureBox1 = new PictureBox();
@@ -88,6 +93,11 @@
             ProfilPanel_lbl_Concrate7 = new Label();
             pnl_ReportsPanel = new Panel();
             ReportsPanel_cb_QuerySelection = new ComboBox();
+            pnl_ReportsPanel_DailyCalorieReport = new Panel();
+            ReportsPanel_lbl_TotalDailyCalories = new Label();
+            ReportsPanel_btn_DailyMealCalories = new Button();
+            ReportsPanel_DatagridUserDaily = new DataGridView();
+            ReportsPanel_DateTimePicker = new DateTimePicker();
             pnl_ReportsPanel_MostyEatedFoodsReport = new Panel();
             label7 = new Label();
             label6 = new Label();
@@ -102,11 +112,6 @@
             ReportsPanel_rb_WeeklyReport = new RadioButton();
             label4 = new Label();
             ReportsPanel_rb_MonthllyReport = new RadioButton();
-            pnl_ReportsPanel_DailyCalorieReport = new Panel();
-            ReportsPanel_lbl_TotalDailyCalories = new Label();
-            ReportsPanel_btn_DailyMealCalories = new Button();
-            ReportsPanel_DatagridUserDaily = new DataGridView();
-            ReportsPanel_DateTimePicker = new DateTimePicker();
             pnl_ReportsPanel_EmptyPanel = new Panel();
             pnl_FlowPanel.SuspendLayout();
             pnl_MealPanel.SuspendLayout();
@@ -118,18 +123,19 @@
             pnl_LoginPanel.SuspendLayout();
             LoginPage_gp_Actions.SuspendLayout();
             pnl_RegisterPage.SuspendLayout();
+            RegisterPage_gp_Actions.SuspendLayout();
             pnl_ProfilPanel.SuspendLayout();
             ProfilPanel_gp_Info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnl_ReportsPanel.SuspendLayout();
+            pnl_ReportsPanel_DailyCalorieReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUserDaily).BeginInit();
             pnl_ReportsPanel_MostyEatedFoodsReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridMostyEatedFoodsByFoodName).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridMostyEatedFoodsByMealName).BeginInit();
             pnl_ReportsPanel_UserCompareReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUserCompare).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridOthersCompare).BeginInit();
-            pnl_ReportsPanel_DailyCalorieReport.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUserDaily).BeginInit();
             SuspendLayout();
             // 
             // pnl_FlowPanel
@@ -222,7 +228,7 @@
             pnl_MealPanel.Dock = DockStyle.Fill;
             pnl_MealPanel.Location = new Point(210, 0);
             pnl_MealPanel.Name = "pnl_MealPanel";
-            pnl_MealPanel.Size = new Size(854, 465);
+            pnl_MealPanel.Size = new Size(820, 465);
             pnl_MealPanel.TabIndex = 2;
             // 
             // MealPanel_pb_FoodImage
@@ -240,9 +246,9 @@
             MealPanel_şbş_Info.AutoSize = true;
             MealPanel_şbş_Info.Location = new Point(7, 182);
             MealPanel_şbş_Info.Name = "MealPanel_şbş_Info";
-            MealPanel_şbş_Info.Size = new Size(359, 15);
+            MealPanel_şbş_Info.Size = new Size(506, 15);
             MealPanel_şbş_Info.TabIndex = 15;
-            MealPanel_şbş_Info.Text = "İçerik Düzenlemek ve Silmek İçin Lütfen Tablodan İlgili Satırı Seçiniz";
+            MealPanel_şbş_Info.Text = "İçerik Düzenlemek ve Silmek İçin Lütfen Tablodan İlgili Verinin Herhangi Bir Hücresine Tıklayınız";
             // 
             // MealPanel_btn_PhotoAdd
             // 
@@ -435,7 +441,7 @@
             MealPanel_Datagrid.RowTemplate.Height = 25;
             MealPanel_Datagrid.Size = new Size(809, 191);
             MealPanel_Datagrid.TabIndex = 1;
-            MealPanel_Datagrid.CellDoubleClick += MealPanel_Datagrid_CellDoubleClick;
+            MealPanel_Datagrid.CellClick += MealPanel_Datagrid_CellDoubleClick;
             // 
             // MealPanel_btn_FoodEdit
             // 
@@ -449,13 +455,39 @@
             // 
             // pnl_LoginPanel
             // 
-            pnl_LoginPanel.BackColor = SystemColors.ButtonShadow;
+            pnl_LoginPanel.BackColor = Color.Transparent;
+            pnl_LoginPanel.BackgroundImage = Properties.Resources.backGround;
+            pnl_LoginPanel.BackgroundImageLayout = ImageLayout.Stretch;
+            pnl_LoginPanel.BorderStyle = BorderStyle.FixedSingle;
+            pnl_LoginPanel.Controls.Add(LoginPanel_lb_Context);
+            pnl_LoginPanel.Controls.Add(LoginPanel_lb_Title);
             pnl_LoginPanel.Controls.Add(LoginPage_gp_Actions);
             pnl_LoginPanel.Dock = DockStyle.Fill;
             pnl_LoginPanel.Location = new Point(210, 0);
             pnl_LoginPanel.Name = "pnl_LoginPanel";
-            pnl_LoginPanel.Size = new Size(854, 465);
+            pnl_LoginPanel.Size = new Size(820, 465);
             pnl_LoginPanel.TabIndex = 1;
+            // 
+            // LoginPanel_lb_Context
+            // 
+            LoginPanel_lb_Context.AutoSize = true;
+            LoginPanel_lb_Context.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            LoginPanel_lb_Context.ForeColor = Color.FromArgb(35, 40, 45);
+            LoginPanel_lb_Context.Location = new Point(10, 124);
+            LoginPanel_lb_Context.Name = "LoginPanel_lb_Context";
+            LoginPanel_lb_Context.Size = new Size(68, 21);
+            LoginPanel_lb_Context.TabIndex = 7;
+            LoginPanel_lb_Context.Text = "Context";
+            // 
+            // LoginPanel_lb_Title
+            // 
+            LoginPanel_lb_Title.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            LoginPanel_lb_Title.ForeColor = Color.FromArgb(35, 40, 45);
+            LoginPanel_lb_Title.Location = new Point(10, 47);
+            LoginPanel_lb_Title.Name = "LoginPanel_lb_Title";
+            LoginPanel_lb_Title.Size = new Size(360, 55);
+            LoginPanel_lb_Title.TabIndex = 6;
+            LoginPanel_lb_Title.Text = "Title";
             // 
             // LoginPage_gp_Actions
             // 
@@ -463,7 +495,7 @@
             LoginPage_gp_Actions.Controls.Add(LoginPanel_tb_Email);
             LoginPage_gp_Actions.Controls.Add(LoginPanel_btn_Entry);
             LoginPage_gp_Actions.Controls.Add(LoginPanel_tb_Password);
-            LoginPage_gp_Actions.Location = new Point(275, 142);
+            LoginPage_gp_Actions.Location = new Point(10, 310);
             LoginPage_gp_Actions.Name = "LoginPage_gp_Actions";
             LoginPage_gp_Actions.Size = new Size(246, 149);
             LoginPage_gp_Actions.TabIndex = 5;
@@ -507,22 +539,65 @@
             // 
             // pnl_RegisterPage
             // 
-            pnl_RegisterPage.BackColor = SystemColors.ButtonShadow;
-            pnl_RegisterPage.Controls.Add(RegisterPanel_btn_Back);
-            pnl_RegisterPage.Controls.Add(RegisterPanel_btn_Register);
-            pnl_RegisterPage.Controls.Add(RegisterPanel_tb_Password2);
-            pnl_RegisterPage.Controls.Add(RegisterPanel_tb_Password);
-            pnl_RegisterPage.Controls.Add(RegisterPanel_tb_Email);
+            pnl_RegisterPage.BackColor = Color.Transparent;
+            pnl_RegisterPage.BackgroundImage = Properties.Resources.backGround;
+            pnl_RegisterPage.BackgroundImageLayout = ImageLayout.Stretch;
+            pnl_RegisterPage.Controls.Add(RegisterPanel_lb_Title);
+            pnl_RegisterPage.Controls.Add(RegisterPanel_lb_Context);
+            pnl_RegisterPage.Controls.Add(RegisterPage_gp_Actions);
             pnl_RegisterPage.Dock = DockStyle.Fill;
             pnl_RegisterPage.Enabled = false;
-            pnl_RegisterPage.Location = new Point(0, 0);
+            pnl_RegisterPage.Location = new Point(210, 0);
             pnl_RegisterPage.Name = "pnl_RegisterPage";
-            pnl_RegisterPage.Size = new Size(1064, 465);
+            pnl_RegisterPage.Size = new Size(820, 465);
             pnl_RegisterPage.TabIndex = 2;
+            // 
+            // RegisterPanel_lb_Title
+            // 
+            RegisterPanel_lb_Title.Font = new Font("Segoe UI", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            RegisterPanel_lb_Title.ForeColor = Color.FromArgb(35, 40, 45);
+            RegisterPanel_lb_Title.Location = new Point(10, 47);
+            RegisterPanel_lb_Title.Name = "RegisterPanel_lb_Title";
+            RegisterPanel_lb_Title.Size = new Size(360, 55);
+            RegisterPanel_lb_Title.TabIndex = 8;
+            RegisterPanel_lb_Title.Text = "Title";
+            // 
+            // RegisterPanel_lb_Context
+            // 
+            RegisterPanel_lb_Context.AutoSize = true;
+            RegisterPanel_lb_Context.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            RegisterPanel_lb_Context.ForeColor = Color.FromArgb(35, 40, 45);
+            RegisterPanel_lb_Context.Location = new Point(10, 124);
+            RegisterPanel_lb_Context.Name = "RegisterPanel_lb_Context";
+            RegisterPanel_lb_Context.Size = new Size(68, 21);
+            RegisterPanel_lb_Context.TabIndex = 9;
+            RegisterPanel_lb_Context.Text = "Context";
+            // 
+            // RegisterPage_gp_Actions
+            // 
+            RegisterPage_gp_Actions.BackColor = Color.Transparent;
+            RegisterPage_gp_Actions.Controls.Add(RegisterPanel_tb_Email);
+            RegisterPage_gp_Actions.Controls.Add(RegisterPanel_btn_Back);
+            RegisterPage_gp_Actions.Controls.Add(RegisterPanel_tb_Password);
+            RegisterPage_gp_Actions.Controls.Add(RegisterPanel_btn_Register);
+            RegisterPage_gp_Actions.Controls.Add(RegisterPanel_tb_Password2);
+            RegisterPage_gp_Actions.Location = new Point(10, 310);
+            RegisterPage_gp_Actions.Name = "RegisterPage_gp_Actions";
+            RegisterPage_gp_Actions.Size = new Size(212, 147);
+            RegisterPage_gp_Actions.TabIndex = 6;
+            RegisterPage_gp_Actions.TabStop = false;
+            // 
+            // RegisterPanel_tb_Email
+            // 
+            RegisterPanel_tb_Email.Location = new Point(31, 22);
+            RegisterPanel_tb_Email.Name = "RegisterPanel_tb_Email";
+            RegisterPanel_tb_Email.PlaceholderText = "E-Mailinizi Giriniz";
+            RegisterPanel_tb_Email.Size = new Size(146, 23);
+            RegisterPanel_tb_Email.TabIndex = 1;
             // 
             // RegisterPanel_btn_Back
             // 
-            RegisterPanel_btn_Back.Location = new Point(391, 229);
+            RegisterPanel_btn_Back.Location = new Point(107, 109);
             RegisterPanel_btn_Back.Name = "RegisterPanel_btn_Back";
             RegisterPanel_btn_Back.Size = new Size(70, 23);
             RegisterPanel_btn_Back.TabIndex = 5;
@@ -530,9 +605,17 @@
             RegisterPanel_btn_Back.UseVisualStyleBackColor = true;
             RegisterPanel_btn_Back.Click += rg_btn_Back_Click;
             // 
+            // RegisterPanel_tb_Password
+            // 
+            RegisterPanel_tb_Password.Location = new Point(31, 51);
+            RegisterPanel_tb_Password.Name = "RegisterPanel_tb_Password";
+            RegisterPanel_tb_Password.PlaceholderText = "Şifrenizi Giriniz";
+            RegisterPanel_tb_Password.Size = new Size(146, 23);
+            RegisterPanel_tb_Password.TabIndex = 2;
+            // 
             // RegisterPanel_btn_Register
             // 
-            RegisterPanel_btn_Register.Location = new Point(315, 229);
+            RegisterPanel_btn_Register.Location = new Point(31, 109);
             RegisterPanel_btn_Register.Name = "RegisterPanel_btn_Register";
             RegisterPanel_btn_Register.Size = new Size(70, 23);
             RegisterPanel_btn_Register.TabIndex = 4;
@@ -542,36 +625,20 @@
             // 
             // RegisterPanel_tb_Password2
             // 
-            RegisterPanel_tb_Password2.Location = new Point(315, 200);
+            RegisterPanel_tb_Password2.Location = new Point(31, 80);
             RegisterPanel_tb_Password2.Name = "RegisterPanel_tb_Password2";
             RegisterPanel_tb_Password2.PlaceholderText = "Şifrenizi Tekrardan Giriniz";
             RegisterPanel_tb_Password2.Size = new Size(146, 23);
             RegisterPanel_tb_Password2.TabIndex = 3;
-            // 
-            // RegisterPanel_tb_Password
-            // 
-            RegisterPanel_tb_Password.Location = new Point(315, 171);
-            RegisterPanel_tb_Password.Name = "RegisterPanel_tb_Password";
-            RegisterPanel_tb_Password.PlaceholderText = "Şifrenizi Giriniz";
-            RegisterPanel_tb_Password.Size = new Size(146, 23);
-            RegisterPanel_tb_Password.TabIndex = 2;
-            // 
-            // RegisterPanel_tb_Email
-            // 
-            RegisterPanel_tb_Email.Location = new Point(315, 142);
-            RegisterPanel_tb_Email.Name = "RegisterPanel_tb_Email";
-            RegisterPanel_tb_Email.PlaceholderText = "E-Mailinizi Giriniz";
-            RegisterPanel_tb_Email.Size = new Size(146, 23);
-            RegisterPanel_tb_Email.TabIndex = 1;
             // 
             // pnl_ProfilPanel
             // 
             pnl_ProfilPanel.BackColor = SystemColors.ButtonShadow;
             pnl_ProfilPanel.Controls.Add(ProfilPanel_gp_Info);
             pnl_ProfilPanel.Dock = DockStyle.Fill;
-            pnl_ProfilPanel.Location = new Point(0, 0);
+            pnl_ProfilPanel.Location = new Point(210, 0);
             pnl_ProfilPanel.Name = "pnl_ProfilPanel";
-            pnl_ProfilPanel.Size = new Size(1064, 465);
+            pnl_ProfilPanel.Size = new Size(820, 465);
             pnl_ProfilPanel.TabIndex = 2;
             // 
             // ProfilPanel_gp_Info
@@ -591,7 +658,7 @@
             ProfilPanel_gp_Info.Controls.Add(ProfilPanel_lbl_Concrate5);
             ProfilPanel_gp_Info.Controls.Add(ProfilPanel_lbl_Concrate6);
             ProfilPanel_gp_Info.Controls.Add(ProfilPanel_lbl_Concrate7);
-            ProfilPanel_gp_Info.Location = new Point(181, 32);
+            ProfilPanel_gp_Info.Location = new Point(299, 48);
             ProfilPanel_gp_Info.Name = "ProfilPanel_gp_Info";
             ProfilPanel_gp_Info.Size = new Size(256, 313);
             ProfilPanel_gp_Info.TabIndex = 2;
@@ -738,14 +805,14 @@
             // 
             pnl_ReportsPanel.BackColor = SystemColors.ButtonShadow;
             pnl_ReportsPanel.Controls.Add(ReportsPanel_cb_QuerySelection);
+            pnl_ReportsPanel.Controls.Add(pnl_ReportsPanel_DailyCalorieReport);
             pnl_ReportsPanel.Controls.Add(pnl_ReportsPanel_MostyEatedFoodsReport);
             pnl_ReportsPanel.Controls.Add(pnl_ReportsPanel_UserCompareReport);
-            pnl_ReportsPanel.Controls.Add(pnl_ReportsPanel_DailyCalorieReport);
             pnl_ReportsPanel.Controls.Add(pnl_ReportsPanel_EmptyPanel);
             pnl_ReportsPanel.Dock = DockStyle.Fill;
             pnl_ReportsPanel.Location = new Point(210, 0);
             pnl_ReportsPanel.Name = "pnl_ReportsPanel";
-            pnl_ReportsPanel.Size = new Size(854, 465);
+            pnl_ReportsPanel.Size = new Size(820, 465);
             pnl_ReportsPanel.TabIndex = 5;
             // 
             // ReportsPanel_cb_QuerySelection
@@ -753,11 +820,61 @@
             ReportsPanel_cb_QuerySelection.DropDownStyle = ComboBoxStyle.DropDownList;
             ReportsPanel_cb_QuerySelection.FormattingEnabled = true;
             ReportsPanel_cb_QuerySelection.Items.AddRange(new object[] { "Lütfen İstenilen Sorguyu Seçiniz", "Günlük Kalori Raporu", "Diğer Kullanıcılar ile Öğün Kıyas Raporu", "En Çok Yediğim Yemekler" });
-            ReportsPanel_cb_QuerySelection.Location = new Point(4, 9);
+            ReportsPanel_cb_QuerySelection.Location = new Point(30, 21);
             ReportsPanel_cb_QuerySelection.Name = "ReportsPanel_cb_QuerySelection";
             ReportsPanel_cb_QuerySelection.Size = new Size(256, 23);
             ReportsPanel_cb_QuerySelection.TabIndex = 6;
             ReportsPanel_cb_QuerySelection.SelectedIndexChanged += ReportsPanel_cb_QuerySelection_SelectedIndexChanged;
+            // 
+            // pnl_ReportsPanel_DailyCalorieReport
+            // 
+            pnl_ReportsPanel_DailyCalorieReport.Controls.Add(ReportsPanel_lbl_TotalDailyCalories);
+            pnl_ReportsPanel_DailyCalorieReport.Controls.Add(ReportsPanel_btn_DailyMealCalories);
+            pnl_ReportsPanel_DailyCalorieReport.Controls.Add(ReportsPanel_DatagridUserDaily);
+            pnl_ReportsPanel_DailyCalorieReport.Controls.Add(ReportsPanel_DateTimePicker);
+            pnl_ReportsPanel_DailyCalorieReport.Location = new Point(3, 67);
+            pnl_ReportsPanel_DailyCalorieReport.Name = "pnl_ReportsPanel_DailyCalorieReport";
+            pnl_ReportsPanel_DailyCalorieReport.Size = new Size(601, 355);
+            pnl_ReportsPanel_DailyCalorieReport.TabIndex = 7;
+            // 
+            // ReportsPanel_lbl_TotalDailyCalories
+            // 
+            ReportsPanel_lbl_TotalDailyCalories.Font = new Font("Verdana", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            ReportsPanel_lbl_TotalDailyCalories.ForeColor = Color.FromArgb(35, 40, 45);
+            ReportsPanel_lbl_TotalDailyCalories.Location = new Point(27, 25);
+            ReportsPanel_lbl_TotalDailyCalories.Name = "ReportsPanel_lbl_TotalDailyCalories";
+            ReportsPanel_lbl_TotalDailyCalories.Size = new Size(572, 23);
+            ReportsPanel_lbl_TotalDailyCalories.TabIndex = 4;
+            ReportsPanel_lbl_TotalDailyCalories.Text = "- tarihinde toplam - kadar kalori aldınız.";
+            ReportsPanel_lbl_TotalDailyCalories.Visible = false;
+            // 
+            // ReportsPanel_btn_DailyMealCalories
+            // 
+            ReportsPanel_btn_DailyMealCalories.Location = new Point(27, 1);
+            ReportsPanel_btn_DailyMealCalories.Name = "ReportsPanel_btn_DailyMealCalories";
+            ReportsPanel_btn_DailyMealCalories.Size = new Size(281, 23);
+            ReportsPanel_btn_DailyMealCalories.TabIndex = 3;
+            ReportsPanel_btn_DailyMealCalories.Text = "Günlük Kalori Raporu'nu Tarihe Göre Göster";
+            ReportsPanel_btn_DailyMealCalories.UseVisualStyleBackColor = true;
+            ReportsPanel_btn_DailyMealCalories.Click += ReportsPanel_btn_DailyMealCalories_Click;
+            // 
+            // ReportsPanel_DatagridUserDaily
+            // 
+            ReportsPanel_DatagridUserDaily.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ReportsPanel_DatagridUserDaily.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ReportsPanel_DatagridUserDaily.Location = new Point(27, 74);
+            ReportsPanel_DatagridUserDaily.Name = "ReportsPanel_DatagridUserDaily";
+            ReportsPanel_DatagridUserDaily.ReadOnly = true;
+            ReportsPanel_DatagridUserDaily.RowTemplate.Height = 25;
+            ReportsPanel_DatagridUserDaily.Size = new Size(317, 220);
+            ReportsPanel_DatagridUserDaily.TabIndex = 1;
+            // 
+            // ReportsPanel_DateTimePicker
+            // 
+            ReportsPanel_DateTimePicker.Location = new Point(27, 45);
+            ReportsPanel_DateTimePicker.Name = "ReportsPanel_DateTimePicker";
+            ReportsPanel_DateTimePicker.Size = new Size(281, 23);
+            ReportsPanel_DateTimePicker.TabIndex = 2;
             // 
             // pnl_ReportsPanel_MostyEatedFoodsReport
             // 
@@ -907,54 +1024,6 @@
             ReportsPanel_rb_MonthllyReport.Text = "Son 1 Ay İçin";
             ReportsPanel_rb_MonthllyReport.UseVisualStyleBackColor = true;
             // 
-            // pnl_ReportsPanel_DailyCalorieReport
-            // 
-            pnl_ReportsPanel_DailyCalorieReport.Controls.Add(ReportsPanel_lbl_TotalDailyCalories);
-            pnl_ReportsPanel_DailyCalorieReport.Controls.Add(ReportsPanel_btn_DailyMealCalories);
-            pnl_ReportsPanel_DailyCalorieReport.Controls.Add(ReportsPanel_DatagridUserDaily);
-            pnl_ReportsPanel_DailyCalorieReport.Controls.Add(ReportsPanel_DateTimePicker);
-            pnl_ReportsPanel_DailyCalorieReport.Location = new Point(3, 67);
-            pnl_ReportsPanel_DailyCalorieReport.Name = "pnl_ReportsPanel_DailyCalorieReport";
-            pnl_ReportsPanel_DailyCalorieReport.Size = new Size(601, 355);
-            pnl_ReportsPanel_DailyCalorieReport.TabIndex = 7;
-            // 
-            // ReportsPanel_lbl_TotalDailyCalories
-            // 
-            ReportsPanel_lbl_TotalDailyCalories.Font = new Font("Verdana", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            ReportsPanel_lbl_TotalDailyCalories.Location = new Point(29, 297);
-            ReportsPanel_lbl_TotalDailyCalories.Name = "ReportsPanel_lbl_TotalDailyCalories";
-            ReportsPanel_lbl_TotalDailyCalories.Size = new Size(572, 23);
-            ReportsPanel_lbl_TotalDailyCalories.TabIndex = 4;
-            ReportsPanel_lbl_TotalDailyCalories.Text = "- tarihinde toplam - kadar kalori aldınız.";
-            // 
-            // ReportsPanel_btn_DailyMealCalories
-            // 
-            ReportsPanel_btn_DailyMealCalories.Location = new Point(27, 16);
-            ReportsPanel_btn_DailyMealCalories.Name = "ReportsPanel_btn_DailyMealCalories";
-            ReportsPanel_btn_DailyMealCalories.Size = new Size(281, 23);
-            ReportsPanel_btn_DailyMealCalories.TabIndex = 3;
-            ReportsPanel_btn_DailyMealCalories.Text = "Günlük Kalori Raporu'nu Tarihe Göre Göster";
-            ReportsPanel_btn_DailyMealCalories.UseVisualStyleBackColor = true;
-            ReportsPanel_btn_DailyMealCalories.Click += ReportsPanel_btn_DailyMealCalories_Click;
-            // 
-            // ReportsPanel_DatagridUserDaily
-            // 
-            ReportsPanel_DatagridUserDaily.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            ReportsPanel_DatagridUserDaily.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ReportsPanel_DatagridUserDaily.Location = new Point(27, 74);
-            ReportsPanel_DatagridUserDaily.Name = "ReportsPanel_DatagridUserDaily";
-            ReportsPanel_DatagridUserDaily.ReadOnly = true;
-            ReportsPanel_DatagridUserDaily.RowTemplate.Height = 25;
-            ReportsPanel_DatagridUserDaily.Size = new Size(317, 220);
-            ReportsPanel_DatagridUserDaily.TabIndex = 1;
-            // 
-            // ReportsPanel_DateTimePicker
-            // 
-            ReportsPanel_DateTimePicker.Location = new Point(27, 45);
-            ReportsPanel_DateTimePicker.Name = "ReportsPanel_DateTimePicker";
-            ReportsPanel_DateTimePicker.Size = new Size(281, 23);
-            ReportsPanel_DateTimePicker.TabIndex = 2;
-            // 
             // pnl_ReportsPanel_EmptyPanel
             // 
             pnl_ReportsPanel_EmptyPanel.Location = new Point(7, 54);
@@ -966,13 +1035,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 465);
-            Controls.Add(pnl_MealPanel);
-            Controls.Add(pnl_ReportsPanel);
+            ClientSize = new Size(1030, 465);
             Controls.Add(pnl_LoginPanel);
-            Controls.Add(pnl_FlowPanel);
-            Controls.Add(pnl_ProfilPanel);
+            Controls.Add(pnl_ReportsPanel);
             Controls.Add(pnl_RegisterPage);
+            Controls.Add(pnl_MealPanel);
+            Controls.Add(pnl_ProfilPanel);
+            Controls.Add(pnl_FlowPanel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "MainPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Diyet Uygulaması";
@@ -987,15 +1057,20 @@
             ((System.ComponentModel.ISupportInitialize)MealPanel_nup_PortionSelection).EndInit();
             ((System.ComponentModel.ISupportInitialize)MealPanel_Datagrid).EndInit();
             pnl_LoginPanel.ResumeLayout(false);
+            pnl_LoginPanel.PerformLayout();
             LoginPage_gp_Actions.ResumeLayout(false);
             LoginPage_gp_Actions.PerformLayout();
             pnl_RegisterPage.ResumeLayout(false);
             pnl_RegisterPage.PerformLayout();
+            RegisterPage_gp_Actions.ResumeLayout(false);
+            RegisterPage_gp_Actions.PerformLayout();
             pnl_ProfilPanel.ResumeLayout(false);
             ProfilPanel_gp_Info.ResumeLayout(false);
             ProfilPanel_gp_Info.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnl_ReportsPanel.ResumeLayout(false);
+            pnl_ReportsPanel_DailyCalorieReport.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUserDaily).EndInit();
             pnl_ReportsPanel_MostyEatedFoodsReport.ResumeLayout(false);
             pnl_ReportsPanel_MostyEatedFoodsReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridMostyEatedFoodsByFoodName).EndInit();
@@ -1004,8 +1079,6 @@
             pnl_ReportsPanel_UserCompareReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUserCompare).EndInit();
             ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridOthersCompare).EndInit();
-            pnl_ReportsPanel_DailyCalorieReport.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ReportsPanel_DatagridUserDaily).EndInit();
             ResumeLayout(false);
         }
 
@@ -1091,5 +1164,10 @@
         private Label label7;
         private Label label6;
         private DataGridView ReportsPanel_DatagridMostyEatedFoodsByFoodName;
+        private GroupBox RegisterPage_gp_Actions;
+        private Label LoginPanel_lb_Title;
+        private Label LoginPanel_lb_Context;
+        private Label RegisterPanel_lb_Title;
+        private Label RegisterPanel_lb_Context;
     }
 }

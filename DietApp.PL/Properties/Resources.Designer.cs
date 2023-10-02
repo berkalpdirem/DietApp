@@ -63,6 +63,16 @@ namespace DietApp.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backGround {
+            get {
+                object obj = ResourceManager.GetObject("backGround", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DefaultFoodImage {
             get {
                 object obj = ResourceManager.GetObject("DefaultFoodImage", resourceCulture);
@@ -126,16 +136,6 @@ namespace DietApp.PL.Properties {
         internal static System.Drawing.Bitmap Report {
             get {
                 object obj = ResourceManager.GetObject("Report", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap YemekFoto {
-            get {
-                object obj = ResourceManager.GetObject("YemekFoto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

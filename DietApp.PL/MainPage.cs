@@ -37,6 +37,17 @@ namespace DietApp.PL
         {
             MealPanel_gb_MealEditGroupBox.Enabled = false;
             MealPanel_btn_UpdateClose.Visible = false;
+
+            LoginPanel_lb_Title.Text = "Kalori Takip Sistemim";
+
+            LoginPanel_lb_Context.Text = "Kalori Takip Sistemi olarak amacımız kullanıcının almış\n" +
+                                         "olduğu calorilerinin öğün bazında kayıdını tutmak ve\n" +
+                                         "günlük,haftalık ve aylık periyotlarda takibini sağlamaktır.\n" +
+                                         "Sağlıklı günler dileriz :)";
+            RegisterPanel_lb_Title.Text = LoginPanel_lb_Title.Text;
+            RegisterPanel_lb_Context.Text = LoginPanel_lb_Context.Text;
+
+
         }
 
         #region HelperMethods
@@ -74,7 +85,7 @@ namespace DietApp.PL
             MealPanel_btn_UpdateClose.Visible = false;
         }
 
-        private void addMealWithFoodEditGroupBox(string IsGroupBoxClose,int userIDInput,  string FoodNameInput,decimal PortionInput,string CategoryNameInput, decimal CalorieInput,string MealNameInput,DateTime dateTimeInput, string PhotoPathInput)
+        private void addMealWithFoodEditGroupBox(string IsGroupBoxClose, int userIDInput, string FoodNameInput, decimal PortionInput, string CategoryNameInput, decimal CalorieInput, string MealNameInput, DateTime dateTimeInput, string PhotoPathInput)
         {
             if (IsGroupBoxClose == "Close")
             {
@@ -113,7 +124,7 @@ namespace DietApp.PL
                     MessageBox.Show(" Veri Girişiniz Hatalı");
                 }
             }
-            else if(IsGroupBoxClose == "Open")
+            else if (IsGroupBoxClose == "Open")
             {
                 if (checkUIValues(MealPanel_cb_MealSelection,
                                    MealPanel_cb_CatagorySelection,
@@ -159,7 +170,7 @@ namespace DietApp.PL
                     MessageBox.Show(" Veri Girişiniz Hatalı");
                 }
             }
-            
+
         }
 
         private void updateMealWithFoodEditGroupBox(string IsGroupBoxClose, int userDayMealInput, int userIDInput, string FoodNameInput, decimal PortionInput, string CategoryNameInput, decimal CalorieInput, string MealNameInput, DateTime dateTimeInput, string PhotoPathInput)
@@ -206,10 +217,10 @@ namespace DietApp.PL
                 }
                 else
                 {
-                    MessageBox.Show(" Veri Güncellemeniz Hatalı");
+                    MessageBox.Show("Veri Güncellemesi İçin İlgili Verinin Bilgilerini Yukarıda Tekrardan Doldurunuz");
                 }
             }
-            else if(IsGroupBoxClose == "Open")
+            else if (IsGroupBoxClose == "Open")
             {
                 if (checkUIValues(MealPanel_cb_MealSelection,
                                    MealPanel_cb_CatagorySelection,
@@ -258,10 +269,10 @@ namespace DietApp.PL
                 }
                 else
                 {
-                    MessageBox.Show(" Veri Güncellemeniz Hatalı");
+                    MessageBox.Show("Veri Güncellemesi İçin İlgili Verinin Bilgilerini Yukarıda Tekrardan Doldurunuz");
                 }
             }
-            
+
         }
 
 
@@ -391,8 +402,8 @@ namespace DietApp.PL
         #region Meal Panel
         private void MealPanel_btn_FoodEdit_Click(object sender, EventArgs e)
         {
-            // Panel Anismasyonları
-            if (!MealPanel_gb_FoodEditGroupBox.Visible) // yemek güncelleme pasif ise (-'ye basıldığında) (Başlangıç Değeri "-")
+            // Panel Animations
+            if (!MealPanel_gb_FoodEditGroupBox.Visible) // If meal update is disabled (when - is pressed) (Initial Value "-")
             {
                 MealPanel_cb_FoodSelection.Enabled = false;
 
@@ -402,7 +413,7 @@ namespace DietApp.PL
 
                 MealPanel_btn_FoodEdit.Text = "-";
             }
-            else                                       // yemek güncelleme aktif ise (+'ya basıldığında) 
+            else                                       // If meal update is active (when + is pressed)
             {
                 MealPanel_cb_FoodSelection.Enabled = true;
 
@@ -411,7 +422,7 @@ namespace DietApp.PL
                 MealPanel_btn_FoodEdit.Text = "+";
             }
         }
-        //Yemek Ekleme - Güncelleme - Silme Operasyonları
+        //Adding Food - Update - Delete Operations
         private void MealPanel_btn_MealAdd_Click(object sender, EventArgs e)
         {
             int userIDInput = userManager._id;
@@ -425,11 +436,11 @@ namespace DietApp.PL
 
             if (MealPanel_btn_FoodEdit.Text == "-")
             {
-                addMealWithFoodEditGroupBox("Close",userIDInput,FoodNameInput,PortionInput,CategoryNameInput, CalorieInput,MealNameInput,dateTimeInput,PhotoPathInput);
+                addMealWithFoodEditGroupBox("Close", userIDInput, FoodNameInput, PortionInput, CategoryNameInput, CalorieInput, MealNameInput, dateTimeInput, PhotoPathInput);
             }
-            else if(MealPanel_btn_FoodEdit.Text == "+") 
+            else if (MealPanel_btn_FoodEdit.Text == "+")
             {
-                addMealWithFoodEditGroupBox("Open",userIDInput, FoodNameInput, PortionInput, CategoryNameInput, CalorieInput, MealNameInput, dateTimeInput, PhotoPathInput);
+                addMealWithFoodEditGroupBox("Open", userIDInput, FoodNameInput, PortionInput, CategoryNameInput, CalorieInput, MealNameInput, dateTimeInput, PhotoPathInput);
             }
         }
         private void MealPanel_btn_MealUpdate_Click(object sender, EventArgs e)
@@ -447,11 +458,11 @@ namespace DietApp.PL
 
             if (MealPanel_btn_FoodEdit.Text == "-")
             {
-                updateMealWithFoodEditGroupBox("Close",userDayMealInput, userIDInput, FoodNameInput, PortionInput, CategoryNameInput, CalorieInput, MealNameInput, dateTimeInput, PhotoPathInput);
+                updateMealWithFoodEditGroupBox("Close", userDayMealInput, userIDInput, FoodNameInput, PortionInput, CategoryNameInput, CalorieInput, MealNameInput, dateTimeInput, PhotoPathInput);
             }
             else if (MealPanel_btn_FoodEdit.Text == "+")
             {
-                updateMealWithFoodEditGroupBox("Open",userDayMealInput, userIDInput, FoodNameInput, PortionInput, CategoryNameInput, CalorieInput, MealNameInput, dateTimeInput, PhotoPathInput);
+                updateMealWithFoodEditGroupBox("Open", userDayMealInput, userIDInput, FoodNameInput, PortionInput, CategoryNameInput, CalorieInput, MealNameInput, dateTimeInput, PhotoPathInput);
             }
         }
 
@@ -465,17 +476,22 @@ namespace DietApp.PL
         private void MealPanel_btn_ListDataGrid_Click(object sender, EventArgs e)
         {
             MealPanel_Datagrid.DataSource = userDayMealFoodManager.ShowDayMealFoods(userManager._id);
-
         }
 
         private void MealPanel_Datagrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Delete Actions
+            // Select the row to which the selected cell belongs
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = MealPanel_Datagrid.Rows[e.RowIndex];
+                selectedRow.Selected = true;
+            }
+
+            //Select row for delete and update actions
             if (MealPanel_Datagrid.SelectedRows.Count == 1)
             {
                 userDayMealFoodManager.CurrentID = int.Parse(MealPanel_Datagrid.SelectedRows[0].Cells[0].Value.ToString());
 
-                MessageBox.Show("Satır Seçimi Başarılı");
 
                 MealPanel_gb_MealEditGroupBox.Enabled = true;
                 MealPanel_gb_MealEditGroupBox.Visible = true;
@@ -484,7 +500,7 @@ namespace DietApp.PL
             }
             else
             {
-                MessageBox.Show("Lütfen Satırı Seçiniz");
+                MessageBox.Show("Lütfen Tek Satır Seçiniz");
             }
         }
 
@@ -493,7 +509,7 @@ namespace DietApp.PL
             MealGroupBoxClose();
         }
 
-        
+
         #endregion
 
         #region Reports Panel
@@ -539,6 +555,7 @@ namespace DietApp.PL
                     }
                 }
             }
+            ReportsPanel_lbl_TotalDailyCalories.Visible = true;
             ReportsPanel_lbl_TotalDailyCalories.Text = $"{ReportsPanel_DateTimePicker.Value.ToShortDateString()} tarihinde toplam {CaloriesSum} kadar kalori aldınız.";
         }
 
